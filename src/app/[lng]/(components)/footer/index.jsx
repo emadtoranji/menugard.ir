@@ -1,8 +1,11 @@
+import { getT } from '@i18n/server';
 import FooterMessageYear from './FooterMessageYear';
 
 import Link from 'next/link';
 
-export default async function Footer({ t, currentLang }) {
+export default async function Footer({ lng }) {
+  const { t } = await getT(lng, 'header-footer');
+
   return (
     <footer id='footer' className='mt-auto pt-4 pb-3 text-center'>
       <div className='container'>
@@ -19,23 +22,20 @@ export default async function Footer({ t, currentLang }) {
             <ul className='list-unstyled row row-cols-1 row-cols-sm-2 g-2 m-0 p-0'>
               <li className='col'>
                 <Link
-                  href={`/${currentLang}/#features`}
+                  href={`/${lng}/#features`}
                   className='text-decoration-none'
                 >
                   {t('footer.quick_links.features')}
                 </Link>
               </li>
               <li className='col'>
-                <Link
-                  href={`/${currentLang}/store`}
-                  className='text-decoration-none'
-                >
+                <Link href={`/${lng}/store`} className='text-decoration-none'>
                   {t('footer.quick_links.store')}
                 </Link>
               </li>
               <li className='col'>
                 <Link
-                  href={`/${currentLang}/dashboard`}
+                  href={`/${lng}/dashboard`}
                   className='text-decoration-none'
                 >
                   {t('footer.quick_links.dashboard')}

@@ -9,11 +9,11 @@ export async function generateMetadata(props) {
 
 export default async function Layout({ children, params }) {
   const { lng } = (await params) || { lng: null };
-  const { t, lng: currentLang } = await getT(lng, 'header-footer');
+
   return (
     <>
       <Main>{children}</Main>
-      <Footer t={t} currentLang={currentLang} />
+      <Footer lng={lng} />
     </>
   );
 }
