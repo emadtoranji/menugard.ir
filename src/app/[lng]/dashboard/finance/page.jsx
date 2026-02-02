@@ -8,9 +8,10 @@ import Link from 'next/link';
 import { auth } from '@utils/auth/NextAuth';
 
 export default async function FinancePage({ params }) {
+  const { lng } = (await params) || {};
   redirect(`/${lng}/dashboard`);
   return;
-  const { lng } = (await params) || {};
+
   const { t, lng: currentLang } = await getT(lng, 'dashboard');
 
   const session = await auth();

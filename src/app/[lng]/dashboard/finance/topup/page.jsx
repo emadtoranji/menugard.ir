@@ -7,9 +7,10 @@ import { TopUpDescription } from './TopUpDescription';
 import { redirect } from 'next/navigation';
 
 export default async function Index({ params }) {
+  const { lng } = (await params) || {};
   redirect(`/${lng}/dashboard`);
   return;
-  const { lng } = (await params) || {};
+
   const { t, lng: currentLang } = await getT(lng, 'dashboard');
 
   return (
