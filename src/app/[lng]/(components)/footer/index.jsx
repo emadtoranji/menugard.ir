@@ -2,6 +2,7 @@ import { getT } from '@i18n/server';
 import FooterMessageYear from './FooterMessageYear';
 
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export default async function Footer({ lng }) {
   const { t } = await getT(lng, 'header-footer');
@@ -58,7 +59,9 @@ export default async function Footer({ lng }) {
 
         <div className='row gy-3 align-items-center text-center'>
           <div className='col-12'>
-            <FooterMessageYear />
+            <Suspense fallback={undefined}>
+              <FooterMessageYear />
+            </Suspense>
           </div>
         </div>
 
