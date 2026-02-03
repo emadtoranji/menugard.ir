@@ -1,18 +1,16 @@
 model StoreExplorerLog {
-  id     String  @id @default(uuid()) @db.Uuid
-  userId String? @db.Uuid
+  id            String  @id @default(uuid()) @db.Uuid
 
-  storeId String  @db.Uuid
-  tableId      Int?
+  storeId       String  @db.Uuid
+  tableId       Int?
 
-  source StoreExplorerSource @default(unknown)
+  source        StoreExplorerSource @default(unknown)
 
-  ipAddress String?  @db.VarChar(45)
-  createdAt DateTime @default(now())
+  ipAddress     String?  @db.VarChar(45)
+  createdAt     DateTime @default(now())
 
-  store Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  table      StoreTable? @relation(fields: [tableId], references: [id], onDelete: Cascade)
-  user       User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store         Store         @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  table         StoreTable?   @relation(fields: [tableId], references: [id], onDelete: SetNull)
 
   @@index([storeId, createdAt])
   @@index([source])

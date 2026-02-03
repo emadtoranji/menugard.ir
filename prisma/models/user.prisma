@@ -21,7 +21,6 @@ model User {
   stores              Store[]
   storeItem           StoreItem[]
   storeItemOption     StoreItemOption[]
-  StoreExplorers      StoreExplorerLog[]
 
   performedTxs WalletTransaction[] @relation("PerformedBy")
 }
