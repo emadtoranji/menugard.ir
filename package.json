@@ -4,8 +4,8 @@
   "private": false,
   "scripts": {
     "dev": "next dev --port 4501",
-    "build": "npm run generate && next build",
-    "build-local": "dotenv -e .env.local -- prisma generate && next build",
+    "build": "prisma migrate dev --name init && npm run generate && next build",
+    "build-local": "dotenv -e .env.local -- prisma migrate dev --name init && dotenv -e .env.local -- prisma generate && next build",
     "generate": "npx prisma generate",
     "install-omit-dev": "npm install --omit=dev",
     "start": "node server.js",
