@@ -7,7 +7,8 @@ import { useT } from '@i18n/client';
 import toast from 'react-hot-toast';
 
 export default function Dashboard({ params }) {
-  const { t, lng: currentLang } = useT('dashboard');
+  const { t, i18n } = useT('dashboard');
+  const lng = i18n.language;
   const [storeStatsData, setStoreStatsData] = useState([]);
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function Dashboard({ params }) {
                   <div className='card border-0 shadow rounded p-3'>
                     <div className='muted-small'>{label}</div>
                     <div className='big-number'>
-                      {formatNumber(store.stats[key], currentLang) || '-'}
+                      {formatNumber(store.stats[key], lng) || '-'}
                     </div>
                   </div>
                 </div>
