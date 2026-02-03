@@ -7,6 +7,7 @@ export async function HandleResponse({
   status = 0,
   meta = undefined,
   devMessage = undefined,
+  headers = {},
 }) {
   return NextResponse.json(
     {
@@ -27,8 +28,9 @@ export async function HandleResponse({
         'Access-Control-Allow-Methods': 'POST',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         Vary: 'Accept-Encoding',
+        ...headers,
       },
-    }
+    },
   );
 }
 
