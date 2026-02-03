@@ -24,6 +24,7 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
         if (slug) {
           const rows = await prisma.store.findUnique({
             select: {
+              id: true,
               name: true,
               description: true,
               slug: true,
