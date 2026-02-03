@@ -6,6 +6,7 @@ import Image from 'next/image';
 import prisma from '@lib/prisma';
 import { redirect } from 'next/navigation';
 import { auth } from '@utils/auth/NextAuth';
+import Head from './(components)/Head';
 
 export default async function Index({ params }) {
   const session = await auth();
@@ -37,24 +38,13 @@ export default async function Index({ params }) {
     <AnimatedPage>
       <div className='container-fluid'>
         <div className='container'>
-          <div className='d-flex flex-column gap-2 mb-4'>
-            <div className='d-flex align-items-center justify-content-between'>
-              <h3>{t('my-store')}</h3>
-              <div className='mx-2 d-flex gap-2 gap-md-3'>
-                <Link
-                  href={`/${lng}/dashboard/my-store/new`}
-                  className='col-12'
-                >
-                  <i
-                    type='button'
-                    className='bi bi-plus-circle-fill text-success fs-3'
-                  ></i>
-                </Link>
-              </div>
-            </div>
-            <div className='muted-small'>{t('my-store-description')}</div>
-            <hr />
-          </div>
+          <Head
+            lng={lng}
+            title='my-store'
+            subTitle='my-store-description'
+            hasNew={true}
+          />
+
           <>
             {myStoresData === undefined ? (
               <h4>{t('general.unknown-problem')}</h4>
