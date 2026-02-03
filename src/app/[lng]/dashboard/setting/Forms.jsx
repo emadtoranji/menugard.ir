@@ -15,8 +15,8 @@ export default function Index({ user, currentLang }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     email: '',
-    emailVerified: undefined,
-    username: undefined,
+    emailVerified: null,
+    username: null,
   });
   const [usernameError, setUsernameError] = useState('');
   const [oldPassword, setOldPassword] = useState('');
@@ -220,7 +220,7 @@ export default function Index({ user, currentLang }) {
                     className={`d-flex align-items-center btn badge ${
                       isSendingEmail ? 'disabled' : ''
                     } ${
-                      data.emailVerified === undefined
+                      data.emailVerified === null
                         ? 'd-none'
                         : data.emailVerified
                           ? 'btn-success'
@@ -260,16 +260,15 @@ export default function Index({ user, currentLang }) {
                 <input
                   style={{ direction: 'ltr' }}
                   className={`form-control ${
-                    data.username === undefined ? 'disabled' : ''
+                    data.username === null ? 'disabled' : ''
                   } ${
-                    data.username !== undefined &&
-                    !isValidUsername(data.username)
+                    data.username !== null && !isValidUsername(data.username)
                       ? 'is-invalid'
                       : ''
                   }`}
                   type='text'
-                  disabled={data.username === undefined}
-                  value={data.username}
+                  disabled={data.username === null}
+                  value={data.username || ''}
                   onChange={handleUsernameChange}
                   autoComplete='new-username'
                 />

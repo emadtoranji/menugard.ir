@@ -19,7 +19,6 @@ export default async function Index({ params }) {
         email: true,
         emailVerified: true,
         username: true,
-        balance: true,
         accessibility: true,
         status: true,
       },
