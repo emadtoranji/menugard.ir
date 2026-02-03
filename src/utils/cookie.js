@@ -3,13 +3,21 @@ export function getCookie(req, name) {
   return value || null;
 }
 
+export const cookieDefaultOptions = {
+  path: '/',
+  sameSite: 'strict',
+  httpOnly: false,
+  secure: process.env.NODE_ENV === 'production',
+  maxAge: 60 * 60 * 24 * 365,
+};
+
 export function setCookie(response, name, value, options = {}) {
   const {
-    path = '/',
-    sameSite = 'strict',
-    httpOnly = false,
-    secure = process.env.NODE_ENV === 'production',
-    maxAge = 60 * 60 * 24 * 365,
+    path = cookieDefaultOptions.path,
+    sameSite = cookieDefaultOptions.sameSite,
+    httpOnly = cookieDefaultOptions.httpOnly,
+    secure = cookieDefaultOptions.secure,
+    maxAge = cookieDefaultOptions.maxAge,
   } = options;
 
   response.cookies.set({
