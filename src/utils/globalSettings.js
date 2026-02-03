@@ -1,4 +1,4 @@
-export const hardcodeWebsiteName = 'Box Menu';
+export const hardcodeWebsiteName = 'MenuGard';
 
 let __NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '/';
 let __NEXT_PUBLIC_BASE_CLIENT_API_URL =
