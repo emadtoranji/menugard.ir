@@ -1,7 +1,7 @@
 {
   "footer": {
-    "brand": "Box Menu",
-    "description": "A platform for managing stores and digitizing catalogs and products.",
+    "brand": "MenuGard",
+    "description": "A platform for managing stores and digitizing catalogs and products",
     "quick_links": {
       "title": "Quick Links",
       "features": "Features",
@@ -15,7 +15,7 @@
     "language": {
       "title": "Change Language"
     },
-    "copy": "© {{year}} Box Menu — Made for you with love and creativity ❤️",
+    "copy": "© {{year}} MenuGard — Made for you with love and creativity ❤️",
     "terms": "Terms of Use",
     "privacy": "Privacy",
     "cookies": "Cookies"

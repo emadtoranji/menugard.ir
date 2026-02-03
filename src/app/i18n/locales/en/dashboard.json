@@ -2,7 +2,7 @@
   "dashboard": {
     "login": {
       "login-success": "You have successfully logged in",
-      "title": "Box Menu - Store Management",
+      "title": "MenuGard - Store Management",
       "email": "Email",
       "email-placeholder": "Enter your email",
       "password": "Password",
