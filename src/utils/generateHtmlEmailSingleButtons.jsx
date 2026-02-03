@@ -1,4 +1,5 @@
 import { fallbackLng, languages } from '@i18n/settings';
+import { hardcodeWebsiteName } from './globalSettings';
 
 export function generateHtmlEmailSingleButtons({
   language = fallbackLng,
@@ -8,7 +9,7 @@ export function generateHtmlEmailSingleButtons({
   buttonUrl = '#',
   note = '',
   footer = '',
-  signature = 'Box Menu',
+  signature = hardcodeWebsiteName,
 }) {
   language = language.toLowerCase();
 
