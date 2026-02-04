@@ -3,6 +3,8 @@
   "search-placeholder": "Search here...",
   "empty": "No stores found",
   "add-item": "Add",
+  "add-option": "Add",
+  "add-option-done": "Added",
   "free": "Free",
   "is-not-active": "Not available",
   "is-not-avaialbe": "Out of stock"
