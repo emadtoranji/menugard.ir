@@ -7,8 +7,8 @@ model StoreItem {
   title         String                        @db.VarChar(128)
   description   String?                       @db.VarChar(512)
 
-  price           Float
-  discountPercent Float?                        @default(0)
+  price           Float                       @default(0)
+  discountPercent Float?                      @default(0)
 
   imageUrl      String?                       @db.VarChar(256)
 
@@ -34,7 +34,8 @@ model StoreItemOption {
   minSelect             Int           @default(0)
   maxSelect             Int           @default(1)
 
-  priceChangePercent    Float         @default(0)
+  price                 Float         @default(0)
+  discountPercent       Int           @default(0)
   isActive              Boolean       @default(true)
 
   createdAt             DateTime      @default(now())

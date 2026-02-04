@@ -82,25 +82,30 @@ export function orderReducer(state, action) {
       let finalPrice = 0;
 
       state.items.forEach((item) => {
-        const quantity = item.quantity ?? 1;
+        const quantity = item.quantity ?? 0;
 
-        const discountPercent = item.discountPercent ?? 0;
-        const discountedPrice =
-          item.price - (item.price * discountPercent) / 100;
+        const itemDiscount = item.discountPercent ?? 0;
+        const discountedItemPrice =
+          item.price - (item.price * itemDiscount) / 100;
 
-        const basePrice = discountedPrice * quantity;
+        const itemTotal = discountedItemPrice * quantity;
 
-        let optionsPercent = 0;
+        let optionsTotal = 0;
 
         if (Array.isArray(item.options)) {
           item.options.forEach((option) => {
-            const count = option.count ?? 1;
-            const percent = option.priceChangePercent ?? 0;
-            optionsPercent += percent * count;
+            const optionPrice = option.price ?? 0;
+            const optionDiscount = option.discountPercent ?? 0;
+            const optionCount = option.count ?? 1;
+
+            const discountedOptionPrice =
+              optionPrice - (optionPrice * optionDiscount) / 100;
+
+            optionsTotal += discountedOptionPrice * optionCount;
           });
         }
 
-        finalPrice += basePrice + (basePrice * optionsPercent) / 100;
+        finalPrice += itemTotal + optionsTotal;
       });
 
       return { ...state, totalPrice: finalPrice };

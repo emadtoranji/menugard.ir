@@ -69,9 +69,11 @@ export const POST = limited(async (req) => {
           (!option.isRequired && option.minSelect != 0) ||
           option.maxSelect <= 0 ||
           option.maxSelect < option.minSelect ||
-          typeof option?.priceChangePercent !== 'number' ||
-          typeof option.priceChangePercent < 0 ||
-          typeof option.priceChangePercent < 100 ||
+          typeof option?.price !== 'number' ||
+          typeof option.price < 0 ||
+          typeof option?.discountPercent !== 'number' ||
+          typeof option.discountPercent < 0 ||
+          typeof option.discountPercent > 100 ||
           typeof option?.isActive !== 'boolean'
         ) {
           return HandleResponse({
@@ -112,7 +114,8 @@ export const POST = limited(async (req) => {
               isRequired: opt.isRequired,
               minSelect: opt.minSelect,
               maxSelect: opt.maxSelect,
-              priceChangePercent: opt.priceChangePercent,
+              price: opt.price,
+              discountPercent: opt.discountPercent,
               isActive: opt.isActive,
             }));
 
@@ -161,7 +164,8 @@ export const POST = limited(async (req) => {
             isRequired: opt.isRequired,
             minSelect: opt.minSelect,
             maxSelect: opt.maxSelect,
-            priceChangePercent: opt.priceChangePercent,
+            price: opt.price,
+            discountPercent: opt.discountPercent,
             isActive: opt.isActive,
           }));
 

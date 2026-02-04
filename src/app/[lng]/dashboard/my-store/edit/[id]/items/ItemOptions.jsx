@@ -17,7 +17,8 @@ export default function ItemOptions({ options, onChange }) {
         isRequired: false,
         minSelect: 0,
         maxSelect: 1,
-        priceChangePercent: 0,
+        price: 0,
+        discountPercent: 0,
         isActive: true,
       },
     ]);

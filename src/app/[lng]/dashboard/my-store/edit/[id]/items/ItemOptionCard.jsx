@@ -16,8 +16,14 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
       if (value < 0) {
         value = 0;
       }
-    } else if (['priceChangePercent'].includes(field)) {
+    } else if (['price'].includes(field)) {
+      value = exportOnlyNumberFromString({ value, float: true });
+      if (value < 0) {
+        value = 0;
+      }
+    } else if (['discountPercent'].includes(field)) {
       value = exportOnlyNumberFromString({ value, float: false });
+
       if (value < 0) {
         value = 0;
       } else if (value > 100) {
@@ -132,21 +138,34 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
             min={1}
             max={undefined}
           />
-          <Input
-            type='numeric'
-            name='priceChangePercent'
-            value={option.priceChangePercent}
-            HandleChange={set}
-            label={t('edit.sections.items.item-option-change-price-percent')}
-            disabled={false}
-            hasValidValue={
-              option.priceChangePercent >= 0 && option.priceChangePercent <= 100
-            }
-            isRtl={false}
-            min={0}
-            max={100}
-          />
         </div>
+      </div>
+
+      <div className='mt-3 d-flex gap-3'>
+        <Input
+          type='numeric'
+          name='price'
+          value={option.price}
+          HandleChange={set}
+          label={t('edit.sections.items.item-option-price')}
+          disabled={false}
+          hasValidValue={option.price >= 0}
+          isRtl={false}
+          min={0}
+          max={undefined}
+        />
+        <Input
+          type='numeric'
+          name='discountPercent'
+          value={option.discountPercent}
+          HandleChange={set}
+          label={t('edit.sections.items.item-option-discount-percent')}
+          disabled={false}
+          hasValidValue={option.price >= 0 || option.price <= 100}
+          isRtl={false}
+          min={0}
+          max={100}
+        />
       </div>
 
       <div className='my-3'>

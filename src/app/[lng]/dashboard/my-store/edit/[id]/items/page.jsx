@@ -37,7 +37,8 @@ export default async function Index({ params }) {
                 isRequired: true,
                 minSelect: true,
                 maxSelect: true,
-                priceChangePercent: true,
+                price: true,
+                discountPercent: true,
                 isActive: true,
               },
               where: {
