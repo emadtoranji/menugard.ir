@@ -10,5 +10,8 @@
   "is-required": "اجباری",
   "free": "رایگان",
   "is-not-active": "موجود نیست",
-  "is-not-avaialbe": "تمام شد"
+  "is-not-avaialbe": "تمام شد",
+  "order-list-button": "سفارشات",
+  "order-list-title": "سفارشات",
+  "order-list-empty": "لیست سفارش خالی است"
 }
