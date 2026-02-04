@@ -16,10 +16,16 @@ export function OffcanvasButton({
   );
 }
 
-export function OffcanvasWrapper({ title, id = null, children }) {
+export function OffcanvasWrapper({
+  title,
+  id = null,
+  children,
+  zIndex = 1000,
+}) {
   return (
     <div
-      className='offcanvas offcanvas-bottom'
+      style={{ zIndex }}
+      className='offcanvas offcanvas-bottom h-100'
       tabIndex='-1'
       id={id}
       aria-labelledby={`${id}Label`}
