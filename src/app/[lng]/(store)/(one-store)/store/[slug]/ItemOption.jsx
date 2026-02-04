@@ -67,7 +67,7 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
           >
             <h6 className='d-flex align-items-baseline gap-1 m-0'>
               {option.isRequired && (
-                <i className='fs-10 bi bi-asterisk text-danger'></i>
+                <i className='d-flex align-items-center fs-10 bi bi-asterisk text-danger'></i>
               )}
               <span>{option.title}</span>
               {priceSection}
@@ -81,16 +81,15 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
               <button
                 type='button'
                 className='d-flex gap-1 align-items-center btn btn-active btn-sm'
-                disabled={true}
+                disabled
               >
                 <i className='d-flex align-items-center bi bi-check2-circle'></i>
                 <span>{t('is-required')}</span>
               </button>
-            ) : isSimpleAdd ? (
+            ) : isSimpleAdd && count === 0 ? (
               <button
                 type='button'
                 className='d-flex gap-1 btn btn-active btn-sm'
-                disabled={atMax}
                 onClick={() =>
                   handleOptionSelect({
                     index,
@@ -102,6 +101,22 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
               >
                 <i className='d-flex align-items-center bi bi-plus-lg'></i>
                 <span>{t('add-option')}</span>
+              </button>
+            ) : isSimpleAdd && count === 1 ? (
+              <button
+                type='button'
+                className='d-flex gap-1 btn btn-danger btn-sm'
+                onClick={() =>
+                  handleOptionSelect({
+                    index,
+                    minSelect,
+                    maxSelect,
+                    change: -1,
+                  })
+                }
+              >
+                <i className='d-flex align-items-center bi bi-x-circle'></i>
+                <span className=''>{t('remove-option')}</span>
               </button>
             ) : (
               <div className='d-flex align-items-center gap-1 rounded border border-dark'>
@@ -120,9 +135,11 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
                 >
                   +
                 </button>
+
                 <span className='small fw-bold border-start border-end px-3'>
                   {formatNumber(count, lng)}
                 </span>
+
                 <button
                   type='button'
                   className='rounded border border-light btn btn-sm'
