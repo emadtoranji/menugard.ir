@@ -25,6 +25,7 @@ export default function StoreComponent({ store, lng }) {
       />
 
       <ItemContent
+        key={activeCategory}
         storeCurrency={store.currency}
         items={Object.values(
           store.items
