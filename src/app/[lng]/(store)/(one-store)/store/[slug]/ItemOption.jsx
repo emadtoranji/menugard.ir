@@ -44,6 +44,8 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
         const isSimpleAdd =
           (minSelect === 0 || minSelect === 1) && maxSelect === 1;
 
+        const isRequiredAndIsSimple = option.isRequired && isSimpleAdd;
+
         const priceSection = !isNaN(option.priceChangePercent) ? (
           option.priceChangePercent === 0 ? (
             <span className={additionalClass}>
@@ -75,10 +77,19 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
               <button type='button' className='btn btn-danger btn-sm' disabled>
                 {t('is-not-active')}
               </button>
+            ) : isRequiredAndIsSimple ? (
+              <button
+                type='button'
+                className='d-flex gap-1 align-items-center btn btn-active btn-sm'
+                disabled={true}
+              >
+                <i className='d-flex align-items-center bi bi-check2-circle'></i>
+                <span>{t('is-required')}</span>
+              </button>
             ) : isSimpleAdd ? (
               <button
                 type='button'
-                className='btn btn-active btn-sm'
+                className='d-flex gap-1 btn btn-active btn-sm'
                 disabled={atMax}
                 onClick={() =>
                   handleOptionSelect({
@@ -89,7 +100,8 @@ export default function ItemOption({ lng, options = [], isOrderable = true }) {
                   })
                 }
               >
-                <i className='bi bi-plus-lg'></i> {t('add-option')}
+                <i className='d-flex align-items-center bi bi-plus-lg'></i>
+                <span>{t('add-option')}</span>
               </button>
             ) : (
               <div className='d-flex align-items-center gap-1 rounded border border-dark'>
