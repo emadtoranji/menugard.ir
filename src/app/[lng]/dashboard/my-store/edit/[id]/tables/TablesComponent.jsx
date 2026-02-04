@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { useT } from '@i18n/client';
 import Spinner from '@components/Spinner';
 import QRCode from 'qrcode';
+import Image from 'next/image';
 
 export default function StoreTables({ store, BaseUrlAddress }) {
   const { t } = useT('dashboard-my-store');
@@ -234,7 +235,13 @@ function StoreTableCard({
 
       {qrCode && (
         <div className='text-center mb-3'>
-          <img src={qrCode} alt='QR Code' className='mx-auto d-block' />
+          <Image
+            width={200}
+            height={200}
+            src={qrCode}
+            alt='QR Code'
+            className='mx-auto d-block'
+          />
         </div>
       )}
 
