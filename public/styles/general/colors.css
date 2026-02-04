@@ -17,6 +17,7 @@
   --zindex-loader: 9999999;
   --zindex-modal-backdrop: 1050 !important;
   --zindex-modal: 1055 !important;
+  --zindex-offcanvas: 1060 !important;
   --zindex-footer: 1000 !important;
   --zindex-nav: 1000 !important;
 }
