@@ -32,12 +32,10 @@ export default function Input({
               onChange={(e) =>
                 HandleChange(
                   name,
-                  min > 0
-                    ? +e.target.value
-                    : exportOnlyNumberFromString({
-                        value: e.target.value,
-                        float: false,
-                      }),
+                  exportOnlyNumberFromString({
+                    value: e.target.value,
+                    float: false,
+                  }),
                 )
               }
               disabled={disabled}

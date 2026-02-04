@@ -2,7 +2,7 @@
 import { useT } from '@i18n/client';
 import Input from '../../../(components)/Input';
 import { exportOnlyNumberFromString } from '@utils/numbers';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function ItemOptionCard({ option, onChange, onDelete }) {
   const { t } = useT('dashboard-my-store');
@@ -27,23 +27,24 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
     onChange({ ...option, [field]: value });
   }
 
-  useEffect(() => {
+  const normalizedOption = useMemo(() => {
     if (option.isRequired) {
-      if (option.minSelect !== 1 || option.maxSelect !== 1)
-        if (isForcedOne)
-          onChange({
-            ...option,
-            minSelect: 1,
-            maxSelect: 1,
-          });
+      if (isForcedOne && (option.minSelect !== 1 || option.maxSelect !== 1)) {
+        return { ...option, minSelect: 1, maxSelect: 1 };
+      }
     } else {
-      if (option.minSelect !== 0)
-        onChange({
-          ...option,
-          minSelect: 0,
-        });
+      if (option.minSelect !== 0) {
+        return { ...option, minSelect: 0 };
+      }
     }
-  }, [isForcedOne, option]);
+    return option;
+  }, [option, isForcedOne]);
+
+  useEffect(() => {
+    if (normalizedOption !== option) {
+      onChange(normalizedOption);
+    }
+  }, [normalizedOption, onChange, option]);
 
   return (
     <div className='text-bg-light rounded p-3'>
