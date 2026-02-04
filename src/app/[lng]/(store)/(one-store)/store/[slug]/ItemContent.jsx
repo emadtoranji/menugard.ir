@@ -7,6 +7,10 @@ import ItemOption from './ItemOption';
 import { freeSpanComponent } from './FreeSpan';
 import { useOrder } from '@context/notes/order/useOrder';
 import Loading from '@components/Loading/client';
+import { OffcanvasButton, OffcanvasWrapper } from '@components/Offcanvas';
+import SelectedItemsList from './SelectedItemsList';
+import ItemQuantityButton from './ItemQuantityButton';
+import CurrencySpan from './CurrencySpan';
 
 export default function ItemContent({
   items = [],
@@ -14,59 +18,40 @@ export default function ItemContent({
   defaultImage,
 }) {
   const { t, i18n } = useT('store');
-  const { state, addItem, updateItem, removeItem } = useOrder();
+  const { state } = useOrder();
 
   if (state === null) return <Loading />;
 
   const lng = i18n.language;
   const freeSpan = freeSpanComponent({ t });
-  const currencySpan = (
-    <span className='small currency-font'>
-      {t(`currencies.${storeCurrency}`, storeCurrency || '')}
-    </span>
-  );
-
-  function handleAddItem(item) {
-    const existingItem = (state?.items || []).find((i) => i.id === item.id);
-    if (existingItem) {
-      updateItem({
-        ...existingItem,
-        quantity: (existingItem.quantity || 1) + 1,
-      });
-    } else {
-      const newItem = {
-        ...item,
-        quantity: 1,
-        options: (item.options || []).map((o) => ({
-          ...o,
-          count: o.minSelect || 0,
-        })),
-      };
-      addItem(newItem);
-    }
-  }
-
-  function handleRemoveItem(item) {
-    const existingItem = (state?.items || []).find((i) => i.id === item.id);
-    if (!existingItem) return;
-
-    if ((existingItem.quantity || 1) > 1) {
-      updateItem({ ...existingItem, quantity: existingItem.quantity - 1 });
-    } else {
-      removeItem(item.id);
-    }
-  }
+  const currencySpan = <CurrencySpan t={t} storeCurrency={storeCurrency} />;
 
   return (
     <div className='container-fluid'>
+      <div
+        className='position-fixed bottom-0 end-0 mx-4 mb-4 rounded'
+        style={{ zIndex: 'var(--zindex-offcanvas)' }}
+      >
+        <OffcanvasButton
+          id='offcanvasNotes'
+          btnTitle={t('order-list-button')}
+          btnClass='btn-active btn-lg shadow-lg'
+        />
+      </div>
+
+      <OffcanvasWrapper
+        id={'offcanvasNotes'}
+        title={t('order-list-title')}
+        zIndex={'calc(var(--zindex-offcanvas) + 10)'}
+      >
+        <SelectedItemsList lng={lng} storeCurrency={storeCurrency} />
+      </OffcanvasWrapper>
+
       <div className='row g-1 g-lg-2'>
         {(items || []).map((item) => {
           const discontedPrice =
             item.price - (item.price * item.discountPercent) / 100;
           const isOrderable = item?.isAvailable && item?.isActive;
-
-          const orderItem = (state?.items || []).find((i) => i.id === item.id);
-          const quantity = orderItem?.quantity || 0;
 
           return (
             <div
@@ -128,55 +113,17 @@ export default function ItemContent({
                       ) : null}
                     </div>
 
-                    {quantity === 0 ? (
-                      <button
-                        type='button'
-                        className={`btn btn-sm ${
-                          !isOrderable ? 'btn-danger' : 'btn-active'
-                        } `}
-                        disabled={!isOrderable}
-                        onClick={() => handleAddItem(item)}
-                      >
-                        <span className='d-flex align-items-center gap-1'>
-                          {isOrderable ? (
-                            <>
-                              <i className='d-flex align-items-center bi bi-plus-lg'></i>{' '}
-                              <span>{t('add-item')}</span>
-                            </>
-                          ) : (
-                            t('is-not-active')
-                          )}
-                        </span>
-                      </button>
-                    ) : (
-                      <div className='d-flex align-items-center gap-1'>
-                        <button
-                          type='button'
-                          className={`btn btn-active p-2`}
-                          onClick={() => handleAddItem(item)}
-                          disabled={!isOrderable}
-                        >
-                          <i className='d-flex align-items-center bi bi-plus-lg'></i>
-                        </button>
-                        <span className='px-2 fw-bold'>{quantity}</span>
-                        <button
-                          type='button'
-                          className='btn btn-danger p-2'
-                          onClick={() => handleRemoveItem(item)}
-                        >
-                          <i
-                            className={`d-flex align-items-center bi ${quantity === 1 ? 'bi-trash3' : 'bi-dash-lg'}`}
-                          ></i>
-                        </button>
-                      </div>
-                    )}
+                    <ItemQuantityButton
+                      item={item}
+                      isOrderable={isOrderable}
+                      storeCurrency={storeCurrency}
+                    />
                   </div>
 
                   <ItemOption
                     lng={lng}
-                    itemId={item.id}
+                    item={item}
                     options={item?.options || []}
-                    isOrderable={isOrderable}
                   />
                 </div>
               </div>
