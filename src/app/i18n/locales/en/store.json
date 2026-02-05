@@ -13,5 +13,6 @@
   "is-not-avaialbe": "Out of stock",
   "order-list-button": "Orders",
   "order-list-title": "Orders",
-  "order-list-empty": "Order list is empty"
+  "order-list-empty": "Order list is empty",
+  "order-list-tax-title": "Tax"
 }

@@ -13,5 +13,6 @@
   "is-not-avaialbe": "تمام شد",
   "order-list-button": "سفارشات",
   "order-list-title": "سفارشات",
-  "order-list-empty": "لیست سفارش خالی است"
+  "order-list-empty": "لیست سفارش خالی است",
+  "order-list-tax-title": "مالیات"
 }
