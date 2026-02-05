@@ -58,9 +58,28 @@ export default function SelectedItemsList({ storeCurrency }) {
         );
       })}
 
-      <div className='d-flex align-items-center justify-content-center gap-1 h2 mt-3'>
-        <span>{formatNumber(state.totalPrice, lng)}</span>
-        <span>{currencySpan}</span>
+      <div className='mt-3'>
+        <div className='d-flex align-items-center justify-content-between h5'>
+          <div>{t('order-list-tax-title')}</div>
+          <div className='d-flex gap-1'>
+            <span>{formatNumber(state.taxPrice, lng)}</span>
+            <span>{currencySpan}</span>
+          </div>
+        </div>
+        <div className='d-flex align-items-center justify-content-between mt-2 h5'>
+          <div>{t('order-list-title')}</div>
+          <div className='d-flex gap-1'>
+            <span>{formatNumber(state.itemsPrice, lng)}</span>
+            <span>{currencySpan}</span>
+          </div>
+        </div>
+        <div className='d-flex align-items-center justify-content-between mt-3 h3'>
+          <div>{t('order-list-total-price-title')}</div>
+          <div className='d-flex gap-1'>
+            <span>{formatNumber(state.totalPrice, lng)}</span>
+            <span>{currencySpan}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
