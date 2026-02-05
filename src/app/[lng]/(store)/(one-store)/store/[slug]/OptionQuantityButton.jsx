@@ -3,8 +3,9 @@ import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
 import { formatNumber } from '@utils/numbers';
 
-export default function OptionQuantityButton({ item = null, lng, option }) {
-  const { t } = useT('store');
+export default function OptionQuantityButton({ item = null, option }) {
+  const { t, i18n } = useT('store');
+  const lng = i18n.language;
   const { state, updateOption } = useOrder();
   if (state === null) return <Loading />;
 

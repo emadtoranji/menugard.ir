@@ -1,16 +1,15 @@
-import { useT } from '@i18n/client';
-import { freeSpanComponent } from './FreeSpan';
+import FreeSpanComponent from './FreeSpanComponent';
 import { formatNumber } from '@utils/numbers';
 import CurrencySpan from './CurrencySpan';
+import { useT } from '@i18n/client';
 
-export default function ItemPrice({ lng, item, storeCurrency }) {
-  const { t } = useT('store');
-  const freeSpan = freeSpanComponent({
-    t,
-    additionalClass: 'text-success small',
-  });
-  const currencySpan = <CurrencySpan t={t} storeCurrency={storeCurrency} />;
+export default function ItemPrice({ item, storeCurrency }) {
+  const { i18n } = useT('store');
+  const lng = i18n.language;
+  const freeSpan = <FreeSpanComponent additionalClass={'text-success small'} />;
+  const currencySpan = <CurrencySpan storeCurrency={storeCurrency} />;
   const discontedPrice = item.price - (item.price * item.discountPercent) / 100;
+
   return (
     <div>
       <h6

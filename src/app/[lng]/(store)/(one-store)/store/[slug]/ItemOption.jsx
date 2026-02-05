@@ -6,7 +6,6 @@ import OptionQuantityButton from './OptionQuantityButton';
 import OptionPrice from './OptionPrice';
 
 export default function ItemOption({
-  lng,
   options = [],
   item = null,
   storeCurrency = '',
@@ -45,14 +44,10 @@ export default function ItemOption({
               )}
               <div>{option.title}</div>
 
-              <OptionPrice
-                option={option}
-                lng={lng}
-                storeCurrency={storeCurrency}
-              />
+              <OptionPrice option={option} storeCurrency={storeCurrency} />
             </h6>
 
-            <OptionQuantityButton item={item} lng={lng} option={option} />
+            <OptionQuantityButton item={item} option={option} />
           </div>
         );
       })}

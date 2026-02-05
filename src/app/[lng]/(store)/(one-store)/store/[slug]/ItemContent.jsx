@@ -1,16 +1,13 @@
 'use client';
 
 import { useT } from '@i18n/client';
-import { formatNumber } from '@utils/numbers';
 import Image from 'next/image';
 import ItemOption from './ItemOption';
-import { freeSpanComponent } from './FreeSpan';
 import { useOrder } from '@context/notes/order/useOrder';
 import Loading from '@components/Loading/client';
 import { OffcanvasButton, OffcanvasWrapper } from '@components/Offcanvas';
 import SelectedItemsList from './SelectedItemsList';
 import ItemQuantityButton from './ItemQuantityButton';
-import CurrencySpan from './CurrencySpan';
 import ItemPrice from './ItemPrice';
 
 export default function ItemContent({
@@ -18,14 +15,10 @@ export default function ItemContent({
   storeCurrency,
   defaultImage,
 }) {
-  const { t, i18n } = useT('store');
+  const { t } = useT('store');
   const { state } = useOrder();
 
   if (state === null) return <Loading />;
-
-  const lng = i18n.language;
-  const freeSpan = freeSpanComponent({ t });
-  const currencySpan = <CurrencySpan t={t} storeCurrency={storeCurrency} />;
 
   return (
     <div className='container-fluid'>
@@ -45,13 +38,11 @@ export default function ItemContent({
         title={t('order-list-title')}
         zIndex={'calc(var(--zindex-offcanvas) + 10)'}
       >
-        <SelectedItemsList lng={lng} storeCurrency={storeCurrency} />
+        <SelectedItemsList storeCurrency={storeCurrency} />
       </OffcanvasWrapper>
 
       <div className='row g-1 g-lg-2'>
         {(items || []).map((item) => {
-          const discontedPrice =
-            item.price - (item.price * item.discountPercent) / 100;
           const isOrderable = item?.isAvailable && item?.isActive;
 
           return (
@@ -82,11 +73,7 @@ export default function ItemContent({
 
                 <div className='card-footer bg-white'>
                   <div className='d-flex align-items-center justify-content-between py-1'>
-                    <ItemPrice
-                      lng={lng}
-                      item={item}
-                      storeCurrency={storeCurrency}
-                    />
+                    <ItemPrice item={item} storeCurrency={storeCurrency} />
 
                     <ItemQuantityButton
                       item={item}
@@ -96,7 +83,6 @@ export default function ItemContent({
                   </div>
 
                   <ItemOption
-                    lng={lng}
                     item={item}
                     options={item?.options || []}
                     storeCurrency={storeCurrency}

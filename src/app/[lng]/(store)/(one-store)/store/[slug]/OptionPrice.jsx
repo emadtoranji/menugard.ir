@@ -1,13 +1,14 @@
 import { formatNumber } from '@utils/numbers';
 import CurrencySpan from './CurrencySpan';
+import FreeSpanComponent from './FreeSpanComponent';
 import { useT } from '@i18n/client';
-import { freeSpanComponent } from './FreeSpan';
 
-export default function OptionPrice({ lng, option, storeCurrency }) {
-  const { t } = useT('store');
+export default function OptionPrice({ option, storeCurrency }) {
+  const { i18n } = useT('store');
+  const lng = i18n.language;
   const additionalClass = 'm-auto fs-7 fw-bolder';
-  const currencySpan = <CurrencySpan t={t} storeCurrency={storeCurrency} />;
-  const freeSpan = freeSpanComponent({ t, additionalClass });
+  const currencySpan = <CurrencySpan storeCurrency={storeCurrency} />;
+  const freeSpan = <FreeSpanComponent additionalClass={additionalClass} />;
 
   return !isNaN(option.price) ? (
     option.price === 0 ? (

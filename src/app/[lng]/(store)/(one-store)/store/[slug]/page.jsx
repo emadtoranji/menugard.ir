@@ -1,7 +1,6 @@
 import StoreNotFound from '../../../StoreNotFound';
 import StoreDisabled from '../../../StoreDisabled';
 import { getStores } from '@server/getStores';
-import { getT } from '@i18n/server';
 import StoreComponent from './StoreComponent';
 import { headers } from 'next/headers';
 import LogCookie from './LogCookie';
@@ -9,19 +8,18 @@ import { storeExplorerSource } from '@/src/lib/prismaEnums';
 
 export default async function Page({ params, searchParams }) {
   const { lng, slug = undefined } = (await params) || {};
-  const { t } = await getT(lng, 'store');
   const useSearchParams = await searchParams;
   const tableId = useSearchParams?.table ?? useSearchParams?.utm_table ?? null;
   const source =
     useSearchParams?.source ?? useSearchParams?.utm_source ?? 'direct';
 
-  if (!slug) return <StoreNotFound t={t} />;
+  if (!slug) return <StoreNotFound lng={lng} />;
 
   const response = await getStores({ slug });
   const store = response?.result ?? {};
 
-  if (!store?.slug) return <StoreNotFound t={t} />;
-  if (!store?.isActive) return <StoreDisabled t={t} />;
+  if (!store?.slug) return <StoreNotFound lng={lng} />;
+  if (!store?.isActive) return <StoreDisabled lng={lng} />;
   const headersList = await headers();
 
   return (
@@ -37,7 +35,7 @@ export default async function Page({ params, searchParams }) {
           null
         }
       />
-      <StoreComponent store={store} lng={lng} />
+      <StoreComponent store={store} />
     </section>
   );
 }

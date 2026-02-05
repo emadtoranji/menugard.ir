@@ -10,14 +10,15 @@ import OptionQuantityButton from './OptionQuantityButton';
 import ItemPrice from './ItemPrice';
 import OptionPrice from './OptionPrice';
 
-export default function SelectedItemsList({ lng, storeCurrency }) {
+export default function SelectedItemsList({ storeCurrency }) {
   const { state } = useOrder();
-  const { t } = useT('store');
+  const { t, i18n } = useT('store');
+  const lng = i18n.language;
 
   if (state === null) return <Loading />;
   if (!state?.items?.length) return <h3>{t('order-list-empty')}</h3>;
 
-  const currencySpan = <CurrencySpan t={t} storeCurrency={storeCurrency} />;
+  const currencySpan = <CurrencySpan storeCurrency={storeCurrency} />;
 
   return (
     <div className='container-lg mx-auto row row-cols-1 g-2'>
@@ -29,7 +30,7 @@ export default function SelectedItemsList({ lng, storeCurrency }) {
               <ItemQuantityButton item={item} />
             </div>
 
-            <ItemPrice lng={lng} item={item} storeCurrency={storeCurrency} />
+            <ItemPrice item={item} storeCurrency={storeCurrency} />
 
             <div className='container mx-auto row row-cols-1 g-2 mt-2'>
               {item.options.map((option) => {
@@ -44,15 +45,10 @@ export default function SelectedItemsList({ lng, storeCurrency }) {
                         <div>{option.title}</div>
                         <OptionPrice
                           option={option}
-                          lng={lng}
                           storeCurrency={storeCurrency}
                         />
                       </div>
-                      <OptionQuantityButton
-                        item={item}
-                        lng={lng}
-                        option={option}
-                      />
+                      <OptionQuantityButton item={item} option={option} />
                     </div>
                   </div>
                 );
