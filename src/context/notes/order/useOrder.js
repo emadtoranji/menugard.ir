@@ -8,6 +8,7 @@ export function useOrder() {
   }
   const { state, dispatch } = context;
 
+  const setStore = (store) => dispatch({ type: 'SET_STORE', payload: store });
   const setNote = (note) => dispatch({ type: 'SET_NOTE', payload: note });
   const addItem = (item) => dispatch({ type: 'ADD_ITEM', payload: item });
   const updateItem = (item) => dispatch({ type: 'UPDATE_ITEM', payload: item });
@@ -18,10 +19,12 @@ export function useOrder() {
     dispatch({ type: 'UPDATE_OPTION', payload: { itemId, option } });
   const removeOption = (itemId, optionId) =>
     dispatch({ type: 'REMOVE_OPTION', payload: { itemId, optionId } });
+  const resetState = () => dispatch({ type: 'RESET_STATE' });
   const resetOrder = () => dispatch({ type: 'RESET_ORDER' });
 
   return {
     state: state || initialOrderState,
+    setStore,
     setNote,
     addItem,
     updateItem,
@@ -29,6 +32,7 @@ export function useOrder() {
     addOption,
     updateOption,
     removeOption,
+    resetState,
     resetOrder,
   };
 }
