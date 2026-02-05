@@ -3,6 +3,7 @@
 import Loading from '@components/Loading/client';
 import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
+import toast from 'react-hot-toast';
 
 export default function ItemQuantityButton({ item = {} }) {
   const { t } = useT('store');
@@ -16,21 +17,29 @@ export default function ItemQuantityButton({ item = {} }) {
 
   function handleAddItem(item) {
     const existingItem = (state?.items || []).find((i) => i.id === item.id);
-    if (existingItem) {
-      updateItem({
-        ...existingItem,
-        quantity: (existingItem.quantity || 1) + 1,
-      });
+    if (!item?.isActive) {
+      toast.error(t('is-not-active'));
+    } else if (!item?.isAvailable) {
+      toast.error(t('is-not-avaialbe'));
     } else {
-      const newItem = {
-        ...item,
-        quantity: 1,
-        options: (item.options || []).map((o) => ({
-          ...o,
-          count: o.minSelect || 0,
-        })),
-      };
-      addItem(newItem);
+      if (existingItem) {
+        updateItem({
+          ...existingItem,
+          quantity: (existingItem.quantity || 1) + 1,
+        });
+      } else {
+        const newItem = {
+          ...item,
+          quantity: 1,
+          options: (item.options || [])
+            .filter((of) => of?.isActive)
+            .map((o) => ({
+              ...o,
+              count: o.minSelect || 0,
+            })),
+        };
+        addItem(newItem);
+      }
     }
   }
 

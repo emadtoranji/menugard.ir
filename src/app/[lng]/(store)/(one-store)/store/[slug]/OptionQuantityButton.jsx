@@ -2,6 +2,7 @@ import Loading from '@components/Loading/client';
 import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
 import { formatNumber } from '@utils/numbers';
+import toast from 'react-hot-toast';
 
 export default function OptionQuantityButton({ item = null, option }) {
   const { t, i18n } = useT('store');
@@ -36,7 +37,11 @@ export default function OptionQuantityButton({ item = null, option }) {
     const optionToUpdate = orderItem.options.find((o) => o.id === optionId);
     if (!optionToUpdate) return;
 
-    updateOption(itemId, { ...optionToUpdate, count: nextCount });
+    if (!optionToUpdate?.isActive) {
+      toast.error(t('is-not-active'));
+    } else {
+      updateOption(itemId, { ...optionToUpdate, count: nextCount });
+    }
   }
 
   return !isOrderableOption ? (
