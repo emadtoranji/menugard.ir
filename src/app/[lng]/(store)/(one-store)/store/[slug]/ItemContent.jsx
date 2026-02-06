@@ -67,6 +67,7 @@ export default function ItemContent({
                       width={100}
                       height={100}
                       style={{ objectFit: 'contain' }}
+                      loading='eager'
                     />
                   </div>
                 </div>
