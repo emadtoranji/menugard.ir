@@ -17,8 +17,8 @@
   "order-list-tax-title": "Tax",
   "order-list-total-price-title": "Total",
   "working-time": {
-    "closed": "{{storeTitle}} is closed",
-    "24hour": "{{storeTitle}} is open",
-    "open-range": "{{storeTitle}} is open from {{openTime}} to {{closeTime}}"
+    "closed": "We are currently closed",
+    "24hour": "We are open 24 hours today",
+    "open-range": "Working hours are from {{openTime}} to {{closeTime}}"
   }
 }

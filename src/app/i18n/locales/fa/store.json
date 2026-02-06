@@ -17,8 +17,8 @@
   "order-list-tax-title": "مالیات",
   "order-list-total-price-title": "قابل پرداخت",
   "working-time": {
-    "closed": "{{storeTitle}} بسته است",
-    "24hour": "{{storeTitle}} باز است",
-    "open-range": "{{storeTitle}} از {{openTime}} الی {{closeTime}} باز است"
+    "closed": "درحال حاظر تعطیل هستیم",
+    "24hour": "امروز ۲۴ ساعته هستیم",
+    "open-range": "زمان کاری از {{openTime}} الی {{closeTime}}"
   }
 }

@@ -8,7 +8,7 @@ export default function WorkingTime() {
   const { t, i18n } = useT('store');
   const lng = i18n.language;
   const { state } = useOrder();
-  const storeTitle = state?.store?.name || '';
+  //const storeTitle = state?.store?.name || '';
   const [message, setMessage] = useState(null);
   const dayOfWeekNow = new Date().getDay();
 
@@ -19,15 +19,14 @@ export default function WorkingTime() {
 
     if (thisDay?.id) {
       if (thisDay.isClosed) {
-        setMessage(t('working-time.closed', { storeTitle }));
+        setMessage(t('working-time.closed', ''));
       } else if (thisDay.is24Hours) {
-        setMessage(t('working-time.24hour', { storeTitle }));
+        setMessage(t('working-time.24hour', ''));
       } else {
         const openTime = numberToFarsi(thisDay.openTime, lng);
         const closeTime = thisDay.closeTime;
         setMessage(
           t('working-time.open-range', {
-            storeTitle,
             openTime,
             closeTime,
           }),
