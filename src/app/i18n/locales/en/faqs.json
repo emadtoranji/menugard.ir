@@ -3,8 +3,28 @@
   "noFaqsFound": "There are no items to display.",
   "faqs": [
     {
-      "q": "How can I top up my account?",
-      "a": "You can top up your account with cryptocurrency (like Bitcoin or Tether) or via a Rial gateway. Whichever suits you best!"
+      "q": "Can I have a separate barcode for each table?",
+      "a": "Yes! Each table can have its own unique barcode so that customers can directly view the menu for that table."
+    },
+    {
+      "q": "How do I add or remove menu items?",
+      "a": "With the simple navigation panel, you can manage menu items, prices, and descriptions with just a few clicks."
+    },
+    {
+      "q": "Is Menu Navigation suitable for restaurants, cafes, and fast food?",
+      "a": "Yes! Whether it's a restaurant, cafe, or fast food, Menu Navigation simplifies managing items and prices for multiple branches at once."
+    },
+    {
+      "q": "How can I manage multiple stores?",
+      "a": "With a central panel, you can manage all stores and menus of each branch independently and simultaneously."
+    },
+    {
+      "q": "Is it possible to categorize items?",
+      "a": "Yes, you can divide all items into different categories such as drinks, food, desserts or discounts."
+    },
+    {
+      "q": "How is information security ensured?",
+      "a": "All data is stored securely on the server and there is no unauthorized access to the information."
     }
   ]
 }
