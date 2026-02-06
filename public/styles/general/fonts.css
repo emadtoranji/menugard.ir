@@ -16,6 +16,17 @@ html[dir='rtl'] .currency-font {
     var(--font-asiatech), var(--font-vazirmatn), 'IRANSans', sans-serif !important;
 }
 
+html[dir='ltr'] .share-tech-font {
+  font-family: var(--font-share-tech) !important;
+}
+
+html[dir='rtl'] .asiatech-font {
+  font-family: var(--font-asiatech) !important;
+}
+.asiatech-font {
+  word-spacing: 0.3rem;
+}
+
 .fs-0 {
   font-size: calc(var(--bs-body-font-size) * 2) !important;
 }
