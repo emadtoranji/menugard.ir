@@ -22,23 +22,17 @@ export default async function Footer({ lng }) {
             <h6 className='fw-bold mb-3'>{t('footer.quick_links.title')}</h6>
             <ul className='list-unstyled row row-cols-1 row-cols-sm-2 g-2 m-0 p-0'>
               <li className='col'>
-                <Link
-                  href={`/${lng}/#features`}
-                  className='text-decoration-none'
-                >
-                  {t('footer.quick_links.features')}
+                <Link href={`/${lng}/faqs`}>
+                  {t('footer.quick_links.faqs')}
                 </Link>
               </li>
               <li className='col'>
-                <Link href={`/${lng}/store`} className='text-decoration-none'>
+                <Link href={`/${lng}/store`}>
                   {t('footer.quick_links.store')}
                 </Link>
               </li>
               <li className='col'>
-                <Link
-                  href={`/${lng}/dashboard`}
-                  className='text-decoration-none'
-                >
+                <Link href={`/${lng}/dashboard`}>
                   {t('footer.quick_links.dashboard')}
                 </Link>
               </li>
@@ -46,7 +40,6 @@ export default async function Footer({ lng }) {
                 <Link
                   href={process.env.NEXT_PUBLIC_SUPPORT_TELEGRAM || '/'}
                   target='_blank'
-                  className='text-decoration-none'
                 >
                   {t('footer.quick_links.support')}
                 </Link>
