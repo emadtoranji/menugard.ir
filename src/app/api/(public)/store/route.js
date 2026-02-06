@@ -69,6 +69,16 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
                   },
                 },
               },
+              workingHours: {
+                select: {
+                  id: true,
+                  dayOfWeek: true,
+                  openTime: true,
+                  closeTime: true,
+                  isClosed: true,
+                  is24Hours: true,
+                },
+              },
               isActive: true,
             },
             where: {
