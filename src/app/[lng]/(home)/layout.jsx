@@ -1,6 +1,5 @@
 import Main from '@components/Main';
 import Footer from '../(components)/footer';
-import { getT } from '@i18n/server';
 
 export async function generateMetadata(props) {
   const m = await import('@utils/metadata');
