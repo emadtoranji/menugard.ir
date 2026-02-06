@@ -1,3 +1,9 @@
+.loader-section {
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: var(--zindex-loader) !important;
+}
+
 .loader {
   width: 80px;
   height: 80px;
