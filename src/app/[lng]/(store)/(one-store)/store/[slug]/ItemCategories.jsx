@@ -1,6 +1,7 @@
 'use client';
 
 import { useT } from '@i18n/client';
+import WorkingTime from './WorkingTime';
 
 export default function ItemCategories({
   activeCategory,
@@ -14,29 +15,33 @@ export default function ItemCategories({
   );
 
   return (
-    <div className='container-fluid store-categories fixed-top'>
-      <div className='d-flex gap-2 overflow-auto hide-scrollbar px-2'>
-        <button
-          type='button'
-          onClick={() => setActiveCategory(null)}
-          style={{ color: 'inherit' }}
-          className={`btn btn-lg ${activeCategory === null ? 'opacity-100' : 'opacity-75'}`}
-        >
-          <span>{t('all-categories')}</span>
-        </button>
-
-        {uniqueCategories.map((category) => (
+    <>
+      <div className='container-fluid store-categories fixed-top'>
+        <div className='d-flex gap-2 overflow-auto hide-scrollbar px-2'>
           <button
             type='button'
-            key={`item-category-${category}`}
-            onClick={() => setActiveCategory(category)}
+            onClick={() => setActiveCategory(null)}
             style={{ color: 'inherit' }}
-            className={`btn btn-lg ${activeCategory === category ? 'opacity-100' : 'opacity-75'}`}
+            className={`btn btn-lg ${activeCategory === null ? 'opacity-100' : 'opacity-75'}`}
           >
-            <span className='text-capitalize'>{t(category, category)}</span>
+            <span>{t('all-categories')}</span>
           </button>
-        ))}
+
+          {uniqueCategories.map((category) => (
+            <button
+              type='button'
+              key={`item-category-${category}`}
+              onClick={() => setActiveCategory(category)}
+              style={{ color: 'inherit' }}
+              className={`btn btn-lg ${activeCategory === category ? 'opacity-100' : 'opacity-75'}`}
+            >
+              <span className='text-capitalize'>{t(category, category)}</span>
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
+      <div style={{ marginTop: '3rem' }}></div>
+      <WorkingTime />
+    </>
   );
 }
