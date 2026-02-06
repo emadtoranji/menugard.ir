@@ -6,16 +6,25 @@ import { toast } from 'react-hot-toast';
 import { useT } from '@i18n/client';
 import Spinner from '@components/Spinner';
 
-function createDefaultDays(existing) {
-  if (existing?.length === 7) return existing;
+function sortDays(days) {
+  const order = [6, 0, 1, 2, 3, 4, 5];
+  return [...days].sort(
+    (a, b) => order.indexOf(a.dayOfWeek) - order.indexOf(b.dayOfWeek),
+  );
+}
 
-  return [0, 1, 2, 3, 4, 5, 6].map((_, i) => ({
+function createDefaultDays(existing) {
+  if (existing?.length === 7) return sortDays(existing);
+
+  const defaults = [0, 1, 2, 3, 4, 5, 6].map((i) => ({
     dayOfWeek: i,
     openTime: '09:00',
     closeTime: '17:00',
     isClosed: false,
     is24Hours: false,
   }));
+
+  return sortDays(defaults);
 }
 
 export default function WorkingComponent({ store }) {
