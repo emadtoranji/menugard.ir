@@ -20,8 +20,6 @@ export default function StoreComponent({ store }) {
         items={store.items}
       />
 
-      <div style={{ marginTop: '4rem' }}></div>
-
       <StoreIntro
         name={store.name}
         logoUrl={store?.logoUrl || defaultLogoUrl}
