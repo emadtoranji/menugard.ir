@@ -15,5 +15,10 @@
   "order-list-title": "Orders",
   "order-list-empty": "Order list is empty",
   "order-list-tax-title": "Tax",
-  "order-list-total-price-title": "Total"
+  "order-list-total-price-title": "Total",
+  "working-time": {
+    "closed": "{{storeTitle}} is closed",
+    "24hour": "{{storeTitle}} is open",
+    "open-range": "{{storeTitle}} is open from {{openTime}} to {{closeTime}}"
+  }
 }
