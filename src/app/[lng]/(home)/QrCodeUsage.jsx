@@ -12,7 +12,7 @@ export default async function QrCodeUsage({ lng }) {
   });
 
   return (
-    <section className='container my-5 py-5'>
+    <section id='qrcode' className='container my-5 py-5'>
       <div className='row align-items-center flex-column flex-lg-row'>
         <div className='col-lg-3 text-center mb-4 mb-lg-0'>
           <div className='d-inline-block p-4 rounded-4'>

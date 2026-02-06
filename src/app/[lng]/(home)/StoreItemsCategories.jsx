@@ -49,7 +49,10 @@ export default function StoreItemsCategories() {
   ];
 
   return (
-    <section className='container-fluid bg-white mt-5 py-1 position-absolute bottom-0'>
+    <section
+      id='item-categories'
+      className='container-fluid bg-white mt-5 py-1 position-absolute bottom-0'
+    >
       <div ref={containerRef} className='marquee-container'>
         <div ref={trackRef} className='marquee-track d-inline-flex gap-5'>
           {items.map((category, i) => (

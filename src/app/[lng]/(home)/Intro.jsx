@@ -6,7 +6,10 @@ export default async function Intro({ lng }) {
   const { t } = await getT(lng, 'home');
 
   return (
-    <section className='container-fluid vh-100 w-100 px-0 position-relative'>
+    <section
+      id='intro'
+      className='container-fluid vh-100 w-100 px-0 position-relative'
+    >
       <div className='container-lg row align-items-center mx-auto'>
         <div className='col-lg-8 order-1 order-lg-0 text-center'>
           <h2 className='fw-bold mb-4'>{t('intro.title')}</h2>

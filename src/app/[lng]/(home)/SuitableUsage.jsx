@@ -23,7 +23,7 @@ export default async function SuitableUsage({ lng }) {
   ];
 
   return (
-    <section className='my-5 py-5 bg-body-tertiary shadow'>
+    <section id='suitable' className='my-5 py-5 bg-body-tertiary shadow'>
       <div className='container'>
         <div className='row g-4'>
           {cards.map((card, i) => (
