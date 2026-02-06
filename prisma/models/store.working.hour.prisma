@@ -24,6 +24,3 @@ model StoreWorkingHour {
 // 4 = Thursday
 // 5 = Friday
 // 6 = Saturday
-// Mon–Fri: 08:00 - 23:00
-// Sat: 10:00 - 01:00
-// Sun: Closed
