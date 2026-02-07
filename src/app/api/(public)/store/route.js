@@ -22,7 +22,7 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
     async () => {
       try {
         if (slug) {
-          const rows = await prisma.store.findUnique({
+          const rows = await prisma.store.findFirst({
             select: {
               id: true,
               name: true,

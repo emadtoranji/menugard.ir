@@ -73,7 +73,7 @@ export async function generateMetadata(
   }
 
   if (pageName === 'storeSlug' && slug) {
-    const storeData = await prisma.store.findUnique({
+    const storeData = await prisma.store.findFirst({
       select: { name: true, description: true, categories: true },
       where: { slug },
     });
