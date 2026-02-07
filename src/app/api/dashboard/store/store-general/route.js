@@ -11,6 +11,7 @@ import StoreValidationForm from '@utils/dashboard/store/validation';
 import { toBoolean } from '@utils/sanitizer';
 import { isSlugTaken } from '../isSlugTaken';
 import { isUUIDv4 } from '@utils/isUUID';
+import { MAXIMUM_STORE_LIMIT_EXCESSES } from '@utils/globalSettings';
 
 const limited = withRateLimit({
   max: 10,
@@ -51,6 +52,21 @@ export const POST = limited(async (req) => {
           message: 'INVALID_INPUT',
           status: 400,
           devMessage: 'invalid UUID',
+        });
+      }
+    } else {
+      const userStoreCount = prisma.store.count({
+        where: {
+          id,
+          userId,
+        },
+      });
+      if (userStoreCount >= MAXIMUM_STORE_LIMIT_EXCESSES) {
+        return HandleResponse({
+          ok: false,
+          message: 'MAXIMUM_STORE_LIMIT_EXCESSES',
+          status: 400,
+          devMessage: `user has ${userStoreCount} stores`,
         });
       }
     }

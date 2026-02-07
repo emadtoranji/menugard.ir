@@ -12,7 +12,7 @@
     },
     {
       "q": "Is Menu Navigation suitable for restaurants, cafes, and fast food?",
-      "a": "Yes! Whether it's a restaurant, cafe, or fast food, Menu Navigation simplifies managing items and prices for multiple branches at once."
+      "a": "Yes! Whether it's a restaurant, cafe, or fast food, Menu Navigation makes it easy to manage items and prices for multiple branches at once."
     },
     {
       "q": "How can I manage multiple stores?",
@@ -24,7 +24,103 @@
     },
     {
       "q": "How is information security ensured?",
-      "a": "All data is stored securely on the server and there is no unauthorized access to the information."
+      "a": "All data is stored securely on the server and there is no unauthorized access to information."
+    },
+    {
+      "q": "Does using the navigation require a fee?",
+      "a": "No! All current features are free and open source. If new features are added and paid plans are introduced in the future, only those new features will be covered by the paid plan and the current features will always remain free."
+    },
+    {
+      "q": "Is Manogradi open source and free to use?",
+      "a": "Yes! The Manogradi project is released under the MIT license. You can freely copy, modify, and use the Manogradi code for personal or commercial purposes."
+    },
+    {
+      "q": "How do I register a new store in Manogradi?",
+      "a": "First, you must register on the Manogradi site and log in to the administration panel. Then, in the store administration section, you can register your new store by entering complete information."
+    },
+    {
+      "q": "How can I edit the general information of the store?",
+      "a": "You can easily edit the name, address, description, and other general information from the store administration panel."
+    },
+    {
+      "q": "How can I add a new product or delete a product?",
+      "a": "In the product management section, you can add new products and edit or delete existing ones. Each product includes an image, name, price, and a custom description."
+    },
+    {
+      "q": "How do I define and manage restaurant tables?",
+      "a": "In the management panel, you can enter the table numbers. A unique barcode is generated for each table, which the customer will be directed to the menu of that table by scanning. You can also delete tables if necessary."
+    },
+    {
+      "q": "How can I set the store's working hours?",
+      "a": "In the store's management panel, there is a section for setting daily working hours and holidays. You can specify the start and end times of the day and holidays."
+    },
+    {
+      "q": "Does the store and product information stay up to date?",
+      "a": "Yes, every time you change the store or menu information, the online version of the menu is updated and customers will always see the latest menu."
+    },
+    {
+      "q": "How do I register and log in to the menu?",
+      "a": "Store owners can register on the site using their email and password and log in to the admin panel. This process is completely secure using Next-Auth."
+    },
+    {
+      "q": "How do customers view the menu? Do they need to register?",
+      "a": "Customers do not need to register. They just scan the table barcode or open the store's dedicated link; the menu will be displayed for them in the browser."
+    },
+    {
+      "q": "What technologies is Manogardi built with?",
+      "a": "This project is developed with the latest web technologies; including the Next.js framework, Bootstrap 5 for styling, JavaScript/JSX language, and PostgreSQL database. The authentication system is implemented with Next-Auth."
+    },
+    {
+      "q": "Is there a mobile version or a special app for Manogardi?",
+      "a": "No, there is no need to install a separate app. Manogardi is a web application and works on any device with a web browser. Its design is responsive and displays well on mobile and tablets."
+    },
+    {
+      "q": "How can I install Menu Navigation on my server?",
+      "a": "Since the project is open source, you can clone the Menu Navigation code from GitHub and run it on your server or local environment. Installation instructions are available in the project's README section."
+    },
+    {
+      "q": "How can I contribute to the development and improvement of Menu Navigation?",
+      "a": "Since Menu Navigation is open source, you can review the code on GitHub, submit your ideas by submitting a Pull Request, or report bugs."
+    },
+    {
+      "q": "What is a note list (orders) and how does it work?",
+      "a": "A note list is like a temporary shopping cart. The customer can add products to the note list and show this list to the waiter. The list information is stored as a cookie in the browser and will be deleted after a few hours or on the next visit."
+    },
+    {
+      "q": "Can I place an order directly through the navigation menu? and pay?",
+      "a": "No, the menu navigation is designed only for displaying the menu and collecting the order (via the note list). The final registration and payment of the order is done by the waiter or by separate payment systems."
+    },
+    {
+      "q": "Is it possible to assign a barcode to each store?",
+      "a": "Yes! A unique barcode is also created for each store. By scanning the store's barcode, customers are directed directly to the menu page of that store."
+    },
+    {
+      "q": "How many stores can I register?",
+      "a": "Each user can register up to 100 stores for free. This allows you to easily manage multiple branches of your business."
+    },
+    {
+      "q": "What is a wallet and how does it work right now?",
+      "a": "The wallet is a future-oriented feature in the project. The wallet deposit section is designed but is currently inactive and the ability to deposit balances has not yet been activated."
+    },
+    {
+      "q": "How does Menu Navigation help reduce costs?",
+      "a": "By eliminating paper menus, printing and reprinting costs are saved. Online menu management eliminates the need to physically update the menu and provides a more modern experience for customers."
+    },
+    {
+      "q": "What are the benefits of using Menu Navigation over a traditional paper menu?",
+      "a": "Menu Navigation is always up to date and can be changed quickly. In addition to saving on printing costs, it eliminates the need to move or re-produce the physical menu and creates a better experience for customers."
+    },
+    {
+      "q": "What languages ​​does Menu Navigation support?",
+      "a": "Currently, Menu Navigation is provided with a Persian and English user interface. But the project is open source and developers can add new languages ​​in the future."
+    },
+    {
+      "q": "How can I contact the support team or the developer?",
+      "a": "For questions and support, you can ask your question in the Issues section of the project's GitHub or contact the developer via the Telegram link and other contact information available on the GitHub page."
+    },
+    {
+      "q": "Is it possible to completely delete a store or menu items?",
+      "a": "Yes, the navigation admin panel has full control over all sections; you can easily edit or delete any store, product, table or other information."
     }
   ]
 }

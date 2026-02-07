@@ -162,6 +162,7 @@
     "EMAIL_ALREADY_VERIFIED": "Your email has been verified.",
     "SEND_EMAIL_SUCCESS": "An email has been sent to you, please check your Inbox and Spam.",
     "INVALID_CREDENTIAL": "Invalid email or password",
+    "MAXIMUM_STORE_LIMIT_EXCESSES": "Your number of stores has reached the maximum allowed number",
 
     "___password_strong_section": "",
     "PASSWORD_NOT_STRONG": "You have chosen a weak password, your account is not secure like this; please change it",

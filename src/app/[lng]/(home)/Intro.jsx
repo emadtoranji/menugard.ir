@@ -10,31 +10,33 @@ export default async function Intro({ lng }) {
       id='intro'
       className='container-fluid vh-100 w-100 px-0 position-relative'
     >
-      <div className='container-lg row align-items-center mx-auto'>
-        <div className='col-lg-8 order-1 order-lg-0 text-center'>
-          <h2 className='fw-bold mb-4'>{t('intro.title')}</h2>
-          <p className='text-muted lh-lg'>{t('intro.text')}</p>
-        </div>
-
-        <div className='col-lg-4 order-0 order-lg-1 text-center mb-4 mb-lg-0'>
+      <div className='container d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-5 h-100 w-100 pt-5 pt-lg-0'>
+        <div className='order-1 order-lg-2 text-center mb-3 mb-lg-0'>
           <Image
-            width={300}
-            height={300}
+            width={280}
+            height={280}
             src='/images/app-logo.webp'
             alt='app logo'
-            className='img-fluid mx-auto'
             loading='eager'
+            className='img-fluid'
           />
         </div>
-      </div>
 
-      <div className='container col-12 col-md-8 col-xl-6 d-flex align-items-center mt-5 pt-lg-3 pt-xxl-5 gap-2'>
-        <button className='btn btn-active col'>
-          {t('intro.intro-button')}
-        </button>
-        <button className='btn btn-inactive col'>
-          {t('intro.stores-button')}
-        </button>
+        <div className='col-12 col-lg-8 order-2 order-lg-1'>
+          <div className='w-100 text-justify'>
+            <h2 className='fw-bold mb-3'>{t('intro.title')}</h2>
+            <p className='text-muted lh-lg'>{t('intro.text')}</p>
+          </div>
+
+          <div className='w-100 d-flex align-items-center mt-4 gap-2'>
+            <button className='btn btn-active btn-lg col'>
+              {t('intro.intro-button')}
+            </button>
+            <button className='btn btn-inactive btn-lg col'>
+              {t('intro.stores-button')}
+            </button>
+          </div>
+        </div>
       </div>
 
       <StoreItemsCategories />
