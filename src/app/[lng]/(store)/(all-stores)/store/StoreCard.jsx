@@ -34,18 +34,20 @@ export default async function StoreCard({ lng, store }) {
             </p>
 
             <div className='d-flex gap-1 justify-content-between align-items-center mt-auto flex-wrap'>
-              {store.categories.map((category) => {
-                return (
-                  <span
-                    key={`${store.id}-${category}`}
-                    className='badge btn-active'
-                  >
-                    <small className='text-capitalize'>
-                      {tStoreCategories(category.key, category.key)}
-                    </small>
-                  </span>
-                );
-              })}
+              <div className='d-flex gap-1'>
+                {store.categories.map((category) => {
+                  return (
+                    <span
+                      key={`${store.id}-${category}`}
+                      className='badge btn-active'
+                    >
+                      <small className='text-capitalize'>
+                        {tStoreCategories(category.key, category.key)}
+                      </small>
+                    </span>
+                  );
+                })}
+              </div>
               <div className='d-flex gap-1 badge btn-active'>
                 <span className='fw-bold'>
                   {domPurifyServer(store?.location?.provinceLocal || '')}
