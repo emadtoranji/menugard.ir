@@ -22,7 +22,7 @@ export default async function Index({ params }) {
 
   let store = {};
   try {
-    store = await prisma.store.findUnique({
+    store = await prisma.store.findFirst({
       select: {
         id: true,
         name: true,

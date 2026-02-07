@@ -39,7 +39,7 @@ async function handle_reset_password_send_email({
     };
   }
 
-  const user_data = await prisma.user.findUnique({
+  const user_data = await prisma.user.findFirst({
     where: { email },
     select: { email: true },
   });

@@ -63,7 +63,7 @@ export async function credentialHandler(credentials) {
 
     let existingUser = null;
     try {
-      existingUser = await prisma.user.findUnique({
+      existingUser = await prisma.user.findFirst({
         where: { email: normalizedEmail },
         select: {
           id: true,
