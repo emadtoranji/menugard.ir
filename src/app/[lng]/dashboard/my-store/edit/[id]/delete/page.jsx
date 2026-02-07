@@ -5,7 +5,6 @@ import StoreNotFound from '../../../(components)/StoreNotFound';
 import { redirect } from 'next/navigation';
 import { auth } from '@utils/auth/NextAuth';
 import { domPurifyServer } from '@utils/domPurifyServer';
-import Link from 'next/link';
 import Head from '../../../(components)/Head';
 
 export default async function Page({ params }) {
@@ -60,7 +59,7 @@ export default async function Page({ params }) {
         </div>
 
         <div className='container'>
-          <Actions id={id} />
+          <Actions key={`edit-delete-buttons-${store.id}`} id={id} />
         </div>
       </div>
     </AnimatedPage>

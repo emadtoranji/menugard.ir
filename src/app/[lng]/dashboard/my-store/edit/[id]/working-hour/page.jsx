@@ -49,7 +49,10 @@ export default async function Index({ params }) {
           hasDelete={true}
         />
 
-        <WorkingComponent store={store} />
+        <WorkingComponent
+          key={`edit-working-hour-component-${store.id}`}
+          store={store}
+        />
       </div>
     </AnimatedPage>
   );

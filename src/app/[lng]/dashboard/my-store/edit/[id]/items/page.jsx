@@ -80,6 +80,7 @@ export default async function Index({ params }) {
         </div>
 
         <ItemsComponent
+          key={`edit-items-component-${store.id}`}
           StoreItemsCategoriesKey={storeItemsCategoriesKey}
           store={store}
         />
