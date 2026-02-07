@@ -135,6 +135,7 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
           skip,
           take: PAGE_SIZE,
           select: {
+            id: true,
             name: true,
             description: true,
             slug: true,
