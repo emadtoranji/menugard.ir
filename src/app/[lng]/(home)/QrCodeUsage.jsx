@@ -27,7 +27,9 @@ export default async function QrCodeUsage({ lng }) {
         </div>
 
         <div className='col text-justify'>
-          <h2 className='fw-bold mb-4'>{t('qrcode-usage.title')}</h2>
+          <h2 className='fw-bold mb-4 text-active'>
+            {t('qrcode-usage.title')}
+          </h2>
           <p className='text-muted lh-lg'>{t('qrcode-usage.text')}</p>
         </div>
       </div>

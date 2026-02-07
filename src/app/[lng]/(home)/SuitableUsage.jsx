@@ -31,7 +31,7 @@ export default async function SuitableUsage({ lng }) {
               <div className='card h-100 border-0 shadow'>
                 <div className='card-body text-center'>
                   <i className={`bi fs-3 ${card.icon}`}></i>
-                  <h4 className='mt-3 fw-bold'>{card.title}</h4>
+                  <h4 className='mt-3 fw-bold text-active'>{card.title}</h4>
                   <p
                     className='text-muted lh-lg'
                     dangerouslySetInnerHTML={{

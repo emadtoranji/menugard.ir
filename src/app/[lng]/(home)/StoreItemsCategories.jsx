@@ -51,7 +51,7 @@ export default function StoreItemsCategories() {
   return (
     <section
       id='item-categories'
-      className='container-fluid bg-white mt-5 py-1 position-absolute bottom-0'
+      className='container-fluid bg-white mt-5 py-1 position-absolute bottom-0 text-active'
     >
       <div ref={containerRef} className='marquee-container'>
         <div ref={trackRef} className='marquee-track d-inline-flex gap-5'>
