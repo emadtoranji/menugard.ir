@@ -58,18 +58,36 @@ export default async function Page({ params }) {
       />
 
       <div className='row d-flex align-items-stretch align-items-center justify-content-center g-3 mt-3'>
-        <SectionCard key='general' id={id} t={t} lng={lng} section='general' />
-        <SectionCard key='items' id={id} t={t} lng={lng} section='items' />
-        <SectionCard key='tables' id={id} t={t} lng={lng} section='tables' />
         <SectionCard
-          key='working-hour'
+          key={`edit-general-${id}`}
+          id={id}
+          t={t}
+          lng={lng}
+          section='general'
+        />
+        <SectionCard
+          key={`edit-items-${id}`}
+          id={id}
+          t={t}
+          lng={lng}
+          section='items'
+        />
+        <SectionCard
+          key={`edit-tables-${id}`}
+          id={id}
+          t={t}
+          lng={lng}
+          section='tables'
+        />
+        <SectionCard
+          key={`edit-working-hour-${id}`}
           id={id}
           t={t}
           lng={lng}
           section='working-hour'
         />
         <SectionCard
-          key='delete'
+          key={`edit-delete-${id}`}
           section='delete'
           id={id}
           t={t}

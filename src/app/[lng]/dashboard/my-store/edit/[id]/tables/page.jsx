@@ -49,7 +49,10 @@ export default async function Index({ params }) {
           hasDelete={true}
         />
 
-        <TablesComponent store={store} />
+        <TablesComponent
+          key={`edit-tables-component-${store.id}`}
+          store={store}
+        />
       </div>
     </AnimatedPage>
   );

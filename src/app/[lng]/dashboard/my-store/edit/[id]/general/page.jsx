@@ -48,8 +48,8 @@ export default async function Index({ params }) {
     return <StoreNotFound />;
   }
 
-  store.country = store.location.countrySlug;
-  store.province = store.location.provinceSlug;
+  store.country = store?.location?.countrySlug || '';
+  store.province = store?.location?.provinceSlug || '';
   store.categories = (
     Array.isArray(store?.categories) ? store.categories : []
   ).map((category) => category.key);
@@ -68,6 +68,7 @@ export default async function Index({ params }) {
         />
 
         <Form
+          key={`edit-general-form-${store.id}`}
           isNewStore={false}
           oldStoreData={store}
           storeCategories={storeCategories}

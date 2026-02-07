@@ -58,11 +58,6 @@ const nextConfig = {
       revalidate: 60, // 60 seconds
       expire: hourToSecond(1),
     },
-    '/[lng]/dashboard/my-store': {
-      stale: 60, // 1 minute
-      revalidate: 1800, // 30 minutes
-      expire: hourToSecond(3),
-    },
     '/[lng]/dashboard/faqs': {
       stale: dayToSecond(1),
       revalidate: dayToSecond(30),

@@ -133,6 +133,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
         <form onSubmit={handleSignIn} noValidate>
           <div className='form-floating mb-3'>
             <input
+              name='email'
               style={{ textAlign: 'left', direction: 'ltr' }}
               type='email'
               className='form-control'
@@ -148,6 +149,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
 
           <div className='form-floating mb-3'>
             <input
+              name='password'
               style={{ textAlign: 'left', direction: 'ltr' }}
               type='password'
               className={`form-control ${
@@ -171,6 +173,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
             <div className='form-floating mb-3'>
               <input
                 style={{ textAlign: 'left', direction: 'ltr' }}
+                name='verify-password'
                 type='password'
                 className={`form-control ${
                   password !== passwordVerify ? 'border-danger' : ''
