@@ -21,7 +21,7 @@ export default async function QrCodeUsage({ lng }) {
               width={200}
               src={qrDataUrl}
               alt='QR Code Main Website'
-              className='img-fluid shadow'
+              className='img-fluid shadow animate__animated animate__pulse animate__slower animate__infinite'
             />
           </div>
         </div>
