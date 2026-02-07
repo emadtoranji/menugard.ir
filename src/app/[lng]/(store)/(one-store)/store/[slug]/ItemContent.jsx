@@ -9,6 +9,8 @@ import { OffcanvasButton, OffcanvasWrapper } from '@components/Offcanvas';
 import SelectedItemsList from './SelectedItemsList';
 import ItemQuantityButton from './ItemQuantityButton';
 import ItemPrice from './ItemPrice';
+import { useState } from 'react';
+import ItemImage from '@components/ItemImage';
 
 export default function ItemContent({
   items = [],
@@ -54,20 +56,17 @@ export default function ItemContent({
               }`}
             >
               <div className='card border-0 shadow flex-fill bg-white'>
-                <div className='card-body d-flex'>
-                  <div className='col px-1'>
+                <div className='card-body d-flex gap-3'>
+                  <div className='col'>
                     <h4 className='fw-bold'>{item.title}</h4>
                     <p className='text-justify px-1'>{item.description}</p>
                   </div>
                   <div className='col-auto d-flex align-items-center justify-content-center'>
-                    <Image
-                      className='rounded'
-                      src={item?.imageUrl || defaultImage}
-                      alt={item.title}
-                      width={100}
-                      height={100}
-                      style={{ objectFit: 'contain' }}
-                      loading='eager'
+                    <ItemImage
+                      key={`logo-${item.category}`}
+                      category={item.category}
+                      title={item.title}
+                      defaultImage={defaultImage}
                     />
                   </div>
                 </div>
