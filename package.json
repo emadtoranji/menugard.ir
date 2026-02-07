@@ -1,6 +1,6 @@
 {
   "name": "menugard.ir",
-  "version": "0.2.0-Beta2",
+  "version": "0.2.0-Beta3",
   "private": false,
   "scripts": {
     "dev": "next dev --port 4501",

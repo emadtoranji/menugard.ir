@@ -1,6 +1,7 @@
 import { getT } from '@i18n/server';
 import Image from 'next/image';
 import StoreItemsCategories from './StoreItemsCategories';
+import Link from 'next/link';
 
 export default async function Intro({ lng }) {
   const { t } = await getT(lng, 'home');
@@ -10,7 +11,7 @@ export default async function Intro({ lng }) {
       id='intro'
       className='container-fluid vh-100 w-100 px-0 position-relative'
     >
-      <div className='container d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-5 h-100 w-100 pt-5 pt-lg-0'>
+      <div className='container d-flex flex-column flex-lg-row justify-content-start justify-content-lg-between align-items-lg-center gap-5 h-100 w-100 pt-5 pt-lg-0'>
         <div className='order-1 order-lg-2 text-center mb-3 mb-lg-0'>
           <Image
             width={280}
@@ -18,7 +19,7 @@ export default async function Intro({ lng }) {
             src='/images/app-logo.webp'
             alt='app logo'
             loading='eager'
-            className='img-fluid'
+            className='img-fluid animate__animated animate__flip'
           />
         </div>
 
@@ -29,12 +30,18 @@ export default async function Intro({ lng }) {
           </div>
 
           <div className='w-100 d-flex align-items-center mt-4 gap-2'>
-            <button className='btn btn-active btn-lg col'>
+            <Link
+              href={`/${lng}/dashboard`}
+              className='btn btn-active btn-lg w-100'
+            >
               {t('intro.intro-button')}
-            </button>
-            <button className='btn btn-inactive btn-lg col'>
+            </Link>
+            <Link
+              href={`/${lng}/store`}
+              className='btn btn-inactive btn-lg w-100'
+            >
               {t('intro.stores-button')}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
