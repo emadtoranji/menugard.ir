@@ -163,6 +163,7 @@
     "EMAIL_ALREADY_VERIFIED": "ایمیل شما تایید شده است.",
     "SEND_EMAIL_SUCCESS": "ایمیل برای شما ارسال شد، لطفا Inbox و Spam خود را چک کنید.",
     "INVALID_CREDENTIAL": "ایمیل یا رمز عبور نادرست است",
+    "MAXIMUM_STORE_LIMIT_EXCESSES": "تعداد فروشگاه های شما به حداکثر تعداد مجاز رسیده است",
 
     "___password_strong_section": "",
     "PASSWORD_NOT_STRONG": "رمز عبور ساده ای انتخاب کردی، اینجوری حسابت امن نیست؛ لطفا تغییرش بده",
