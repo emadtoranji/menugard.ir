@@ -1,15 +1,10 @@
 import { getT } from '@i18n/server';
-import { BaseUrlAddress } from '@utils/globalSettings';
 import Image from 'next/image';
-import QRCode from 'qrcode';
 
 export default async function QrCodeUsage({ lng }) {
   const { t } = await getT(lng, 'home');
 
-  const qrDataUrl = await QRCode.toDataURL(BaseUrlAddress, {
-    width: 200,
-    margin: 2,
-  });
+  const qrCodeUrl = '/api/website-qrcode';
 
   return (
     <section id='qrcode' className='container my-5 py-5'>
@@ -19,7 +14,7 @@ export default async function QrCodeUsage({ lng }) {
             <Image
               height={200}
               width={200}
-              src={qrDataUrl}
+              src={qrCodeUrl}
               alt='QR Code Main Website'
               className='img-fluid shadow animate__animated animate__pulse animate__slower animate__infinite'
             />
