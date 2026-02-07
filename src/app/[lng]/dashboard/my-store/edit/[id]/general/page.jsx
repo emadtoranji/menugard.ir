@@ -25,6 +25,7 @@ export default async function Index({ params }) {
     store = await prisma.store.findFirst({
       select: {
         id: true,
+        userId: true,
         name: true,
         description: true,
         slug: true,
@@ -43,13 +44,12 @@ export default async function Index({ params }) {
       },
       where: {
         id: String(id),
-        userId,
       },
     });
   } catch {
     store = {};
   }
-  if (!store || !store?.id) {
+  if (!store || !store?.id || store?.userId !== userId) {
     return <StoreNotFound />;
   }
 
