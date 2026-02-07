@@ -1,3 +1,4 @@
+import ItemImage from '@components/ItemImage';
 import { getT } from '@i18n/server';
 import { domPurifyServer } from '@utils/domPurifyServer';
 
@@ -6,17 +7,17 @@ export default async function SuitableUsage({ lng }) {
 
   const cards = [
     {
-      icon: 'bi-cup-hot text-success',
+      category: 'iranian',
       title: t('suitable-usage.card1.title'),
       text: t('suitable-usage.card1.text'),
     },
     {
-      icon: 'bi-shop text-warning',
+      category: 'coffee',
       title: t('suitable-usage.card2.title'),
       text: t('suitable-usage.card2.text'),
     },
     {
-      icon: 'bi-basket text-danger',
+      category: 'pizza',
       title: t('suitable-usage.card3.title'),
       text: t('suitable-usage.card3.text'),
     },
@@ -30,7 +31,11 @@ export default async function SuitableUsage({ lng }) {
             <div key={i} className='col-lg-4'>
               <div className='card h-100 border-0 shadow'>
                 <div className='card-body text-center'>
-                  <i className={`bi fs-3 ${card.icon}`}></i>
+                  <ItemImage
+                    key={`logo-${card.category}`}
+                    category={card.category}
+                    title={card.title}
+                  />
                   <h4 className='mt-3 fw-bold text-active'>{card.title}</h4>
                   <p
                     className='text-muted lh-lg'
