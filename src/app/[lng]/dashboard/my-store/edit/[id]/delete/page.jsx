@@ -6,9 +6,14 @@ import { redirect } from 'next/navigation';
 import { auth } from '@utils/auth/NextAuth';
 import { domPurifyServer } from '@utils/domPurifyServer';
 import Head from '../../../(components)/Head';
+import { fallbackLng } from '@i18n/settings';
 
 export default async function Page({ params }) {
-  const { lng, id } = (await params) || {};
+  const { lng = fallbackLng, id = null } = await params;
+  if (!id) {
+    return <StoreNotFound />;
+  }
+
   const { t } = await getT(lng, 'dashboard-my-store');
   const session = await auth();
   const userId = session?.user?.id;
@@ -26,7 +31,7 @@ export default async function Page({ params }) {
         slug: true,
       },
       where: {
-        id,
+        id: String(id),
         userId,
       },
     });

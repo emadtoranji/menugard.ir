@@ -5,9 +5,14 @@ import { redirect } from 'next/navigation';
 import { auth } from '@utils/auth/NextAuth';
 import Head from '../../../(components)/Head';
 import { storeItemsCategoriesKey } from '@lib/prismaEnums';
+import { fallbackLng } from '@i18n/settings';
 
 export default async function Index({ params }) {
-  const { lng, id } = (await params) || {};
+  const { lng = fallbackLng, id = null } = await params;
+  if (!id) {
+    return <StoreNotFound />;
+  }
+
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
@@ -52,7 +57,7 @@ export default async function Index({ params }) {
         },
       },
       where: {
-        id,
+        id: String(id),
         userId,
       },
     });

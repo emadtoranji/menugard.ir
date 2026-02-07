@@ -15,7 +15,7 @@ export default async function Index({ params }) {
     redirect(`/${lng}/signout`);
   }
   const { lng } = (await params) || {};
-  const { t, lng: currentLang } = await getT(lng, 'dashboard-my-store');
+  const { t } = await getT(lng, 'dashboard-my-store');
 
   let myStoresData = undefined;
   try {
@@ -74,13 +74,13 @@ export default async function Index({ params }) {
                           <p className='card-text'>{item?.description || ''}</p>
                           <div className='d-flex gap-2 w-100'>
                             <Link
-                              href={`/${currentLang}/store/${item?.slug}`}
+                              href={`/${lng}/store/${item?.slug}`}
                               className='btn btn-success text-light col-6'
                             >
                               {t('user-experience-button')}
                             </Link>
                             <Link
-                              href={`/${currentLang}/dashboard/my-store/edit/${item?.id}`}
+                              href={`/${lng}/dashboard/my-store/edit/${item?.id}`}
                               className='btn btn-primary text-light col-6'
                             >
                               {t('edit-button')}
