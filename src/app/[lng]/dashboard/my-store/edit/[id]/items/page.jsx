@@ -6,6 +6,7 @@ import { auth } from '@utils/auth/NextAuth';
 import Head from '../../../(components)/Head';
 import { storeItemsCategoriesKey } from '@lib/prismaEnums';
 import { fallbackLng } from '@i18n/settings';
+import prisma from '@lib/prisma';
 
 export default async function Index({ params }) {
   const { lng = fallbackLng, id = null } = await params;

@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@utils/auth/NextAuth';
 import Head from '../../../(components)/Head';
 import { fallbackLng } from '@i18n/settings';
+import prisma from '@lib/prisma';
 
 export default async function Index({ params }) {
   const { lng = fallbackLng, id = null } = await params;
@@ -25,7 +26,6 @@ export default async function Index({ params }) {
     store = await prisma.store.findFirst({
       select: {
         id: true,
-        userId: true,
         name: true,
         description: true,
         slug: true,
@@ -44,12 +44,13 @@ export default async function Index({ params }) {
       },
       where: {
         id: String(id),
+        userId,
       },
     });
   } catch {
     store = {};
   }
-  if (!store || !store?.id || store?.userId !== userId) {
+  if (!store || !store?.id) {
     return <StoreNotFound />;
   }
 
