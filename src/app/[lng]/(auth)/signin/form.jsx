@@ -269,7 +269,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
 }
 
 export default function Index({ enabledLoginProviders }) {
-  const { t, i18n } = useT('dashboard');
+  const { t } = useT('dashboard');
   const { t: tNextAuth } = useT('next-auth');
   const lng = useParams()?.lng || fallbackLng;
 
