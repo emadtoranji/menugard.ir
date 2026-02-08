@@ -7,6 +7,7 @@ import Head from '../../../(components)/Head';
 import { storeItemsCategoriesKey } from '@lib/prismaEnums';
 import { fallbackLng } from '@i18n/settings';
 import prisma from '@lib/prisma';
+import BranchStoreCannotBeModified from '../../../(components)/BranchStoreCannotBeModified';
 
 export default async function Index({ params }) {
   const { lng = fallbackLng, id = null } = await params;
@@ -26,6 +27,7 @@ export default async function Index({ params }) {
       select: {
         id: true,
         name: true,
+        parentStoreId: true,
         items: {
           select: {
             id: true,
@@ -68,6 +70,15 @@ export default async function Index({ params }) {
 
   if (!store || !store?.id) {
     return <StoreNotFound />;
+  }
+
+  if (store?.parentStoreId) {
+    return (
+      <BranchStoreCannotBeModified
+        id={id}
+        message={'edit.branch-store-cannot-be-modified-items'}
+      />
+    );
   }
 
   return (

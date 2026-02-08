@@ -22,6 +22,29 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
     async () => {
       try {
         if (slug) {
+          const itemsSelectObject = {
+            id: true,
+            category: true,
+            title: true,
+            description: true,
+            price: true,
+            discountPercent: true,
+            imageUrl: true,
+            isAvailable: true,
+            isActive: true,
+            options: {
+              select: {
+                id: true,
+                title: true,
+                isRequired: true,
+                minSelect: true,
+                maxSelect: true,
+                price: true,
+                discountPercent: true,
+                isActive: true,
+              },
+            },
+          };
           const rows = await prisma.store.findFirst({
             select: {
               id: true,
@@ -44,31 +67,7 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
                   key: true,
                 },
               },
-              items: {
-                select: {
-                  id: true,
-                  category: true,
-                  title: true,
-                  description: true,
-                  price: true,
-                  discountPercent: true,
-                  imageUrl: true,
-                  isAvailable: true,
-                  isActive: true,
-                  options: {
-                    select: {
-                      id: true,
-                      title: true,
-                      isRequired: true,
-                      minSelect: true,
-                      maxSelect: true,
-                      price: true,
-                      discountPercent: true,
-                      isActive: true,
-                    },
-                  },
-                },
-              },
+              items: { select: itemsSelectObject },
               workingHours: {
                 select: {
                   id: true,
@@ -79,12 +78,20 @@ const getStoresCached = ({ page = 1, slug = '', search = '' }) =>
                   is24Hours: true,
                 },
               },
+              parentStoreId: true,
               isActive: true,
             },
             where: {
               slug,
             },
           });
+
+          if (rows?.parentStoreId) {
+            rows.items = await prisma.storeItem.findMany({
+              where: { storeId: rows.parentStoreId },
+              select: itemsSelectObject,
+            });
+          }
 
           if (!rows || rows.length === 0) {
             return {

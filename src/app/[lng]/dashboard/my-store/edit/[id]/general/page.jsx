@@ -37,6 +37,7 @@ export default async function Index({ params }) {
         taxEnabled: true,
         taxIncluded: true,
         taxPercent: true,
+        parentStoreId: true,
         isActive: true,
         createdAt: true,
         updatedAt: true,
