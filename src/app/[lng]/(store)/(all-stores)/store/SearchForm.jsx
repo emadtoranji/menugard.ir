@@ -39,7 +39,7 @@ export default function SearchForm({
   };
 
   return (
-    <div className='text-center mb-5 mt-2 position-relative overflow-hidden position-relative search-section text-light position-relative overflow-hidden'>
+    <div className='text-center position-relative overflow-hidden position-relative search-section text-light position-relative overflow-hidden'>
       <div className='d-flex justify-content-center align-items-center p-4'>
         <form
           className='d-flex justify-content-center w-100'
@@ -81,7 +81,7 @@ export default function SearchForm({
         </form>
       </div>
 
-      <div className='p-2 d-flex gap-2'>
+      <div className='p-2 d-flex gap-2 d-none'>
         <h1 className='fw-bold w-100 text-active'>
           <span>{title || t('title')}</span>
         </h1>
