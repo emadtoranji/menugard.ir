@@ -14,7 +14,7 @@ export default function StoreItemsCategories() {
   useEffect(() => {
     const track = trackRef.current;
     const container = containerRef.current;
-    if (!track || !container) return;
+    if (!track || !container || !isRTL) return;
 
     let animationFrame;
     let start = null;
@@ -35,7 +35,7 @@ export default function StoreItemsCategories() {
     animationFrame = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, []);
+  }, [isRTL]);
 
   const items = [
     ...storeItemsCategoriesKey,
