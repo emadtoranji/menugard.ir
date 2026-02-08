@@ -64,7 +64,14 @@ export default function Form({
   });
   const [isStoreActive, setIsStoreActive] = useState(oldStoreData?.isActive);
 
+  const [isBranchStore, setIsBranchStore] = useState(
+    oldStoreData?.parentStoreId ? true : false,
+  );
+  const [headBranchStoreId, setHeadBranchStoreId] = useState(
+    oldStoreData?.parentStoreId ? oldStoreData.parentStoreId : '',
+  );
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [headStores, setHeadStores] = useState(null);
   const [submitIsAvailble, setSubmitIsAvailble] = useState(true);
   const [errors, setErrors] = useState({});
 
@@ -106,6 +113,8 @@ export default function Form({
         currency,
         tax,
         isActive: isStoreActive,
+        isBranchStore,
+        headBranchStoreId: isBranchStore ? headBranchStoreId : undefined,
       };
       setIsSubmiting(true);
 
@@ -182,6 +191,10 @@ export default function Form({
       setTax({ ...tax, percent: value.replace(/[^0-9]/g, '') });
     } else if (name === 'is-active') {
       setIsStoreActive(value);
+    } else if (name === 'is-branch') {
+      setIsBranchStore(toBoolean(value));
+    } else if (name === 'head-store') {
+      if (isBranchStore) setHeadBranchStoreId(value);
     }
 
     if (errors[name]) {
@@ -201,6 +214,40 @@ export default function Form({
       setProvince('');
     }
   }, [country, locations]);
+
+  useEffect(() => {
+    if (isBranchStore) {
+      if (!headStores) {
+        fetch('/api/dashboard/store/head-stores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            exceptId: isNewStore ? undefined : oldStoreData?.id,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res?.ok && Array.isArray(res?.result)) {
+              setHeadStores(res.result);
+            } else {
+              toast.error(
+                res?.message
+                  ? t(`code-responses.${res.message}`, '') ||
+                      t('general.unknown-problem')
+                  : t('general.unknown-problem'),
+              );
+              setIsBranchStore(false);
+              setHeadStores([]);
+            }
+          });
+      } else {
+        if (!headStores.length) {
+          toast.error(t(`code-responses.NO_HEAD_STORE`));
+          setIsBranchStore(false);
+        }
+      }
+    }
+  }, [isBranchStore]);
 
   const uniqueCountries = Array.from(
     new Map(locations.map((item) => [item.countrySlug, item])).values(),
@@ -387,6 +434,61 @@ export default function Form({
                 </span>
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* branch */}
+        <div
+          className={`rounded mt-1 py-3 border-top ${errors.headBranchStoreId ? 'is-invalid' : ''}`}
+        >
+          <div className='col'>
+            <h6>{t('key-names.is-branch')}</h6>
+            <div className='row g-2'>
+              <button
+                type='button'
+                className={`btn btn-sm ${
+                  isBranchStore
+                    ? 'btn-active fw-bold'
+                    : 'btn-inactive opacity-75'
+                }`}
+                onClick={() => HandleChange('is-branch', true)}
+              >
+                {t('key-names.is-branch-yes')}
+              </button>
+              <button
+                type='button'
+                className={`btn btn-sm ${
+                  !isBranchStore
+                    ? 'btn-active fw-bold'
+                    : 'btn-inactive opacity-75'
+                }`}
+                onClick={() => HandleChange('is-branch', false)}
+              >
+                {t('key-names.is-branch-no')}
+              </button>
+            </div>
+          </div>
+          <div className='mt-2'>
+            {isBranchStore ? (
+              Array.isArray(headStores) ? (
+                <div className='container row row-cols-auto gap-2'>
+                  {headStores.map((head) => {
+                    return (
+                      <button
+                        key={`head-store-${head.id}`}
+                        type='button'
+                        className={`btn btn-sm col-auto ${head.id === headBranchStoreId ? 'btn-active' : 'btn-inactive'}`}
+                        onClick={() => HandleChange('head-store', head.id)}
+                      >
+                        {head.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <Spinner />
+              )
+            ) : undefined}
           </div>
         </div>
 
