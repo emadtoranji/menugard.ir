@@ -1,11 +1,14 @@
 'use client';
 
 import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
 import { numberToFarsi } from '@utils/numbers';
+import { useParams } from 'next/navigation';
 
 export default function FooterMessageYear() {
-  const { t, i18n } = useT('header-footer');
-  const lng = i18n.language;
+  const { t } = useT('header-footer');
+  const lng = useParams()?.lng || fallbackLng;
+
   let year;
 
   if (lng === 'fa') {
