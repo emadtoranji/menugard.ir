@@ -69,3 +69,5 @@ export const CRON_SECRET = process.env.CRON_SECRET;
 export const CLEAR_CACHE_VERSION = process.env.NEXT_PUBLIC_CLEAR_CACHE_VERSION;
 
 export const MAXIMUM_STORE_LIMIT_EXCESSES = 100;
+
+export const STORE_CONTEXT_HOURS_FRESH = 3;

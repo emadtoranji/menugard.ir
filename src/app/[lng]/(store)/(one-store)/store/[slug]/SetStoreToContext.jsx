@@ -5,13 +5,14 @@ export default function SetStoreToContext({ store }) {
   const { state, setStore, resetOrder } = useOrder();
 
   useEffect(() => {
-    if (typeof store === 'object') {
-      if (typeof state?.store !== 'object') {
-        resetOrder();
-      }
-      setStore(store);
-    }
-  }, [store]);
+    if (typeof store !== 'object') return;
 
-  return undefined;
+    if (typeof state?.store !== 'object') {
+      resetOrder();
+    }
+
+    setStore(store);
+  }, [store, state?.store, resetOrder, setStore]);
+
+  return null;
 }

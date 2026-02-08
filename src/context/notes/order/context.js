@@ -1,6 +1,8 @@
 'use client';
 
 import Loading from '@components/Loading/client';
+import { STORE_CONTEXT_HOURS_FRESH } from '@utils/globalSettings';
+import { hourToSecond } from '@utils/numbers';
 import { createContext, useReducer, useEffect, useLayoutEffect } from 'react';
 
 export const OrderContext = createContext(null);
@@ -10,6 +12,7 @@ export const initialOrderState = {
   items: [],
   totalPrice: 0,
   taxPrice: 0,
+  initDate: Date.now(),
   note: '',
 };
 
@@ -25,7 +28,11 @@ export function orderReducer(state, action) {
       return { ...state, note: action.payload };
 
     case 'ADD_ITEM':
-      return { ...state, items: [...state.items, action.payload] };
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+        initDate: Date.now(),
+      };
 
     case 'UPDATE_ITEM':
       return {
@@ -33,12 +40,14 @@ export function orderReducer(state, action) {
         items: state.items.map((i) =>
           i.id === action.payload.id ? { ...i, ...action.payload } : i,
         ),
+        initDate: Date.now(),
       };
 
     case 'REMOVE_ITEM':
       return {
         ...state,
         items: state.items.filter((i) => i.id !== action.payload),
+        initDate: Date.now(),
       };
 
     case 'ADD_OPTION':
@@ -49,6 +58,7 @@ export function orderReducer(state, action) {
             ? { ...i, options: [...(i.options || []), action.payload.option] }
             : i,
         ),
+        initDate: Date.now(),
       };
 
     case 'UPDATE_OPTION':
@@ -66,6 +76,7 @@ export function orderReducer(state, action) {
               }
             : i,
         ),
+        initDate: Date.now(),
       };
 
     case 'REMOVE_OPTION':
@@ -81,6 +92,7 @@ export function orderReducer(state, action) {
               }
             : i,
         ),
+        initDate: Date.now(),
       };
 
     case 'UPDATE_TOTAL_PRICE': {
@@ -131,6 +143,7 @@ export function orderReducer(state, action) {
         taxPrice,
         itemsPrice,
         totalPrice: itemsPrice + taxPrice,
+        initDate: Date.now(),
       };
     }
 
@@ -165,7 +178,20 @@ export function OrderProvider({ children }) {
     const saved = localStorage.getItem('orderState');
     const parsed = safeParseOrder(saved);
     if (parsed) {
-      dispatch({ type: 'HYDRATE', payload: parsed });
+      const initDate = parseInt(parsed?.initDate) || 0;
+      let contextIsFresh = true;
+      const nowDate = Date.now();
+      if (
+        initDate + hourToSecond(STORE_CONTEXT_HOURS_FRESH) * 1000 <=
+        nowDate
+      ) {
+        contextIsFresh = false;
+      }
+
+      dispatch({
+        type: 'HYDRATE',
+        payload: contextIsFresh ? parsed : initialOrderState,
+      });
     } else {
       dispatch({ type: 'HYDRATE', payload: initialOrderState });
     }

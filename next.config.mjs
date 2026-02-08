@@ -79,6 +79,10 @@ const nextConfig = {
   trailingSlash: false,
   compress: true,
 
+  compiler: {
+    removeConsole: isProduction,
+  },
+
   async headers() {
     return [
       {

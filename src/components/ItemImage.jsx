@@ -14,13 +14,13 @@ export default function ItemImage({
 }) {
   const basePath = category ? `/images/items/${category}` : null;
 
-  const sources = basePath
-    ? [`${basePath}.svg`, `${basePath}.webp`, `${basePath}.png`, defaultImage]
-    : [defaultImage];
-
   const [finalSrc, setFinalSrc] = useState(null);
 
   useEffect(() => {
+    const sources = basePath
+      ? [`${basePath}.svg`, `${basePath}.webp`, `${basePath}.png`, defaultImage]
+      : [defaultImage];
+
     let isMounted = true;
 
     const checkImage = (index) => {
@@ -39,7 +39,7 @@ export default function ItemImage({
     return () => {
       isMounted = false;
     };
-  }, [sources]);
+  }, [basePath, defaultImage]);
 
   if (!finalSrc) {
     return (

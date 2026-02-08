@@ -1,41 +1,37 @@
+'use client';
+
 import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
 import { domPurify } from '@utils/domPurify';
 import { numberToFarsi } from '@utils/numbers';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 export default function WorkingTime() {
   const { t, i18n } = useT('store');
   const lng = i18n.language;
   const { state } = useOrder();
-  //const storeTitle = state?.store?.name || '';
-  const [message, setMessage] = useState(null);
   const dayOfWeekNow = new Date().getDay();
 
-  useEffect(() => {
+  const message = useMemo(() => {
     const thisDay = (state?.store?.workingHours || []).find(
       (f) => f.dayOfWeek === dayOfWeekNow,
     );
 
-    if (thisDay?.id) {
-      if (thisDay.isClosed) {
-        setMessage(t('working-time.closed', ''));
-      } else if (thisDay.is24Hours) {
-        setMessage(t('working-time.24hour', ''));
-      } else {
-        const openTime = numberToFarsi(thisDay.openTime, lng);
-        const closeTime = thisDay.closeTime;
-        setMessage(
-          t('working-time.open-range', {
-            openTime,
-            closeTime,
-          }),
-        );
-      }
-    } else {
-      setMessage(null);
+    if (!thisDay?.id) return null;
+
+    if (thisDay.isClosed) {
+      return t('working-time.closed', '');
     }
-  }, [state?.store?.workingHours, dayOfWeekNow]);
+
+    if (thisDay.is24Hours) {
+      return t('working-time.24hour', '');
+    }
+
+    return t('working-time.open-range', {
+      openTime: numberToFarsi(thisDay.openTime, lng),
+      closeTime: thisDay.closeTime,
+    });
+  }, [state?.store?.workingHours, dayOfWeekNow, t, lng]);
 
   return message ? (
     <div className='asiatech-font share-tech-font fst-italic text-dark d-flex justify-content-center'>
@@ -44,5 +40,5 @@ export default function WorkingTime() {
         dangerouslySetInnerHTML={{ __html: domPurify(message) }}
       />
     </div>
-  ) : undefined;
+  ) : null;
 }

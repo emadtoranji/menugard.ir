@@ -25,6 +25,9 @@ export default function Form({
     router.push(`/${lng}/dashboard/my-store`);
   }
 
+  const { t, i18n } = useT('dashboard-my-store');
+  const [locations, setLocations] = useState([]);
+
   useEffect(() => {
     (async () => {
       try {
@@ -35,10 +38,10 @@ export default function Form({
         toast.error(t('general.unknown-problem'));
       }
     })();
-  }, []);
+  }, [t]);
 
   const router = useRouter();
-  const { t, i18n } = useT('dashboard-my-store');
+
   const { t: tStoreCategories } = useT('store-categories');
   const lng = i18n.language;
   const [name, setName] = useState(oldStoreData?.name || '');
@@ -47,7 +50,7 @@ export default function Form({
   );
   const [slug, setSlug] = useState(oldStoreData?.slug || '');
   const [categories, setCategories] = useState(oldStoreData?.categories || []);
-  const [locations, setLocations] = useState([]);
+
   const [country, setCountry] = useState(oldStoreData?.country || '');
   const [province, setProvince] = useState(oldStoreData?.province || '');
   const [provinces, setProvinces] = useState(undefined);
