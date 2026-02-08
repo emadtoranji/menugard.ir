@@ -1,6 +1,8 @@
 {
   "title": "Stores",
-  "search-placeholder": "Search here...",
+  "search-placeholder": "Search Store here...",
+  "next": "Next",
+  "prev": "Prev",
   "empty": "No stores found",
   "store-disabled": "Store is temporary disabled",
   "add-item": "Add",
