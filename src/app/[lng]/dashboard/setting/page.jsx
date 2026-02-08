@@ -1,5 +1,6 @@
 import Forms from './Forms';
 import AnimatedPage from '@components/AnimatedPage';
+import prisma from '@lib/prisma';
 import { auth } from '@utils/auth/NextAuth';
 import { redirect } from 'next/navigation';
 
