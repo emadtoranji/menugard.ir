@@ -79,6 +79,10 @@ const nextConfig = {
   trailingSlash: false,
   compress: true,
 
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
   async headers() {
     return [
       {
