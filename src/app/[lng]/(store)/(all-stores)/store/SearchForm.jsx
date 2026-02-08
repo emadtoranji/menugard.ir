@@ -1,15 +1,17 @@
 'use client';
+
 import { useState } from 'react';
 import { replaceInvalidSearchInput } from '@utils/replaceInvalidSearchInput';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
 
 export default function SearchForm({
   search: initialSearch = '',
   slugFiltered = '',
   title = '',
-  lng,
 }) {
+  const lng = useParams()?.lng || fallbackLng;
   const { t } = useT('store');
 
   const router = useRouter();

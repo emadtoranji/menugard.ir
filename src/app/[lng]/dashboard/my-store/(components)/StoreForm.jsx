@@ -10,7 +10,8 @@ import { numberToEnglish } from '@/src/utils/numbers';
 import toast from 'react-hot-toast';
 import { slugChars } from '@utils/isValidSlug';
 import StoreValidationForm from '@utils/dashboard/store/validation';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { fallbackLng } from '@i18n/settings';
 
 export default function Form({
   isNewStore = true,
@@ -18,6 +19,8 @@ export default function Form({
   storeCategories,
   storeCurrencies,
 }) {
+  const lng = useParams()?.lng || fallbackLng;
+
   if (isNewStore) {
     oldStoreData = {};
   } else if (!oldStoreData?.id) {
@@ -25,7 +28,7 @@ export default function Form({
     router.push(`/${lng}/dashboard/my-store`);
   }
 
-  const { t, i18n } = useT('dashboard-my-store');
+  const { t } = useT('dashboard-my-store');
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
@@ -43,7 +46,6 @@ export default function Form({
   const router = useRouter();
 
   const { t: tStoreCategories } = useT('store-categories');
-  const lng = i18n.language;
   const [name, setName] = useState(oldStoreData?.name || '');
   const [description, setDescription] = useState(
     oldStoreData?.description || '',

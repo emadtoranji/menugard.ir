@@ -1,12 +1,14 @@
 import Loading from '@components/Loading/client';
 import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
 import { formatNumber } from '@utils/numbers';
+import { useParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 
 export default function OptionQuantityButton({ item = null, option }) {
-  const { t, i18n } = useT('store');
-  const lng = i18n.language;
+  const { t } = useT('store');
+  const lng = useParams()?.lng || fallbackLng;
   const { state, updateOption } = useOrder();
   if (state === null) return <Loading />;
 

@@ -2,13 +2,15 @@
 
 import { useOrder } from '@context/notes/order/useOrder';
 import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
 import { domPurify } from '@utils/domPurify';
 import { numberToFarsi } from '@utils/numbers';
+import { useParams } from 'next/navigation';
 import { useMemo } from 'react';
 
 export default function WorkingTime() {
-  const { t, i18n } = useT('store');
-  const lng = i18n.language;
+  const { t } = useT('store');
+  const lng = useParams()?.lng || fallbackLng;
   const { state } = useOrder();
   const dayOfWeekNow = new Date().getDay();
 

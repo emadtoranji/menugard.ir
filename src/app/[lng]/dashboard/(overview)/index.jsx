@@ -6,10 +6,12 @@ import { formatNumber } from '@utils/numbers';
 import { useT } from '@i18n/client';
 import toast from 'react-hot-toast';
 import Loading from '@app/loading';
+import { fallbackLng } from '@i18n/settings';
+import { useParams } from 'next/navigation';
 
 export default function Dashboard({ params }) {
-  const { t, i18n } = useT('dashboard');
-  const lng = i18n.language;
+  const { t } = useT('dashboard');
+  const lng = useParams()?.lng || fallbackLng;
   const [storeStatsData, setStoreStatsData] = useState(null);
 
   useEffect(() => {

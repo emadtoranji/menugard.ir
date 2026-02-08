@@ -9,13 +9,14 @@ import { auth } from '@utils/auth/NextAuth';
 import Head from './(components)/Head';
 
 export default async function Index({ params }) {
+  const { lng } = (await params) || {};
+  const { t } = await getT(lng, 'dashboard-my-store');
+
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
     redirect(`/${lng}/signout`);
   }
-  const { lng } = (await params) || {};
-  const { t } = await getT(lng, 'dashboard-my-store');
 
   let myStoresData = undefined;
   try {

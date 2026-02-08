@@ -46,12 +46,7 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <>
-      <SearchForm
-        search={search}
-        slugFiltered={slugFiltered}
-        title={title}
-        lng={currentLang}
-      />
+      <SearchForm search={search} slugFiltered={slugFiltered} title={title} />
 
       <div className='container-fluid py-4'>
         {stores.length === 0 && !slugFiltered && <StoreNotFound t={t} />}

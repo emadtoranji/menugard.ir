@@ -1,13 +1,14 @@
 'use client';
 
 import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
 export default function Actions({ id }) {
-  const { t, i18n } = useT('dashboard-my-store');
-  const lng = i18n.language;
+  const { t } = useT('dashboard-my-store');
+  const lng = useParams()?.lng || fallbackLng;
   const router = useRouter();
 
   async function handleDeleteStore() {

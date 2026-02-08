@@ -1,11 +1,11 @@
 import { formatNumber } from '@utils/numbers';
 import CurrencySpan from './CurrencySpan';
 import FreeSpanComponent from './FreeSpanComponent';
-import { useT } from '@i18n/client';
+import { fallbackLng } from '@i18n/settings';
+import { useParams } from 'next/navigation';
 
 export default function OptionPrice({ option, storeCurrency }) {
-  const { i18n } = useT('store');
-  const lng = i18n.language;
+  const lng = useParams()?.lng || fallbackLng;
   const additionalClass = 'm-auto fs-7 fw-bolder';
   const currencySpan = <CurrencySpan storeCurrency={storeCurrency} />;
   const freeSpan = <FreeSpanComponent additionalClass={additionalClass} />;

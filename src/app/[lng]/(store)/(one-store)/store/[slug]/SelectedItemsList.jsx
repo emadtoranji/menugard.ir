@@ -9,11 +9,13 @@ import CurrencySpan from './CurrencySpan';
 import OptionQuantityButton from './OptionQuantityButton';
 import ItemPrice from './ItemPrice';
 import OptionPrice from './OptionPrice';
+import { useParams } from 'next/navigation';
+import { fallbackLng } from '@i18n/settings';
 
 export default function SelectedItemsList({ storeCurrency }) {
   const { state } = useOrder();
-  const { t, i18n } = useT('store');
-  const lng = i18n.language;
+  const { t } = useT('store');
+  const lng = useParams()?.lng || fallbackLng;
 
   if (state === null) return <Loading />;
   if (!state?.items?.length) return <h3>{t('order-list-empty')}</h3>;

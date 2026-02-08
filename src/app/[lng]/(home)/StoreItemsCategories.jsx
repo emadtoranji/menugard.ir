@@ -3,10 +3,12 @@
 import { useEffect, useRef } from 'react';
 import { storeItemsCategoriesKey } from '@lib/prismaEnums';
 import { useT } from '@i18n/client';
+import { useParams } from 'next/navigation';
+import { fallbackLng } from '@i18n/settings';
 
 export default function StoreItemsCategories() {
-  const { t, i18n } = useT('store-item-categories');
-  const lng = i18n.language;
+  const lng = useParams()?.lng || fallbackLng;
+  const { t } = useT('store-item-categories');
   const isRTL = ['fa', 'ar'].includes(lng);
   const trackRef = useRef(null);
   const containerRef = useRef(null);
