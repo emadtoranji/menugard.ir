@@ -247,7 +247,7 @@ export default function Form({
         }
       }
     }
-  }, [isBranchStore]);
+  }, [t, isBranchStore, headStores, isNewStore, oldStoreData?.id]);
 
   const uniqueCountries = Array.from(
     new Map(locations.map((item) => [item.countrySlug, item])).values(),
