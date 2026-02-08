@@ -1,7 +1,7 @@
 import { getT } from '@i18n/server';
 
 export default async function Page({ params }) {
-  const { lng } = params;
+  const { lng } = await params;
   const { t } = await getT(lng, 'faqs');
 
   const faqs = t('faqs', { returnObjects: true }) || [];
