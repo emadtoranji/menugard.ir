@@ -1,6 +1,6 @@
 {
   "general": {
-    "title": "{{AppName}} — A Platform for Managing Stores",
+    "title": "{{AppName}} | A Platform for Managing Stores",
     "description": "A platform for managing stores and digitizing catalogs and products. | {{AppName}}",
     "keywords": [
       "platform",
@@ -29,13 +29,13 @@
   },
   "admin": {
     "title": "Admin Panel | {{AppName}}",
-    "description": "Special Admin Panel {{AppName}} — Access for System Administrators Only",
+    "description": "Special Admin Panel {{AppName}} | Access for System Administrators Only",
     "keywords": ["Admin Panel", "{{AppName}} Admin"],
     "category": "Admin Panel"
   },
   "dashboard": {
     "title": "User Dashboard | {{AppName}}",
-    "description": "Personal Dashboard for {{AppName}} Users — View Transaction History, Store Management, and Account Settings",
+    "description": "Personal Dashboard for {{AppName}} Users | View Transaction History, Store Management, and Account Settings",
     "keywords": [
       "Dashboard {{AppName}}",
       "User Panel",
@@ -88,7 +88,7 @@
     "category": "Error Page"
   },
   "store": {
-    "title": "{{AppName}} — Stores",
+    "title": "{{AppName}} | Stores",
     "description": "A platform for managing stores and digitizing catalogs and products. | {{AppName}}",
     "keywords": [
       "platform",
