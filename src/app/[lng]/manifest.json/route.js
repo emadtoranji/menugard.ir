@@ -5,8 +5,8 @@ const CLEAR_CACHE_VERSION = '?v=' + process.env.NEXT_PUBLIC_CLEAR_CACHE_VERSION;
 
 export async function GET(request, { params }) {
   const { lng } = (await params) || { lng: null };
-  const { t: CommonT, lng: currentLang } = await getT(lng);
-  const { t } = await getT(currentLang, 'meta');
+  const { t: CommonT } = await getT(lng);
+  const { t } = await getT(lng, 'meta');
   const keywords = t('general.keywords', { returnObjects: true });
   const AppName = CommonT('general.app-name', '');
   const response = {
@@ -17,7 +17,7 @@ export async function GET(request, { params }) {
     description: t('general.description', {
       AppName,
     }),
-    lang: currentLang,
+    lang: lng,
     start_url: '/',
     display: 'standalone',
     scope: '/',
