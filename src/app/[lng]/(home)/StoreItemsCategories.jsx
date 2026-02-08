@@ -5,7 +5,9 @@ import { storeItemsCategoriesKey } from '@lib/prismaEnums';
 import { useT } from '@i18n/client';
 
 export default function StoreItemsCategories() {
-  const { t } = useT('store-item-categories');
+  const { t, i18n } = useT('store-item-categories');
+  const lng = i18n.language;
+  const isRTL = ['fa', 'ar'].includes(lng);
   const trackRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -25,7 +27,7 @@ export default function StoreItemsCategories() {
       const width = track.scrollWidth;
 
       const x = distance % width;
-      track.style.transform = `translateX(${x}px)`;
+      track.style.transform = `translateX(${isRTL ? '+' : '-'}${x}px)`;
 
       animationFrame = requestAnimationFrame(step);
     };
