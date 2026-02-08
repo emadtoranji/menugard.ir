@@ -15,8 +15,8 @@ export default function ItemPrice({ item, storeCurrency }) {
       <h6
         className={`m-auto d-flex align-items-center gap-1 mt-3 mb-1 ${
           item.price > 0 && item.discountPercent
-            ? 'text-decoration-line-through h6 fw-light'
-            : 'h4 fw-bold'
+            ? 'text-decoration-line-through fs-6 fw-light'
+            : 'fs-5 fw-bold'
         }`}
       >
         {item.price === 0 ? (
