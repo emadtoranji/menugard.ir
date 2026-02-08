@@ -3,7 +3,7 @@
 import Loading from '@components/Loading/client';
 import { STORE_CONTEXT_HOURS_FRESH } from '@utils/globalSettings';
 import { hourToSecond } from '@utils/numbers';
-import { createContext, useReducer, useEffect, useState } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 
 export const OrderContext = createContext(null);
 
@@ -176,18 +176,16 @@ function safeParseOrder(jsonString) {
 
 export function OrderProvider({ children, store }) {
   const [state, dispatch] = useReducer(orderReducer, null);
-  const [localStorageName, setLocalStorageName] = useState(null);
+  const localStorageName = `orderState:${store?.id || 'global'}`;
 
   useEffect(() => {
-    if (typeof store !== 'object') return;
-    setLocalStorageName(`orderState:${store?.id || 'global'}`);
-
-    if (typeof state?.store !== 'object') {
-      dispatch({ type: 'RESET_ORDER' });
+    if (typeof store === 'object') {
+      if (typeof state?.store !== 'object')
+        dispatch({ type: 'SET_STORE', payload: store });
+    } else {
+      return;
     }
-
-    dispatch({ type: 'SET_STORE', payload: store });
-  }, [store]);
+  }, [state?.store, store]);
 
   useEffect(() => {
     if (localStorageName === null) return;
