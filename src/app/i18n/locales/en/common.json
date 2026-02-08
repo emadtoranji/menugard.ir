@@ -104,6 +104,7 @@
     "HIGHLIGHTED_CANNOT_BE_EMPTY": "Highlighted sections cannot be empty.",
 
     "___store_section___": "",
+    "NO_HEAD_STORE": "There is not head store",
     "STORE_NOT_FOUND": "Store not found",
     "SLUG_IS_TAKEN": "This Slug is taken, try something else",
 
