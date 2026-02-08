@@ -27,7 +27,7 @@ export default function StoreItemsCategories() {
       const width = track.scrollWidth;
 
       const x = distance % width;
-      track.style.transform = `translateX(${isRTL ? '+' : '-'}${x}px)`;
+      track.style.transform = `translateX(${isRTL ? '' : '-'}${x}px)`;
 
       animationFrame = requestAnimationFrame(step);
     };
@@ -35,7 +35,7 @@ export default function StoreItemsCategories() {
     animationFrame = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [isRTL]);
+  }, [trackRef, containerRef, isRTL]);
 
   const items = [
     ...storeItemsCategoriesKey,
