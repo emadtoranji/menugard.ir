@@ -8,19 +8,22 @@ import validateAddress from './address';
 import validatePhone from './phone';
 import validateCurrency from './currency';
 import validateTax from './tax';
+import validateHeadBranchStoreId from './headBranchStoreId';
 
 export default function StoreValidationForm({
-  name,
-  description,
-  slug,
-  categories,
+  name = undefined,
+  description = undefined,
+  slug = undefined,
+  categories = undefined,
   locations = undefined,
-  country,
-  province,
-  address,
-  phone,
-  currency,
-  tax,
+  country = undefined,
+  province = undefined,
+  address = undefined,
+  phone = undefined,
+  currency = undefined,
+  tax = undefined,
+  isBranchStore = false,
+  headBranchStoreId = undefined,
 }) {
   let newErrors = {};
 
@@ -64,6 +67,12 @@ export default function StoreValidationForm({
   // Tax
   const __tax = validateTax(tax);
   if (__tax) newErrors.tax = __tax;
+
+  // isBranchStore
+  if (isBranchStore) {
+    const __headBranchStoreId = validateHeadBranchStoreId(headBranchStoreId);
+    if (__headBranchStoreId) newErrors.headBranchStoreId = __headBranchStoreId;
+  }
 
   return newErrors;
 }
