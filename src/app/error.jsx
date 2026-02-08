@@ -3,10 +3,11 @@
 import { useT } from '@i18n/client';
 import { fallbackLng } from '@i18n/settings';
 import Problems from '@components/Problems';
+import { useParams } from 'next/navigation';
 
 export default function Error({ error, reset }) {
-  const { t, i18n } = useT('error');
-  const currentLang = i18n?.language || fallbackLng;
+  const { t } = useT('error');
+  const lng = useParams()?.lng || fallbackLng;
 
   const content = {
     title: t('error.title'),
@@ -27,7 +28,7 @@ export default function Error({ error, reset }) {
         <Problems
           content={content}
           code={500}
-          currentLang={currentLang}
+          currentLang={lng}
           message={
             process.env.NODE_ENV === 'production' ? '' : error?.message || ''
           }

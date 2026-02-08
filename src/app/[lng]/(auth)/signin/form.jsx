@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { nextAuthLoginButtonHandler } from '@utils/auth/loginButtonHandler';
 import { useT } from '@i18n/client';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { fallbackLng } from '@i18n/settings';
 import {
   useGoogleReCaptcha,
@@ -271,7 +271,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
 export default function Index({ enabledLoginProviders }) {
   const { t, i18n } = useT('dashboard');
   const { t: tNextAuth } = useT('next-auth');
-  const currentLang = i18n?.language || fallbackLng;
+  const lng = useParams()?.lng || fallbackLng;
 
   const googleSiteKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY || '';
 
@@ -292,12 +292,12 @@ export default function Index({ enabledLoginProviders }) {
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey={googleSiteKey}
-      language={currentLang}
+      language={lng}
       scriptProps={{ async: true, defer: true, appendTo: 'head' }}
     >
       <SignInForm
         t={t}
-        currentLang={currentLang}
+        currentLang={lng}
         enabledLoginProviders={enabledLoginProviders}
       />
     </GoogleReCaptchaProvider>
