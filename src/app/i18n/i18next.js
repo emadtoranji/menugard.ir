@@ -17,6 +17,7 @@ i18next
     }),
   )
   .init({
+    debug: false,
     supportedLngs: languages,
     fallbackLng,
     lng: undefined,
