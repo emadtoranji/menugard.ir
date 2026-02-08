@@ -53,7 +53,7 @@ export default async function Page({ params, searchParams }) {
         lng={currentLang}
       />
 
-      <div className='container-fluid'>
+      <div className='container-fluid py-4'>
         {stores.length === 0 && !slugFiltered && <StoreNotFound t={t} />}
 
         {stores.length > 0 && (
