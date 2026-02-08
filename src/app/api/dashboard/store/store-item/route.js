@@ -1,3 +1,8 @@
+// For branch stores, the UI prevents users from adding items.
+// However, any requests sent to the API are still accepted and stored in the database.
+// When displaying items on the website, only the parent store's items are shown,
+// effectively overriding any branch store items.
+
 import prisma from '@lib/prisma';
 import { auth } from '@utils/auth/NextAuth';
 import {
