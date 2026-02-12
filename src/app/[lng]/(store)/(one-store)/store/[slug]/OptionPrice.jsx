@@ -16,9 +16,9 @@ export default function OptionPrice({ option, storeCurrency }) {
         (<span>{freeSpan}</span>)
       </span>
     ) : (
-      <div className={`d-flex align-items-center ${additionalClass} `}>
+      <div className={`flex items-center ${additionalClass} `}>
         <span>(</span>
-        <span className='d-flex align-items-center gap-1'>
+        <span className='flex items-center gap-1'>
           <span>{formatNumber(option.price, lng)}</span>
           {currencySpan}
         </span>

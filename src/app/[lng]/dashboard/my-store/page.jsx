@@ -50,39 +50,46 @@ export default async function Index({ params }) {
             {myStoresData === undefined ? (
               <h4>{t('general.unknown-problem')}</h4>
             ) : myStoresData.length ? (
-              <div className='row g-3 mb-4'>
+              <div className='flex gap-3 mb-8'>
                 {myStoresData.map((item) => {
                   return (
-                    <div key={item.id} className='col-12 col-md-6 col-xl-4'>
-                      <div className='card p-1 shadow-lg border-0 h-100'>
+                    <div
+                      key={item.id}
+                      className='w-full md:w-6/12 xl:w-4/12 3xl:w-3/12'
+                    >
+                      <div className='card p-1 h-full'>
                         <div className='container'>
                           <Image
                             src={item?.logoUrl || `/images/app-logo.webp`}
                             height={250}
                             width={250}
                             style={{ objectFit: 'contain' }}
-                            className='card-img-top'
+                            className='mx-auto'
                             alt={`Logo ${item?.slug}`}
                           />
                         </div>
                         <div className='card-body'>
-                          <div className='d-flex align-items-center justify-content-between'>
-                            <h5 className='card-title'>{item?.name || '-'}</h5>
+                          <div className='flex items-center justify-between'>
+                            <h4 className='h4 font-bold'>
+                              {item?.name || '-'}
+                            </h4>
                             <i
-                              className={`bi ${item?.isActive ? 'bi-bag-check text-success' : 'bi-bag-x text-danger'} fs-2`}
+                              className={`bi ${item?.isActive ? 'bi-bag-check text-success' : 'bi-bag-x text-danger'} text-3xl`}
                             ></i>
                           </div>
-                          <p className='card-text'>{item?.description || ''}</p>
-                          <div className='d-flex gap-2 w-100'>
+                          <p className='h6 font-light my-2'>
+                            {item?.description || ''}
+                          </p>
+                          <div className='flex gap-2 w-full text-center'>
                             <Link
                               href={`/${lng}/store/${item?.slug}`}
-                              className='btn btn-success text-light col-6'
+                              className='btn btn-success w-1/2'
                             >
                               {t('user-experience-button')}
                             </Link>
                             <Link
                               href={`/${lng}/dashboard/my-store/edit/${item?.id}`}
-                              className='btn btn-primary text-light col-6'
+                              className='btn btn-primary w-1/2'
                             >
                               {t('edit-button')}
                             </Link>
@@ -96,7 +103,7 @@ export default async function Index({ params }) {
             ) : (
               <Link href={`/${lng}/dashboard/my-store/new`}>
                 <div
-                  className='mt-5 muted-small'
+                  className='mt-5 text-muted'
                   dangerouslySetInnerHTML={{
                     __html: domPurifyServer(t('no-store-found')),
                   }}

@@ -7,91 +7,86 @@ import { Suspense } from 'react';
 export default async function Footer({ lng }) {
   const { t } = await getT(lng, 'header-footer');
 
+  const hrClass = 'block lg:hidden my-8 border border-white/10';
+
   return (
-    <footer id='footer' className='mt-auto pt-4 pb-3 text-center'>
-      <div className='container'>
-        <div className='row g-4'>
-          <div className='col'>
-            <h5 className='mb-3 fw-semibold'>{t('footer.brand')}</h5>
-            <p className='small mb-0 lh-sm'>{t('footer.description')}</p>
-          </div>
-
-          <hr className='d-block d-lg-none my-4 border-light border-opacity-25' />
-
-          <div className='col-12 col-lg-5'>
-            <h6 className='fw-bold mb-3'>{t('footer.quick_links.title')}</h6>
-            <ul className='list-unstyled row row-cols-1 row-cols-sm-2 g-2 m-0 p-0'>
-              <li className='col'>
-                <Link href={`/${lng}/faqs`}>
-                  {t('footer.quick_links.faqs')}
-                </Link>
-              </li>
-              <li className='col'>
-                <Link href={`/${lng}/store`}>
-                  {t('footer.quick_links.store')}
-                </Link>
-              </li>
-              <li className='col'>
-                <Link href={`/${lng}/dashboard`}>
-                  {t('footer.quick_links.dashboard')}
-                </Link>
-              </li>
-              <li className='col'>
-                <Link
-                  href={process.env.NEXT_PUBLIC_SUPPORT_TELEGRAM || '/'}
-                  target='_blank'
-                >
-                  {t('footer.quick_links.support')}
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <footer
+      id='footer'
+      className='mt-auto pt-8 pb-3 text-center bg-[var(--color-bg-nav)] text-[var(--color-text-nav)]'
+    >
+      <div className='container lg:flex lg:justify-between items-center gap-5'>
+        <div className='w-full lg:w-1/3'>
+          <h5 className='mb-3 font-semibold'>{t('footer.brand')}</h5>
+          <p className='text-base mb-0'>{t('footer.description')}</p>
         </div>
 
-        <hr className='my-4 border-light border-opacity-25' />
+        <hr className={hrClass} />
 
-        <div className='row gy-3 align-items-center text-center'>
-          <div className='col-12'>
-            <Suspense fallback={undefined}>
-              <FooterMessageYear />
-            </Suspense>
-          </div>
+        <div className='w-full lg:w-1/3'>
+          <h6 className='font-bold mb-3'>{t('footer.quick_links.title')}</h6>
+          <ul className='grid grid-flow-col grid-rows-4 sm:grid-rows-2  gap-4 m-0 p-0'>
+            <li className='w-full'>
+              <Link href={`/${lng}/faqs`}>{t('footer.quick_links.faqs')}</Link>
+            </li>
+            <li className='w-full'>
+              <Link href={`/${lng}/store`}>
+                {t('footer.quick_links.store')}
+              </Link>
+            </li>
+            <li className='w-full'>
+              <Link href={`/${lng}/dashboard`}>
+                {t('footer.quick_links.dashboard')}
+              </Link>
+            </li>
+            <li className='w-full'>
+              <Link
+                href={process.env.NEXT_PUBLIC_SUPPORT_TELEGRAM || '/'}
+                target='_blank'
+              >
+                {t('footer.quick_links.support')}
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        <div className='row mt-2'>
-          <div className='col text-center'>
-            <div className='d-flex justify-content-center gap-3'>
-              <Link
-                href={process.env.NEXT_PUBLIC_DEVELOPER_X || '/'}
-                target='_blank'
-                aria-label='X'
-              >
-                <i className='bi bi-twitter fs-5'></i>
-              </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_DEVELOPER_GITHUB || '/'}
-                target='_blank'
-                aria-label='GitHub'
-              >
-                <i className='bi bi-github fs-5'></i>
-              </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_DEVELOPER_TELEGRAM || '/'}
-                target='_blank'
-                aria-label='Telegram'
-              >
-                <i className='bi bi-telegram fs-5'></i>
-              </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_DEVELOPER_LINKEDIN || '/'}
-                target='_blank'
-                aria-label='LinkedIn'
-              >
-                <i className='d-none bi bi-linkedin fs-5'></i>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <hr className={hrClass} />
+      </div>
+
+      <div className='w-full text-center flex justify-center mb-4 mt-8'>
+        <Suspense fallback={undefined}>
+          <FooterMessageYear />
+        </Suspense>
+      </div>
+
+      <div className='w-full text-center flex justify-center gap-5'>
+        <Link
+          href={process.env.NEXT_PUBLIC_DEVELOPER_X || '/'}
+          target='_blank'
+          aria-label='X'
+        >
+          <i className='bi bi-twitter text-2xl'></i>
+        </Link>
+        <Link
+          href={process.env.NEXT_PUBLIC_DEVELOPER_GITHUB || '/'}
+          target='_blank'
+          aria-label='GitHub'
+        >
+          <i className='bi bi-github text-2xl'></i>
+        </Link>
+        <Link
+          href={process.env.NEXT_PUBLIC_DEVELOPER_TELEGRAM || '/'}
+          target='_blank'
+          aria-label='Telegram'
+        >
+          <i className='bi bi-telegram text-2xl'></i>
+        </Link>
+        <Link
+          href={process.env.NEXT_PUBLIC_DEVELOPER_LINKEDIN || '/'}
+          target='_blank'
+          aria-label='LinkedIn'
+        >
+          <i className='hidden bi bi-linkedin text-2xl'></i>
+        </Link>
       </div>
     </footer>
   );

@@ -29,7 +29,7 @@ export default function Index({ user, currentLang }) {
   const passwordsMatch =
     newPassword === confirmNewPassword || (!newPassword && !confirmNewPassword);
   const showPasswordMismatchBorder =
-    (newPassword || confirmNewPassword) && !passwordsMatch;
+    !newPassword || !confirmNewPassword ? true : !passwordsMatch;
 
   useLayoutEffect(() => {
     if (user) {
@@ -199,33 +199,34 @@ export default function Index({ user, currentLang }) {
   }
 
   return (
-    <div className='d-flex flex-column gap-3'>
-      <h3>{t('dashboard.account.title')}</h3>
-      <div className='row g-3'>
-        <div className='col-md-6'>
-          <div className='card p-3 d-flex flex-column gap-2 border-0 shadow rounded'>
-            <h6>{t('dashboard.account.profile')}</h6>
+    <div className=''>
+      <h3 className='mb-5'>{t('dashboard.account.title')}</h3>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
+        <div className=''>
+          <div className='card p-3 flex flex-col gap-2'>
+            <h4>{t('dashboard.account.profile')}</h4>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className='d-flex flex-column gap-2'
+              className='flex flex-col gap-2'
             >
               <div className='mb-1'>
-                <div className='d-flex justify-content-between'>
-                  <label className='form-label'>
+                <div className='flex items-center justify-between mb-2'>
+                  <label className='form-label' htmlFor='email'>
                     {t('dashboard.account.email')}
                   </label>
                   <div
+                    type='button'
                     onClick={handleEmailVerify}
                     disabled={isSendingEmail}
-                    className={`d-flex align-items-center btn badge ${
-                      isSendingEmail ? 'disabled' : ''
+                    className={`flex items-center  ${
+                      isSendingEmail ? 'disabled' : 'rounded btn btn-sm'
                     } ${
                       data.emailVerified === null
-                        ? 'd-none'
+                        ? 'hidden'
                         : data.emailVerified
                           ? 'btn-success'
                           : 'btn-danger animate__animated animate__pulse animate__infinite animate__slow'
-                    } form-label`}
+                    } form-label px-2 py-1`}
                   >
                     {isSendingEmail ? (
                       <Spinner small={true} />
@@ -239,6 +240,7 @@ export default function Index({ user, currentLang }) {
                   </div>
                 </div>
                 <input
+                  id='email'
                   style={{ direction: 'ltr' }}
                   className='form-control'
                   type='email'
@@ -253,18 +255,19 @@ export default function Index({ user, currentLang }) {
               </div>
 
               <div className='mb-1'>
-                <label className='form-label'>
+                <label className='form-label' htmlFor='username'>
                   {t('dashboard.account.username')}
                 </label>
 
                 <input
+                  id='username'
                   style={{ direction: 'ltr' }}
                   className={`form-control ${
                     data.username === null ? 'disabled' : ''
                   } ${
                     data.username !== null && !isValidUsername(data.username)
                       ? 'is-invalid'
-                      : ''
+                      : 'is-valid'
                   }`}
                   type='text'
                   disabled={data.username === null}
@@ -273,7 +276,7 @@ export default function Index({ user, currentLang }) {
                   autoComplete='new-username'
                 />
                 {usernameError ? (
-                  <div className='invalid-feedback'>{usernameError}</div>
+                  <div className='is-invalid'>{usernameError}</div>
                 ) : undefined}
               </div>
               <button
@@ -287,20 +290,20 @@ export default function Index({ user, currentLang }) {
             </form>
           </div>
         </div>
-        <div className='col-md-6'>
-          <div className='card p-3 d-flex flex-column gap-2 border-0 shadow rounded'>
-            <h6>{t('dashboard.account.security')}</h6>
+        <div className=''>
+          <div className='card p-3 flex flex-col gap-2'>
+            <h4>{t('dashboard.account.security')}</h4>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className='d-flex flex-column gap-2'
+              className='flex flex-col gap-2'
             >
-              <div className='d-flex align-items-center gap-1'>
-                <label className='form-label mb-0'>
+              <div className='flex items-center gap-1'>
+                <label className='form-label mb-0' htmlFor='oldPassword'>
                   {t('dashboard.account.oldPassword')}
                 </label>
                 <button
                   type='button'
-                  className='btn btn-sm btn-link p-0 text-muted'
+                  className='btn btn-sm p-0 text-gray-600'
                   onClick={() => setShowOldPassword(!showOldPassword)}
                   disabled={loading}
                   aria-label={
@@ -310,13 +313,14 @@ export default function Index({ user, currentLang }) {
                   }
                 >
                   <i
-                    className={`bi ${
+                    className={`text-lg bi ${
                       showOldPassword ? 'bi-eye-slash' : 'bi-eye'
                     }`}
                   ></i>
                 </button>
               </div>
               <input
+                id='oldPassword'
                 style={{ direction: 'ltr' }}
                 type={showOldPassword ? 'text' : 'password'}
                 className='form-control'
@@ -324,13 +328,13 @@ export default function Index({ user, currentLang }) {
                 onChange={(e) => setOldPassword(e.target.value)}
                 autoComplete='current-password'
               />
-              <div className='d-flex align-items-center gap-1'>
-                <label className='form-label mb-0'>
+              <div className='flex items-center gap-1'>
+                <label className='form-label mb-0' htmlFor='newPassword'>
                   {t('dashboard.account.newPassword')}
                 </label>
                 <button
                   type='button'
-                  className='btn btn-sm btn-link p-0 text-muted'
+                  className='btn btn-sm p-0 text-gray-600'
                   onClick={() => setShowNewPassword(!showNewPassword)}
                   disabled={loading}
                   aria-label={
@@ -340,29 +344,30 @@ export default function Index({ user, currentLang }) {
                   }
                 >
                   <i
-                    className={`bi ${
+                    className={`text-lg bi ${
                       showNewPassword ? 'bi-eye-slash' : 'bi-eye'
                     }`}
                   ></i>
                 </button>
               </div>
               <input
+                id='newPassword'
                 style={{ direction: 'ltr' }}
                 type={showNewPassword ? 'text' : 'password'}
                 className={`form-control ${
-                  showPasswordMismatchBorder ? 'border-danger' : ''
+                  showPasswordMismatchBorder ? 'is-invalid' : 'is-valid'
                 }`}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 autoComplete='new-password'
               />
-              <div className='d-flex align-items-center gap-1'>
-                <label className='form-label mb-0'>
+              <div className='flex items-center gap-1'>
+                <label className='form-label mb-0' htmlFor='confirmNewPassword'>
                   {t('dashboard.account.confirmNewPassword')}
                 </label>
                 <button
                   type='button'
-                  className='btn btn-sm btn-link p-0 text-muted'
+                  className='btn btn-sm p-0 text-gray-600'
                   onClick={() =>
                     setShowConfirmNewPassword(!showConfirmNewPassword)
                   }
@@ -374,17 +379,18 @@ export default function Index({ user, currentLang }) {
                   }
                 >
                   <i
-                    className={`bi ${
+                    className={`text-lg bi ${
                       showConfirmNewPassword ? 'bi-eye-slash' : 'bi-eye'
                     }`}
                   ></i>
                 </button>
               </div>
               <input
+                id='confirmNewPassword'
                 style={{ direction: 'ltr' }}
                 type={showConfirmNewPassword ? 'text' : 'password'}
                 className={`form-control ${
-                  showPasswordMismatchBorder ? 'border-danger' : ''
+                  showPasswordMismatchBorder ? 'is-invalid' : 'is-valid'
                 }`}
                 value={confirmNewPassword}
                 onChange={(e) => setNewConfirmPassword(e.target.value)}

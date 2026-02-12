@@ -13,7 +13,7 @@ export default function Index({
 
   if (!Array.isArray(data) || data.length === 0) {
     return (
-      <div className='text-muted text-center py-5 fs-5'>
+      <div className='text-gray-600 text-center py-16 fs-5'>
         {t('table.noData')}
       </div>
     );
@@ -23,7 +23,7 @@ export default function Index({
 
   return (
     <div className='table-responsive shadow-lg rounded-3'>
-      <table className='table table-light table-sm table-striped table-hover text-center align-middle w-100'>
+      <table className='table table-light table-sm table-striped table-hover text-center align-middle w-full'>
         <thead className='table-dark'>
           <tr>
             {headerKeys.map((key) => {
@@ -31,16 +31,16 @@ export default function Index({
               if (lowerKey === 'currency') return null;
               return (
                 <th
-                  scope='col'
+                  scope='w-full'
                   key={lowerKey}
                   className={
                     lowerKey === 'id'
-                      ? 'fw-bold d-none d-sm-table-cell'
+                      ? 'font-bold hidden d-sm-table-cell'
                       : lowerKey === 'description' ||
-                        lowerKey === 'note' ||
-                        lowerKey === 'message'
-                      ? ' col-6 col-xl-5 col-xl-4'
-                      : ''
+                          lowerKey === 'note' ||
+                          lowerKey === 'message'
+                        ? ' col-6 xl:w-5/12 col-xl-4'
+                        : ''
                   }
                 >
                   {t(`table.thead.${lowerKey}`)}
@@ -62,7 +62,7 @@ export default function Index({
                     <th
                       scope='row'
                       key={key}
-                      className='d-none d-sm-table-cell fw-bold'
+                      className='hidden d-sm-table-cell font-bold'
                     >
                       {val}
                     </th>
@@ -125,7 +125,7 @@ export default function Index({
                             val.value?.toString(),
                             currentLang,
                             false,
-                            false
+                            false,
                           )}
                         </span>
                       </td>

@@ -13,7 +13,7 @@ export default async function Index({ params }) {
   return (
     <>
       <div className='container'>
-        <div className='d-flex gap-2'>
+        <div className='flex gap-3'>
           {sections.map((section, index) => {
             {
               if (!section?.title || !section?.path) {

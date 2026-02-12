@@ -14,15 +14,15 @@ export default async function StoreCard({ lng, store }) {
   const defaultImage = '/images/app-logo.webp';
 
   return (
-    <article className='col'>
+    <article className='w-full'>
       <Link href={navigateToStore}>
-        <div className='card h-100 w-100 border-0 shadow rounded'>
-          <h4 className='fw-bold text-center card-header bg-white py-3 px-2'>
+        <div className='card h-full w-full border-0 shadow rounded'>
+          <h4 className='font-bold text-center card-header bg-white py-3 px-2'>
             {store.name}
           </h4>
           <div className='card-body'>
             <Image
-              className='d-flex mx-auto mb-3'
+              className='flex mx-auto mb-3'
               src={store?.logoUrl || defaultImage}
               height={150}
               width={150}
@@ -30,12 +30,14 @@ export default async function StoreCard({ lng, store }) {
               alt={`${store.name} Logo`}
               loading='lazy'
             />
-            <p className={`h6 fw-normal mb-4 flex-grow-1 text-justify fw-bold`}>
+            <p
+              className={`h6 fw-normal mb-8 flex-grow-1 text-justify font-bold`}
+            >
               {domPurifyServer(store?.description || '')}
             </p>
 
-            <div className='d-flex gap-1 justify-content-between align-items-center mt-auto flex-wrap'>
-              <div className='d-flex gap-1'>
+            <div className='flex gap-1 justify-between items-center mt-auto flex-wrap'>
+              <div className='flex gap-1'>
                 {store.categories.map((category) => {
                   return (
                     <span
@@ -49,8 +51,8 @@ export default async function StoreCard({ lng, store }) {
                   );
                 })}
               </div>
-              <div className='d-flex gap-1 badge btn-active'>
-                <span className='fw-bold'>
+              <div className='flex gap-1 badge btn-active'>
+                <span className='font-bold'>
                   {domPurifyServer(store?.location?.provinceLocal || '')}
                 </span>
                 <span className='fst-italic'>

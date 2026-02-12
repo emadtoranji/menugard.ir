@@ -25,7 +25,7 @@ export default function ItemContent({
   return (
     <div className='container-fluid'>
       <div
-        className='position-fixed bottom-0 end-0 mx-4 mb-4 rounded'
+        className='position-fixed bottom-0 end-0 mx-8 mb-8 rounded'
         style={{ zIndex: 'var(--zindex-offcanvas)' }}
       >
         <OffcanvasButton
@@ -43,7 +43,7 @@ export default function ItemContent({
         <SelectedItemsList storeCurrency={storeCurrency} />
       </OffcanvasWrapper>
 
-      <div className='row g-1 g-lg-2'>
+      <div className='grid gap-1 gap-lg-2'>
         {(items || []).map((item) => {
           const isOrderable = item?.isAvailable && item?.isActive;
 
@@ -51,17 +51,17 @@ export default function ItemContent({
             <div
               key={`item-${item.id}`}
               style={{ minHeight: '250px' }}
-              className={`col-12 col-lg-6 col-xxl-4 d-flex ${
+              className={`w-full lg:w-1/2 2xl:w-1/3 flex ${
                 isOrderable ? '' : 'opacity-75'
               }`}
             >
               <div className='card border-0 shadow flex-fill bg-white'>
-                <div className='card-body d-flex gap-3'>
-                  <div className='col'>
-                    <h4 className='fw-bold'>{item.title}</h4>
+                <div className='card-body flex gap-3'>
+                  <div className='w-full'>
+                    <h4 className='font-bold'>{item.title}</h4>
                     <p className='text-justify px-1'>{item.description}</p>
                   </div>
-                  <div className='col-auto d-flex align-items-center justify-content-center'>
+                  <div className='w-auto flex items-center justify-center'>
                     <ItemImage
                       key={`logo-${item.category}`}
                       category={item.category}
@@ -72,7 +72,7 @@ export default function ItemContent({
                 </div>
 
                 <div className='card-footer bg-white'>
-                  <div className='d-flex align-items-center justify-content-between py-1'>
+                  <div className='flex items-center justify-between py-1'>
                     <ItemPrice item={item} storeCurrency={storeCurrency} />
 
                     <ItemQuantityButton

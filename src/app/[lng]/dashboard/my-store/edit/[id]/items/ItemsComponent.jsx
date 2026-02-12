@@ -51,10 +51,10 @@ export default function ItemsComponent({ StoreItemsCategoriesKey, store }) {
 
   return (
     <div className='container-fluid px-0'>
-      <div className='container mb-4'>
-        <div className='col-12 mb-3'>
+      <div className='container mb-8'>
+        <div className='w-full mb-3'>
           <button
-            className={`btn btn-lg btn-${newItem ? 'active' : 'inactive'} w-100`}
+            className={`btn btn-lg btn-${newItem ? 'active' : 'inactive'} w-full`}
             onClick={newItem ? undefined : startNewItem}
           >
             {t('edit.sections.items.add-item')}
@@ -62,12 +62,12 @@ export default function ItemsComponent({ StoreItemsCategoriesKey, store }) {
         </div>
 
         <div className='container'>
-          <div className='container row row-cols-auto gap-1 mt-3'>
+          <div className='container grid grid-cols-auto gap-1 mt-3'>
             {items.map((item) => (
               <button
                 key={item.id}
                 type='button'
-                className={`btn col ${
+                className={`btn w-full ${
                   activeItemId === item.id ? 'btn-active' : 'btn-inactive'
                 }`}
                 onClick={() => {

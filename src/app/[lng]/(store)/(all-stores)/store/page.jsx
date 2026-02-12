@@ -48,11 +48,11 @@ export default async function Page({ params, searchParams }) {
     <>
       <SearchForm search={search} slugFiltered={slugFiltered} title={title} />
 
-      <div className='container-fluid py-4'>
+      <div className='container-fluid py-8'>
         {stores.length === 0 && !slugFiltered && <StoreNotFound t={t} />}
 
         {stores.length > 0 && (
-          <div className='mx-auto row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 g-3'>
+          <div className='mx-auto grid grid-cols-1 grid-cols-md-2 grid-cols-lg-2 grid-cols-xl-3 grid-cols-xxl-4 gap-3'>
             {stores.map((store, index) => (
               <StoreCard
                 key={`storeBox-${store?.slug || index}`}

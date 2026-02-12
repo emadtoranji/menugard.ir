@@ -83,25 +83,23 @@ export default async function Index({ params }) {
 
   return (
     <AnimatedPage>
-      <div className='container-fluid px-0 px-lg-2 px-xxl-3'>
-        <div className='container-lg'>
-          <Head
-            lng={lng}
-            title='edit.sections.items.title'
-            subTitle='edit.sections.items.description'
-            id={id}
-            hasStore={true}
-            hasHomeEdit={true}
-            hasDelete={true}
-          />
-        </div>
-
-        <ItemsComponent
-          key={`edit-items-component-${store.id}`}
-          StoreItemsCategoriesKey={storeItemsCategoriesKey}
-          store={store}
+      <div className='container'>
+        <Head
+          lng={lng}
+          title='edit.sections.items.title'
+          subTitle='edit.sections.items.description'
+          id={id}
+          hasStore={true}
+          hasHomeEdit={true}
+          hasDelete={true}
         />
       </div>
+
+      <ItemsComponent
+        key={`edit-items-component-${store.id}`}
+        StoreItemsCategoriesKey={storeItemsCategoriesKey}
+        store={store}
+      />
     </AnimatedPage>
   );
 }

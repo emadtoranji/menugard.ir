@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 export default function ResetForm({ hasAccess, currentLang = undefined }) {
   const router = useRouter();
   if (hasAccess) {
-    router.push(`/${currentLang}/dashboard`);
+    //router.push(`/${currentLang}/dashboard`);
   }
 
   const { t } = useT('reset-password');
@@ -57,32 +57,38 @@ export default function ResetForm({ hasAccess, currentLang = undefined }) {
   }, [email]);
 
   return (
-    <form onSubmit={handleReset} className='container-fluid'>
+    <form onSubmit={handleReset} className='container'>
       <h1 className='mx-auto'>{t('form.title')}</h1>
 
-      <h6 className='mt-3 px-1 text-primary'>{t('form.description')}</h6>
+      <h6 className='mt-5 px-1 text-primary'>{t('form.description')}</h6>
 
-      <div className='mt-3'>
+      <div className='relative mt-5'>
         <input
+          id='email'
           name='email'
           style={{ direction: 'ltr', textAlign: 'left' }}
           type='email'
           value={email}
           className={`form-control ${
             emailValid === null
-              ? 'border-secondary'
+              ? 'is-unknown'
               : emailValid
-                ? 'border-success'
-                : 'border-danger'
-          } w-100`}
+                ? 'is-valid'
+                : 'is-invalid'
+          } w-full`}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder=''
           required
+          placeholder={t('form.email-placeholder')}
+          autoComplete='off'
         />
+        <label className='absolute right-3 top-2 text-muted' htmlFor='email'>
+          {t('form.email-placeholder')}
+        </label>
       </div>
-      <div className='d-flex justify-content-center mt-3 w-100'>
+
+      <div className='flex justify-center mt-3 w-full'>
         <button
-          className='btn btn-success px-3'
+          className={`btn btn-success px-3`}
           disabled={!emailValid}
           type='submit'
         >

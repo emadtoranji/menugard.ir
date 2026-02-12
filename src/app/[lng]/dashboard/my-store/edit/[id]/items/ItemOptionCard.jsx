@@ -76,15 +76,15 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
 
       <div className='my-3'>
         <h6>{t('edit.sections.items.item-option-required-title')}</h6>
-        <div className='d-flex gap-2'>
+        <div className='flex gap-2'>
           <button
-            className={`btn btn-sm col ${option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
+            className={`btn btn-sm w-full ${option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
             onClick={() => set('isRequired', true)}
           >
             {t('edit.sections.items.required')}
           </button>
           <button
-            className={`btn btn-sm col ${!option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
+            className={`btn btn-sm w-full ${!option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
             onClick={() => set('isRequired', false)}
           >
             {t('edit.sections.items.optional')}
@@ -94,10 +94,10 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
 
       <div className='my-3'>
         <h6>{t('edit.sections.items.item-option-count-title')}</h6>
-        <div className='d-flex gap-2'>
+        <div className='flex gap-2'>
           <button
             onClick={() => setIsForcedOne(true)}
-            className={`btn btn-sm btn-${isForcedOne ? 'active' : 'outline-secondary'} col mb-1`}
+            className={`btn btn-sm btn-${isForcedOne ? 'active' : 'outline-secondary'} w-full mb-1`}
           >
             {t('edit.sections.items.item-option-count-one')}
           </button>
@@ -109,7 +109,7 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
           </button>
         </div>
 
-        <div className='mt-3 d-flex gap-3'>
+        <div className='mt-3 flex gap-3'>
           <Input
             type='numeric'
             name='minSelect'
@@ -141,7 +141,7 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
         </div>
       </div>
 
-      <div className='mt-3 d-flex gap-3'>
+      <div className='mt-3 flex gap-3'>
         <Input
           type='numeric'
           name='price'
@@ -170,15 +170,15 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
 
       <div className='my-3'>
         <h6>{t('edit.sections.items.item-option-enable-title')}</h6>
-        <div className='d-flex gap-2'>
+        <div className='flex gap-2'>
           <button
-            className={`btn btn-sm col ${option.isActive ? 'btn-success' : 'btn-outline-success'}`}
+            className={`btn btn-sm w-full ${option.isActive ? 'btn-success' : 'btn-outline-success'}`}
             onClick={() => set('isActive', true)}
           >
             {t('edit.sections.items.active')}
           </button>
           <button
-            className={`btn btn-sm col ${!option.isActive ? 'btn-warning' : 'btn-outline-warning'}`}
+            className={`btn btn-sm w-full ${!option.isActive ? 'btn-warning' : 'btn-outline-warning'}`}
             onClick={() => set('isActive', false)}
           >
             {t('edit.sections.items.deactive')}
@@ -186,7 +186,7 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
         </div>
       </div>
 
-      <button className='btn btn-sm btn-danger w-100 mt-2' onClick={onDelete}>
+      <button className='btn btn-sm btn-danger w-full mt-2' onClick={onDelete}>
         {t('edit.sections.items.option-delete')}
       </button>
     </div>

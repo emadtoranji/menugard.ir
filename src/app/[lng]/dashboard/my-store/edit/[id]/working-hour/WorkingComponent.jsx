@@ -122,109 +122,111 @@ export default function WorkingComponent({ store }) {
   }
 
   return (
-    <div className='row g-4'>
-      {days.map((day, index) => (
-        <div key={day.dayOfWeek} className='col-12 col-md-6 col-xl-4'>
-          <div className='card h-100 shadow border-0 rounded'>
-            <div className='card-header fw-semibold'>
-              {DAY_LABELS[day.dayOfWeek]}
-            </div>
+    <>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-4'>
+        {days.map((day, index) => (
+          <div key={day.dayOfWeek} className='w-full'>
+            <div className='card h-full'>
+              <div className='card-header'>{DAY_LABELS[day.dayOfWeek]}</div>
 
-            <div className='card-body d-flex flex-column gap-3'>
-              <div className='d-flex justify-content-between align-items-center gap-2 flex-wrap'>
-                <button
-                  className={`btn btn-sm col ${
-                    day.isClosed ? 'btn-active' : 'btn-secondary'
-                  }`}
-                  onClick={() => setMode(index, 'closed')}
-                >
-                  {t('edit.sections.working-hour.closed')}
-                </button>
+              <div className='card-body flex flex-col gap-3'>
+                <div className='flex justify-between items-center gap-2 mb-3'>
+                  <button
+                    className={`btn btn-sm w-full ${
+                      day.isClosed ? 'btn-active' : 'btn-inactive'
+                    }`}
+                    onClick={() => setMode(index, 'closed')}
+                  >
+                    {t('edit.sections.working-hour.closed')}
+                  </button>
 
-                <button
-                  className={`btn btn-sm col ${
-                    day.is24Hours ? 'btn-active' : 'btn-secondary'
-                  }`}
-                  onClick={() => setMode(index, '24h')}
-                >
-                  {t('edit.sections.working-hour.24-hour')}
-                </button>
+                  <button
+                    className={`btn btn-sm w-full ${
+                      day.is24Hours ? 'btn-active' : 'btn-inactive'
+                    }`}
+                    onClick={() => setMode(index, '24h')}
+                  >
+                    {t('edit.sections.working-hour.24-hour')}
+                  </button>
 
-                <button
-                  className={`btn btn-sm col ${
-                    !day.isClosed && !day.is24Hours
-                      ? 'btn-active'
-                      : 'btn-secondary'
-                  }`}
-                  onClick={() => setMode(index, 'custom')}
-                >
-                  {t('edit.sections.working-hour.custom-hour')}
-                </button>
-              </div>
+                  <button
+                    className={`btn btn-sm w-full ${
+                      !day.isClosed && !day.is24Hours
+                        ? 'btn-active'
+                        : 'btn-inactive'
+                    }`}
+                    onClick={() => setMode(index, 'custom')}
+                  >
+                    {t('edit.sections.working-hour.custom-hour')}
+                  </button>
+                </div>
 
-              {!day.isClosed && !day.is24Hours && (
-                <div className='border rounded p-3'>
-                  <div className='row g-2'>
-                    <div className='col-6'>
-                      <label className='form-label small'>
-                        {t('edit.sections.working-hour.start-time')}
-                      </label>
-                      <input
-                        type='time'
-                        className={`form-control ${
-                          errors?.[index]?.openTime ? 'is-invalid' : ''
-                        }`}
-                        value={day.openTime || ''}
-                        onChange={(e) =>
-                          updateTime(index, 'openTime', e.target.value)
-                        }
-                      />
-                    </div>
+                {!day.isClosed && !day.is24Hours && (
+                  <div className='border border-purple-100 shadow-sm shadow-purple-300 rounded-2xl p-3'>
+                    <div className='grid gap-2'>
+                      <div className='w-full'>
+                        <label className='text-muted'>
+                          {t('edit.sections.working-hour.start-time')}
+                        </label>
+                        <input
+                          type='time'
+                          className={`form-control ${
+                            errors?.[index]?.openTime ? 'is-invalid' : ''
+                          }`}
+                          value={day.openTime || ''}
+                          onChange={(e) =>
+                            updateTime(index, 'openTime', e.target.value)
+                          }
+                        />
+                      </div>
 
-                    <div className='col-6'>
-                      <label className='form-label small'>
-                        {t('edit.sections.working-hour.end-time')}
-                      </label>
-                      <input
-                        type='time'
-                        className={`form-control ${
-                          errors?.[index]?.closeTime ? 'is-invalid' : ''
-                        }`}
-                        value={day.closeTime || ''}
-                        onChange={(e) =>
-                          updateTime(index, 'closeTime', e.target.value)
-                        }
-                      />
+                      <div className='w-full'>
+                        <label className='text-muted'>
+                          {t('edit.sections.working-hour.end-time')}
+                        </label>
+                        <input
+                          type='time'
+                          className={`form-control ${
+                            errors?.[index]?.closeTime ? 'is-invalid' : ''
+                          }`}
+                          value={day.closeTime || ''}
+                          onChange={(e) =>
+                            updateTime(index, 'closeTime', e.target.value)
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {day.isClosed && (
-                <div className='mt-3 small'>
-                  {t('edit.sections.working-hour.store-is-closed-in-this-day')}
-                </div>
-              )}
+                {day.isClosed && (
+                  <div className='text-sm'>
+                    {t(
+                      'edit.sections.working-hour.store-is-closed-in-this-day',
+                    )}
+                  </div>
+                )}
 
-              {day.is24Hours && (
-                <div className='mt-3 small'>
-                  {t('edit.sections.working-hour.store-is-24-hour-open')}
-                </div>
-              )}
+                {day.is24Hours && (
+                  <div className='text-sm'>
+                    {t('edit.sections.working-hour.store-is-24-hour-open')}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
-      <div className='col-12'>
+      <div className='w-full my-6'>
         <button
-          className='btn btn-lg btn-success px-5 w-100'
+          className='btn btn-lg btn-success px-5 w-full'
           onClick={submit}
           disabled={isSubmiting}
         >
           {isSubmiting ? <Spinner /> : t('edit.update-button')}
         </button>
       </div>
-    </div>
+    </>
   );
 }

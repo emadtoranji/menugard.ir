@@ -65,8 +65,8 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
     idSuffix,
     extraClass = '',
   ) => (
-    <div className='col' style={{ direction: 'ltr', textAlign: 'left' }}>
-      <div className='form-floating mb-3'>
+    <div className='w-full' style={{ direction: 'ltr', textAlign: 'left' }}>
+      <div className='relative mb-3'>
         <input
           type={type}
           className={`form-control ${extraClass} ${
@@ -77,7 +77,12 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
           onChange={(e) => handleChange(field, e.target.value)}
           readOnly={!editable}
         />
-        <label htmlFor={`${field}-${idSuffix}`}>{label}</label>
+        <label
+          htmlFor={`${field}-${idSuffix}`}
+          className='absolute right-3 top-2 text-muted'
+        >
+          {label}
+        </label>
       </div>
     </div>
   );
@@ -90,8 +95,9 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
     editable,
     idSuffix,
   ) => (
-    <div className='col'>
-      <div className='form-floating mb-3'>
+    <div className='w-full'>
+      <div className='mb-3'>
+        <label htmlFor={`${field}-${idSuffix}`}>{label}</label>
         <select
           className={`form-select text-center ${editable ? '' : 'opacity-75'}`}
           id={`${field}-${idSuffix}`}
@@ -105,7 +111,6 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
             </option>
           ))}
         </select>
-        <label htmlFor={`${field}-${idSuffix}`}>{label}</label>
       </div>
     </div>
   );
@@ -120,12 +125,12 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
         return (
           <div
             key={user?.id || index}
-            className={`card rounded shadow-lg p-3 mb-5 ${
+            className={`card p-3 mb-5 ${
               locked ? 'opacity-50 pointer-events-none' : ''
             }`}
             disabled={locked}
           >
-            <div className='row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4 '>
+            <div className='grid grid-cols-1 grid-cols-lg-2 grid-cols-xxl-3 gap-4 '>
               {renderInput(
                 'text',
                 t('manage-users.id', 'ID'),
@@ -194,31 +199,31 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
               )}
             </div>
 
-            <div className='d-flex justify-content-center align-items-center row row-auto gap-3'>
+            <div className='flex justify-center items-center gap-3'>
               {!isEditing ? (
                 <button
-                  className='btn btn-outline-primary col-auto px-4'
+                  className='flex gap-1 items-center btn btn-primary w-auto px-8'
                   onClick={() => handleEdit(user)}
                 >
-                  <i className='bi bi-pencil-square mx-1'></i>
+                  <i className='bi bi-pencil-square h5'></i>
                   {t('general.edit')}
                 </button>
               ) : (
                 <>
                   <button
-                    className='btn btn-success col-auto px-4'
+                    className='flex gap-1 items-center btn btn-success w-auto px-8'
                     onClick={handleSave}
                     disabled={saving}
                   >
-                    <i className='bi bi-check-circle mx-1'></i>
+                    <i className='bi bi-check-circle h5'></i>
                     {t('general.save')}
                   </button>
                   <button
-                    className='btn btn-secondary col-auto px-4'
+                    className='flex gap-1 items-center btn btn-warning w-auto px-8'
                     onClick={handleCancel}
                     disabled={saving}
                   >
-                    <i className='bi bi-x-circle mx-1'></i>
+                    <i className='bi bi-x-circle h5'></i>
                     {t('general.cancel')}
                   </button>
                 </>

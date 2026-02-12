@@ -42,15 +42,15 @@ export default function SearchForm({
 
   return (
     <div className='text-center position-relative overflow-hidden position-relative search-section text-light position-relative overflow-hidden'>
-      <div className='d-flex justify-content-center align-items-center p-4'>
+      <div className='flex justify-center items-center p-4'>
         <form
-          className='d-flex justify-content-center w-100'
+          className='flex justify-center w-full'
           onSubmit={(e) => {
             e.preventDefault();
             handleSearch();
           }}
         >
-          <div className='search-container d-flex border border-2 border-white p-0 m-0 rounded-pill w-100 px-2'>
+          <div className='search-container flex border border-2 border-white p-0 m-0 rounded-full w-full px-2'>
             <input
               type='text'
               className='fs-5 search-input bg-transparent form-control rounded-0 border-0 border-light text-active'
@@ -83,8 +83,8 @@ export default function SearchForm({
         </form>
       </div>
 
-      <div className='p-2 d-flex gap-2 d-none'>
-        <h1 className='fw-bold w-100 text-active'>
+      <div className='p-2 flex gap-2 hidden'>
+        <h1 className='font-bold w-full text-active'>
           <span>{title || t('title')}</span>
         </h1>
       </div>

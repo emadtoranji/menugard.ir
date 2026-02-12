@@ -20,12 +20,17 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
   const router = useRouter();
   const [signupRequired, setSignupRequired] = useState(false);
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordVerify, setPasswordVerify] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitType, setSubmitType] = useState('');
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+
+  useEffect(() => {
+    setIsValidEmail(isValidQualityEmail(email));
+  }, [email]);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -117,12 +122,12 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
   };
 
   return (
-    <section className='container-fluid main-vh-100 d-flex align-items-center justify-content-center'>
-      <div className='form-signin p-4 shadow-lg bg-white rounded-4 col-12 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4'>
-        <div className='d-flex justify-content-between align-items-center mb-3 gap-2'>
-          <h1 className='h3 lead fw-semibold'>{t('dashboard.login.title')}</h1>
+    <section className='w-full main-h-full flex items-center justify-center'>
+      <div className='p-6 shadow-lg bg-white rounded-2xl w-95/100 sm:w-80/100 md:w-75/100 lg:w-60/100 xl:w-50/100 2xl:w-40/100'>
+        <div className='flex justify-between items-center mb-3 gap-2'>
+          <h1 className='font-semibold'>{t('dashboard.login.title')}</h1>
           <button
-            className='btn btn-inactive btn-sm fw-bold'
+            className='px-3 py-1 text-sm btn-active rounded'
             onClick={() => setSignupRequired(!signupRequired)}
           >
             {signupRequired
@@ -130,13 +135,15 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
               : t('dashboard.login.sign-up-button')}
           </button>
         </div>
+
         <form onSubmit={handleSignIn} noValidate>
-          <div className='form-floating mb-3'>
+          <div className='relative mb-3'>
             <input
+              id='email'
               name='email'
               style={{ textAlign: 'left', direction: 'ltr' }}
               type='email'
-              className='form-control'
+              className={`form-control ${isValidEmail ? 'is-valid' : 'is-invalid'}`}
               placeholder={t('dashboard.login.email-placeholder')}
               value={email}
               autoComplete='email'
@@ -144,18 +151,24 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
               disabled={isSubmitting}
               required
             />
-            <label className='end-0'>{t('dashboard.login.email')}</label>
+            <label
+              className='absolute right-3 top-2 text-muted'
+              htmlFor='email'
+            >
+              {t('dashboard.login.email')}
+            </label>
           </div>
 
-          <div className='form-floating mb-3'>
+          <div className='relative mb-3'>
             <input
+              id='password'
               name='password'
               style={{ textAlign: 'left', direction: 'ltr' }}
               type='password'
               className={`form-control ${
                 signupRequired && password !== passwordVerify
-                  ? 'border-danger'
-                  : ''
+                  ? 'is-invalid'
+                  : 'is-valid'
               }`}
               placeholder={t('dashboard.login.password-placeholder')}
               value={password}
@@ -166,17 +179,23 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
               disabled={isSubmitting}
               required
             />
-            <label className='end-0'>{t('dashboard.login.password')}</label>
+            <label
+              className='absolute right-3 top-2 text-muted'
+              htmlFor='password'
+            >
+              {t('dashboard.login.password')}
+            </label>
           </div>
 
           {signupRequired && (
-            <div className='form-floating mb-3'>
+            <div className='relative mb-3'>
               <input
                 style={{ textAlign: 'left', direction: 'ltr' }}
+                id='verify-password'
                 name='verify-password'
                 type='password'
                 className={`form-control ${
-                  password !== passwordVerify ? 'border-danger' : ''
+                  password !== passwordVerify ? 'is-invalid' : 'is-valid'
                 }`}
                 placeholder={t('dashboard.login.password-verify-placeholder')}
                 value={passwordVerify}
@@ -185,15 +204,18 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
                 disabled={isSubmitting}
                 required
               />
-              <label className='end-0'>
+              <label
+                className='absolute right-3 top-2 text-muted'
+                htmlFor='verify-password'
+              >
                 {t('dashboard.login.password-verify')}
               </label>
             </div>
           )}
 
-          <div className='row d-flex align-items-center justify-content-center g-1'>
+          <div className='flex flex-col items-center justify-center gap-1 mx-auto'>
             <button
-              className='btn btn-active mb-3'
+              className='w-full px-4 py-2 btn-active text-white rounded mb-3 hover:font-semibold hover:cursor-pointer'
               type='submit'
               disabled={isSubmitting}
             >
@@ -206,22 +228,18 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
               )}
             </button>
 
-            <div className='row row-cols-4 gap-2 justify-content-center mt-4'>
+            <div className='flex gap-6 mt-8 justify-center items-center'>
               {enabledLoginProviders.map((p, index) => {
-                if (!p?.id) {
-                  return undefined;
-                }
+                if (!p?.id) return undefined;
                 if (p?.file) {
                   return (
                     <Image
                       key={index}
                       alt={p.id}
-                      width={60}
-                      height={60}
+                      width={25}
+                      height={25}
                       src={`/images/auth-providers/dark/${p.file}`}
-                      className={`w-auto ${p?.class || ''} ${
-                        isSubmitting ? 'opacity-75' : ''
-                      }`}
+                      className={`w-10 h-10 ${p?.class || ''} ${isSubmitting ? 'opacity-75' : 'opacity-60 hover:opacity-100'} hover:cursor-pointer`}
                       onClick={() => {
                         setSubmitType(p.id);
                         setIsSubmitting(true);
@@ -238,7 +256,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
                 return (
                   <button
                     key={index}
-                    className={`btn ${p?.class || ''}`}
+                    className={`px-3 py-2 w-36 h-36 rounded ${p?.class || ''} ${isSubmitting ? 'opacity-75' : ''}`}
                     onClick={() => {
                       setSubmitType(p.id);
                       setIsSubmitting(true);
@@ -253,7 +271,7 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
                     {submitType === p.id ? (
                       <Spinner small={true} />
                     ) : (
-                      <span className='text-capitalize'>
+                      <span className='capitalize flex items-center gap-1'>
                         {p.id} <i className={`bi bi-${p.id}`}></i>
                       </span>
                     )}

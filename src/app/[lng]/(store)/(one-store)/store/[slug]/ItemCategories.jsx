@@ -17,7 +17,7 @@ export default function ItemCategories({
   return (
     <>
       <div className='container-fluid store-categories fixed-top'>
-        <div className='d-flex gap-2 overflow-auto hide-scrollbar px-2'>
+        <div className='flex gap-2 overflow-auto hide-scrollbar px-2'>
           <button
             type='button'
             onClick={() => setActiveCategory(null)}
@@ -34,7 +34,7 @@ export default function ItemCategories({
               key={`item-category-${category}`}
               onClick={() => setActiveCategory(category)}
               style={{ color: 'inherit' }}
-              className={`text-nowrap btn btn-lg ${activeCategory === category ? 'opacity-100 fw-bold' : 'opacity-75'}`}
+              className={`text-nowrap btn btn-lg ${activeCategory === category ? 'opacity-100 font-bold' : 'opacity-75'}`}
             >
               <span className='visually-hidden'>{category}</span>
               <span className='text-capitalize'>{t(category, category)}</span>

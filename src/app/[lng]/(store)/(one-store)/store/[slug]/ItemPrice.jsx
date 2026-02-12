@@ -13,10 +13,10 @@ export default function ItemPrice({ item, storeCurrency }) {
   return (
     <div>
       <h6
-        className={`m-auto d-flex align-items-center gap-1 mt-3 mb-1 ${
+        className={`m-auto flex items-center gap-1 mt-3 mb-1 ${
           item.price > 0 && item.discountPercent
             ? 'text-decoration-line-through fs-6 fw-light'
-            : 'fs-5 fw-bold'
+            : 'fs-5 font-bold'
         }`}
       >
         {item.price === 0 ? (
@@ -30,7 +30,7 @@ export default function ItemPrice({ item, storeCurrency }) {
       </h6>
 
       {item.discountPercent ? (
-        <h6 className='fw-bold fs-5 m-auto d-flex align-items-center gap-1'>
+        <h6 className='font-bold fs-5 m-auto flex items-center gap-1'>
           {discontedPrice === 0 ? (
             freeSpan
           ) : (

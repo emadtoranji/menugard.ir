@@ -5,7 +5,7 @@ import './Style.css';
 export default function Loading() {
   return (
     <div
-      className={`loading-screen position-fixed top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center`}
+      className={`loading-screen fixed top-0 left-0 w-full h-full flex justify-center items-center`}
     >
       <div className={`loader`}></div>
     </div>

@@ -18,7 +18,7 @@ export default async function PaymentLayout({ children, params }) {
   return (
     <>
       <Header t={t} currentLang={currentLang} section='payment' />
-      <Main customClass='mt-5'>{children}</Main>
+      <Main customClass='py-5'>{children}</Main>
       <Footer t={t} currentLang={currentLang} />
     </>
   );

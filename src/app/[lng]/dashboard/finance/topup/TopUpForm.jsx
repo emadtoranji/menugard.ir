@@ -16,14 +16,14 @@ export function TopUpForm({ currentLang }) {
 
   return (
     <div className='pb-3'>
-      <div className='mb-4'>
+      <div className='mb-8'>
         <SelectGateway
           allGatewaysFiltered={allGatewaysFiltered}
           gateway={gateway}
           setGateway={setGateway}
         />
       </div>
-      <div className='mb-4'>
+      <div className='mb-8'>
         {gateway === 'TRANSFER-IRANIAN-CARD' ? (
           <BankCard
             card_number={
@@ -40,14 +40,14 @@ export function TopUpForm({ currentLang }) {
         )}
       </div>
 
-      <div className='badge text-wrap lh-base text-dark d-flex justify-content-center'>
+      <div className='badge text-wrap lh-base text-black flex justify-center'>
         {gateway === 'IRANIAN'
           ? t('dashboard.finance.rial-description')
           : gateway === 'TRANSFER-IRANIAN-CARD'
-          ? t('dashboard.finance.transfer-iranian-card-description')
-          : gateway === 'CRYPTOCURRENCY'
-          ? t('dashboard.finance.crypto-description')
-          : undefined}
+            ? t('dashboard.finance.transfer-iranian-card-description')
+            : gateway === 'CRYPTOCURRENCY'
+              ? t('dashboard.finance.crypto-description')
+              : undefined}
       </div>
     </div>
   );

@@ -8,11 +8,11 @@ import toast from 'react-hot-toast';
 
 function Placeholder() {
   return (
-    <div className='d-flex row row-cols-1 g-2 col-12 p-3 bg-white rounded-3 shadow'>
+    <div className='flex grid grid-cols-1 gap-2 w-full p-3 bg-white rounded-3 shadow'>
       {[1, 2, 3, 4].map((index) => (
         <div
           key={index}
-          className='col-12 bg-secondary placeholder rounded-3'
+          className='w-full bg-secondary placeholder rounded-3'
         ></div>
       ))}
     </div>
@@ -25,23 +25,23 @@ function ShowStatus({ t, paymentData }) {
     paymentData.status === 'success'
       ? 'text-success'
       : unknownStatus.includes(paymentData.status)
-      ? 'text-warning'
-      : 'text-danger';
+        ? 'text-warning'
+        : 'text-danger';
   const statusText =
     paymentData.status === 'success'
       ? t('payment.success')
       : unknownStatus.includes(paymentData.status)
-      ? t('payment.unknown')
-      : t('payment.failed');
+        ? t('payment.unknown')
+        : t('payment.failed');
 
   return (
     <div className='container'>
-      <div className='d-flex justify-content-center align-items-center col-12 col-md-8 col-lg-6 col-xxl-5 m-auto mt-5'>
-        <div className='w-100 p-3 bg-white rounded-3 shadow'>
-          <h2 className='fs-5 mb-3 text-center'>{t('payment.status')}</h2>
-          <div className='mb-3'>
+      <div className='w-auto md:w-8/12 lg:w-6/12 2xl:w-5/12 m-auto mt-5'>
+        <div className='w-full p-3 bg-white rounded-3xl shadow-lg'>
+          <h2 className='h4 mb-3 text-center'>{t('payment.status')}</h2>
+          <div className='flex gap-1 mb-3'>
             <strong>{t('payment.status')}:</strong>
-            <span className={`fw-bold ${statusColor}`}>{statusText}</span>
+            <span className={`font-bold ${statusColor}`}>{statusText}</span>
           </div>
           {paymentData.id && (
             <div className='mb-3'>
@@ -49,28 +49,28 @@ function ShowStatus({ t, paymentData }) {
             </div>
           )}
           {paymentData.amount && (
-            <div className='d-flex align-items-center gap-1 mb-3'>
+            <div className='flex items-center gap-1 mb-3'>
               <strong>{t('payment.amount')}:</strong>
               {formatNumber(
                 paymentData.amount,
                 ['IRR', 'IRT'].includes(String(paymentData.currency))
                   ? 'fa'
-                  : 'en'
+                  : 'en',
               )}
-              <span className='text-muted small currency-font fs-4'>
+              <span className='text-gray-600 text-sm currency-font h3'>
                 {t(
                   `currencies.${String(paymentData.currency).toLowerCase()}`,
-                  paymentData.currency
+                  paymentData.currency,
                 )}
               </span>
             </div>
           )}
-          {paymentData.transaction_ref && (
-            <div className='mb-3'>
+          {paymentData.transaction_ref ? (
+            <div className='flex gap-1 mb-3'>
               <strong>{t('payment.transaction_ref')}:</strong>
-              {paymentData.transaction_ref}
+              <span>{paymentData.transaction_ref}</span>
             </div>
-          )}
+          ) : undefined}
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ export default function Payment() {
           break;
         default:
           toast.error(
-            t(`code-responses.INVALID_GATEWAY`, t('general.unknown-problem'))
+            t(`code-responses.INVALID_GATEWAY`, t('general.unknown-problem')),
           );
           setIsLoading(false);
           return;
@@ -128,8 +128,8 @@ export default function Payment() {
         toast.error(
           t(
             `code-responses.MISSING_PAYMENT_IDENTIFIER`,
-            t('general.unknown-problem')
-          )
+            t('general.unknown-problem'),
+          ),
         );
         setIsLoading(false);
         return;
@@ -153,7 +153,7 @@ export default function Payment() {
             setPaymentData(res?.result || {});
             toast.error(
               t(`code-responses.${res?.message}`, res.message) ||
-                t('general.unknown-problem')
+                t('general.unknown-problem'),
             );
           }
         })

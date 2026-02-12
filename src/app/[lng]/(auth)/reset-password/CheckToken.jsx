@@ -34,11 +34,11 @@ export default async function CheckToken({ currentLang, token }) {
   }
 
   return (
-    <div className='container-fluid'>
+    <div className='container'>
       <h1 className='mx-auto'>
         {t(
           `code-responses.${responseData.message}`,
-          t(responseData.ok ? 'new-password-title' : 'link-expired')
+          t(responseData.ok ? 'new-password-title' : 'link-expired'),
         )}
       </h1>
 
@@ -46,7 +46,7 @@ export default async function CheckToken({ currentLang, token }) {
         {t(
           responseData.ok
             ? 'new-password-description'
-            : 'link-expired-description'
+            : 'link-expired-description',
         )}
       </h6>
       {responseData?.newPassword ? (
@@ -55,7 +55,7 @@ export default async function CheckToken({ currentLang, token }) {
         </div>
       ) : undefined}
 
-      <div className='d-flex justify-content-center mt-3 w-100'>
+      <div className='flex justify-center mt-3 w-full'>
         <Link href={`/${currentLang}/dashboard/setting`}>
           <button className='btn btn-success px-3' type='button'>
             {t('button-route-to-dashboard-setting')}

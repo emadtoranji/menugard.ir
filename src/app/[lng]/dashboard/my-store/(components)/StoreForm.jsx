@@ -256,11 +256,15 @@ export default function Form({
   );
 
   return (
-    <div className='container-xl'>
-      <form noValidate onSubmit={HandleSubmit} className='w-100 mt-5 mb-5 pb-5'>
+    <div className=''>
+      <form
+        noValidate
+        onSubmit={HandleSubmit}
+        className='w-full mt-7 mb-7 pb-7'
+      >
         {/* name + slug */}
-        <div className='row g-3 pb-3 rounded'>
-          <div className='col-12 col-lg-6'>
+        <div className='flex gap-3 pb-5 rounded'>
+          <div className='w-full lg:w-1/2'>
             <Input
               name='name'
               value={name}
@@ -271,7 +275,7 @@ export default function Form({
               hasValidValue={!errors.name}
             />
           </div>
-          <div className='col-12 col-lg-6'>
+          <div className='w-full lg:w-1/2'>
             <Input
               name='slug'
               value={slug}
@@ -285,8 +289,8 @@ export default function Form({
         </div>
 
         {/* description */}
-        <div className='pb-3 rounded'>
-          <div className='col-12'>
+        <div className='pb-5 rounded'>
+          <div className='w-full'>
             <Input
               type='textarea'
               name='description'
@@ -302,17 +306,17 @@ export default function Form({
 
         {/* categories */}
         <div
-          className={`rounded mt-1 py-3 border-top ${errors.categories ? 'is-invalid' : ''}`}
+          className={` mt-1 py-3 ${errors.categories ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
         >
           <h6>{t('key-names.categories')}</h6>
-          <div className='d-flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2'>
             {storeCategories.map((itemValue) => (
               <button
                 type='button'
                 key={itemValue}
                 className={`btn btn-sm ${
                   categories.includes(itemValue)
-                    ? 'btn-active fw-bold'
+                    ? 'btn-active font-bold'
                     : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('categories', itemValue)}
@@ -327,7 +331,7 @@ export default function Form({
 
         {/* country */}
         <div
-          className={`rounded mt-1 py-3 border-top ${errors.country ? 'is-invalid' : ''}`}
+          className={`mt-1 py-3  ${errors.country ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
         >
           <h6>
             {t('key-names.country')}
@@ -335,7 +339,7 @@ export default function Form({
               <Spinner small={true} categories='grow' center={false} />
             ) : undefined}
           </h6>
-          <div className='d-flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2'>
             {!uniqueCountries.length
               ? undefined
               : uniqueCountries.map((item) => {
@@ -347,7 +351,7 @@ export default function Form({
                       key={slug}
                       className={`btn btn-sm ${
                         country === slug
-                          ? 'btn-active fw-bold'
+                          ? 'btn-active font-bold'
                           : 'btn-inactive opacity-75'
                       }`}
                       onClick={() => HandleChange('country', slug)}
@@ -362,10 +366,10 @@ export default function Form({
         {/* province */}
         {provinces && (
           <div
-            className={`rounded mt-1 py-3 border-top ${errors.province ? 'is-invalid' : ''}`}
+            className={` mt-1 py-3  ${errors.province ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
           >
             <h6>{t('key-names.province')}</h6>
-            <div className='d-flex flex-wrap gap-2'>
+            <div className='flex flex-wrap gap-2'>
               {provinces.map((item) => {
                 const slug = item.provinceSlug;
                 const local = item.provinceLocal;
@@ -375,7 +379,7 @@ export default function Form({
                     key={slug}
                     className={`btn btn-sm ${
                       province === slug
-                        ? 'btn-active fw-bold'
+                        ? 'btn-active font-bold'
                         : 'btn-inactive opacity-75'
                     }`}
                     onClick={() => HandleChange('province', slug)}
@@ -389,8 +393,8 @@ export default function Form({
         )}
 
         {/* address + phone */}
-        <div className='row g-3 mt-1 py-3 border-top rounded'>
-          <div className='col-12 col-lg-6'>
+        <div className='grid gap-3 mt-1 py-3 border-t border-stone-400 rounded'>
+          <div className='w-full lg:w-1/2'>
             <Input
               name='address'
               value={address}
@@ -401,7 +405,7 @@ export default function Form({
               hasValidValue={!errors.address}
             />
           </div>
-          <div className='col-12 col-lg-6'>
+          <div className='w-full lg:w-1/2'>
             <Input
               name='phone'
               value={phone}
@@ -416,17 +420,17 @@ export default function Form({
 
         {/* currency */}
         <div
-          className={`rounded mt-1 py-3 border-top ${errors.currency ? 'is-invalid' : ''}`}
+          className={` mt-1 py-3  ${errors.currency ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
         >
           <h6>{t('key-names.currency')}</h6>
-          <div className='d-flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2'>
             {storeCurrencies.map((itemValue) => (
               <button
                 type='button'
                 key={itemValue}
                 className={`btn btn-sm ${
                   currency === itemValue
-                    ? 'btn-active fw-bold'
+                    ? 'btn-active font-bold'
                     : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('currency', itemValue)}
@@ -441,16 +445,16 @@ export default function Form({
 
         {/* branch */}
         <div
-          className={`rounded mt-1 py-3 border-top ${errors.headBranchStoreId ? 'is-invalid' : ''}`}
+          className={` mt-1 py-3  ${errors.headBranchStoreId ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
         >
-          <div className='col'>
+          <div className='w-full'>
             <h6>{t('key-names.is-branch')}</h6>
-            <div className='row g-2'>
+            <div className='grid gap-2'>
               <button
                 type='button'
                 className={`btn btn-sm ${
                   isBranchStore
-                    ? 'btn-active fw-bold'
+                    ? 'btn-active font-bold'
                     : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('is-branch', true)}
@@ -461,7 +465,7 @@ export default function Form({
                 type='button'
                 className={`btn btn-sm ${
                   !isBranchStore
-                    ? 'btn-active fw-bold'
+                    ? 'btn-active font-bold'
                     : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('is-branch', false)}
@@ -473,13 +477,13 @@ export default function Form({
           <div className='mt-2'>
             {isBranchStore ? (
               Array.isArray(headStores) ? (
-                <div className='container row row-cols-auto gap-2'>
+                <div className='container grid grid-cols-auto gap-2'>
                   {headStores.map((head) => {
                     return (
                       <button
                         key={`head-store-${head.id}`}
                         type='button'
-                        className={`btn btn-sm col-auto ${head.id === headBranchStoreId ? 'btn-active' : 'btn-inactive'}`}
+                        className={`btn btn-sm w-auto ${head.id === headBranchStoreId ? 'btn-active' : 'btn-inactive'}`}
                         onClick={() => HandleChange('head-store', head.id)}
                       >
                         {head.name}
@@ -495,14 +499,16 @@ export default function Form({
         </div>
 
         {/* tax */}
-        <div className='row g-3 mt-1 py-3 border-top rounded'>
-          <div className='col'>
+        <div className='mt-1 py-3 border-t border-stone-400 rounded'>
+          <div className='w-full'>
             <h6>{t('key-names.tax-enabled')}</h6>
-            <div className='row g-2'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
               <button
                 type='button'
                 className={`btn btn-sm ${
-                  tax.enable ? 'btn-active fw-bold' : 'btn-inactive opacity-75'
+                  tax.enable
+                    ? 'btn-active font-bold'
+                    : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('tax-enabled', true)}
               >
@@ -511,7 +517,9 @@ export default function Form({
               <button
                 type='button'
                 className={`btn btn-sm ${
-                  !tax.enable ? 'btn-active fw-bold' : 'btn-inactive opacity-75'
+                  !tax.enable
+                    ? 'btn-active font-bold'
+                    : 'btn-inactive opacity-75'
                 }`}
                 onClick={() => HandleChange('tax-enabled', false)}
               >
@@ -522,14 +530,14 @@ export default function Form({
 
           {tax.enable && (
             <>
-              <div className='col-12 col-lg-6'>
+              <div className='w-full lg:w-1/2'>
                 <h6>{t('key-names.tax-included')}</h6>
-                <div className='row g-2'>
+                <div className='grid gap-2'>
                   <button
                     type='button'
                     className={`btn btn-sm ${
                       tax.included
-                        ? 'btn-active fw-bold'
+                        ? 'btn-active font-bold'
                         : 'btn-inactive opacity-75'
                     }`}
                     onClick={() => HandleChange('tax-included', true)}
@@ -540,7 +548,7 @@ export default function Form({
                     type='button'
                     className={`btn btn-sm ${
                       !tax.included
-                        ? 'btn-active fw-bold'
+                        ? 'btn-active font-bold'
                         : 'btn-inactive opacity-75'
                     }`}
                     onClick={() => HandleChange('tax-included', false)}
@@ -550,7 +558,7 @@ export default function Form({
                 </div>
               </div>
 
-              <div className='col-12'>
+              <div className='w-full'>
                 <Input
                   name='tax-percent'
                   value={tax.percent}
@@ -565,13 +573,13 @@ export default function Form({
           )}
         </div>
 
-        <div className='mt-1 py-3 border-top rounded'>
+        <div className='mt-1 py-5 border-t border-stone-400 rounded'>
           <h6>{t('key-names.is-active')}</h6>
-          <div className='d-flex gap-2'>
+          <div className='flex gap-2'>
             <button
               type='button'
-              className={`btn col ${
-                isStoreActive ? 'btn-active fw-bold' : 'btn-inactive'
+              className={`btn w-full ${
+                isStoreActive ? 'btn-active font-bold' : 'btn-inactive'
               }`}
               onClick={() => HandleChange('is-active', true)}
             >
@@ -579,8 +587,10 @@ export default function Form({
             </button>
             <button
               type='button'
-              className={`btn col ${
-                !isStoreActive ? 'btn-danger fw-bold' : 'btn-outline-danger'
+              className={`btn w-full ${
+                !isStoreActive
+                  ? 'btn-danger font-bold'
+                  : 'border border-red-600'
               }`}
               onClick={() => HandleChange('is-active', false)}
             >
@@ -590,12 +600,14 @@ export default function Form({
         </div>
 
         {/* submit */}
-        <div className='mt-5'>
+        <div className='mt-7'>
           <button
             type='submit'
             disabled={isSubmiting || !submitIsAvailble}
-            className={`w-100 btn btn-lg ${
-              submitIsAvailble ? 'btn-success' : 'btn-secondary opacity-75'
+            className={`w-full btn btn-lg ${
+              submitIsAvailble
+                ? 'btn-success'
+                : 'border border-green-600 opacity-75'
             }`}
           >
             {isSubmiting ? (

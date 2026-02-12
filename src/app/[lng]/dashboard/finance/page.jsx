@@ -58,13 +58,13 @@ export default async function FinancePage({ params }) {
     <AnimatedPage>
       <div className='container'>
         <div className='pb-5'>
-          <div className='d-flex align-items-center justify-content-between mb-3'>
+          <div className='flex items-center justify-between mb-3'>
             <h3>{t('dashboard.finance.title')}</h3>
             <Link href={`/${currentLang}/dashboard/finance/topup`}>
-              <button className='d-none d-md-block btn btn-success fw-bold'>
+              <button className='hidden d-md-block btn btn-success font-bold'>
                 {t('dashboard.finance.topup')}
               </button>
-              <button className='btn d-block d-md-none animate__animated animate__pulse animate__infinite'>
+              <button className='btn block md:hidden animate__animated animate__pulse animate__infinite'>
                 <Image
                   src='/images/dashboard/capital-gain.png'
                   className=''
@@ -77,22 +77,22 @@ export default async function FinancePage({ params }) {
           </div>
 
           <div className=''>
-            <div className='row g-3'>
+            <div className='grid gap-3'>
               <div
-                className='col-12 col-lg-6'
+                className='w-full lg:w-1/2'
                 style={{ height: 'fit-content' }}
               >
-                <div className='card p-3 border-0 shadow rounded h-100'>
+                <div className='card p-3 border-0 shadow rounded h-full'>
                   <div className=''>
                     <div>
-                      <div className='text-muted small'>
+                      <div className='text-gray-600 small'>
                         {t('dashboard.finance.balance')}
                       </div>
                     </div>
 
-                    <div className='d-flex align-items-center justify-content-between'>
-                      <div className='fs-3 fw-bold'>{balance}</div>
-                      <div className='text-muted small currency-font fs-4'>
+                    <div className='flex items-center justify-between'>
+                      <div className='fs-3 font-bold'>{balance}</div>
+                      <div className='text-gray-600 small currency-font fs-4'>
                         {t(
                           `currencies.${user?.currency || MAIN_CURRENCY}`,
                           user?.currency || MAIN_CURRENCY,
@@ -102,7 +102,7 @@ export default async function FinancePage({ params }) {
                   </div>
                 </div>
               </div>
-              <div className='col-12'>
+              <div className='w-full'>
                 <div className='card p-3 border-0 shadow rounded'>
                   <h6>{t('dashboard.finance.recentTransactions')}</h6>
                   <Table

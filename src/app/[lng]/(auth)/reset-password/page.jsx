@@ -18,8 +18,8 @@ export default async function ResetPassword({ params, searchParams }) {
   const { token = undefined } = await searchParams;
 
   return (
-    <div className='container col-12 col-md-8 col-lg-7 col-xl-6 col-xxl-5 '>
-      <div className='d-flex align-items-center justify-content-center card border-0 shadow mt-5 px-2 py-5'>
+    <div className='container w-full md:w-8/10 lg:w-7/10 xl:w-6/10 xxl:w-5/10 '>
+      <div className='flex items-center justify-center card mt-5 px-4 md:px-6 lg:px-8 xl:px-10 py-16'>
         {token ? (
           <CheckToken currentLang={lng} token={token} />
         ) : (

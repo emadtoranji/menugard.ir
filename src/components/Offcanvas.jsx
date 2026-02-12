@@ -25,12 +25,12 @@ export function OffcanvasWrapper({
   return (
     <div
       style={{ zIndex }}
-      className='offcanvas offcanvas-bottom h-100'
+      className='offcanvas offcanvas-bottom h-full'
       tabIndex='-1'
       id={id}
       aria-labelledby={`${id}Label`}
     >
-      <div className='offcanvas-header d-flex align-items-center justify-content-between'>
+      <div className='offcanvas-header flex items-center justify-between'>
         <h5 className='offcanvas-title' id={`${id}Label`}>
           {title}
         </h5>

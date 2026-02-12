@@ -18,18 +18,18 @@ export default function CodeBox({
       : code;
 
   return (
-    <div className='position-relative'>
+    <div className='relative'>
       {title ? (
-        <span className='d-block text-black text-opacity-75 fw-bold mb-2 px-2'>
+        <span className='block text-black opacity-75 font-bold mb-4 px-4'>
           {title}
         </span>
       ) : null}
 
-      <div className='position-relative'>
+      <div className='relative'>
         <pre
-          className={`p-3 bg-black rounded ${
-            roundedTop ? '' : 'rounded-top-0'
-          } text-light shadow-lg mb-0 overflow-auto hide-scrollbar`}
+          className={`p-5 bg-black rounded ${
+            roundedTop ? '' : 'rounded-tl-none rounded-tr-none'
+          } text-white shadow-lg mb-0 overflow-auto hide-scrollbar`}
           style={{
             direction: 'ltr',
             textAlign: 'left',
@@ -40,9 +40,9 @@ export default function CodeBox({
           <code>{code}</code>
         </pre>
 
-        <div className='position-absolute bottom-0 end-0 mb-3 me-3'>
+        <div className='absolute bottom-0 end-0 mb-3 mr-3'>
           <button
-            className='btn btn-primary btn-sm fs-8 fw-bold copy'
+            className='btn btn-primary btn-sm fs-8 font-bold copy'
             onClick={() => makeCopyToClipboard(code)}
           >
             {t('general.copy')}

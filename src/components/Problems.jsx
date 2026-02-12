@@ -10,21 +10,21 @@ export default function Problem({
 }) {
   return (
     <Main>
-      <div className='container d-flex align-items-center justify-content-center main-vh-100 text-center'>
+      <div className='container flex items-center justify-center main-h-full text-center'>
         <div className=''>
           <div className='mb-3'>
             <div>
-              <h1 className='display-1 fw-bold text-muted'>{code}</h1>
+              <h1 className='text-3xl font-bold text-gray-600'>{code}</h1>
             </div>
           </div>
-          <div className='mb-5'>
+          <div className='mb-8'>
             <div>
               <p className=''>{content.title}</p>
             </div>
           </div>
-          <div className='mb-3'>
+          <div className='mb-5'>
             <Link
-              className='btn rounded btn-secondary text-light fw-bold'
+              className='btn rounded btn-priamry font-bold'
               href={`/${currentLang}`}
             >
               {content.button}

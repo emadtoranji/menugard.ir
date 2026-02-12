@@ -99,11 +99,11 @@ export function showDollarCompactFormat(
   for (const scale of scales) {
     if (count >= scale.limit) {
       return withSpan ? (
-        <div className='d-flex align-items-center gap-1'>
+        <div className='flex items-center gap-1'>
           <span className='persian-gulf-font' style={{ fontFamily: 'a' }}>
             {(count / scale.divisor).toFixed(fixCount)}
           </span>
-          <span className='opacity-100 d-flex align-items-center gap-1 '>
+          <span className='opacity-100 flex items-center gap-1 '>
             <span className='fs-4 persian-gulf-font'>{scale.symbol}</span>
             <span className='fs-4 persian-gulf-font'>{currency}</span>
           </span>

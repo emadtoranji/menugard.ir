@@ -19,10 +19,10 @@ export default function SelectGateway({
       newGateway === 'IRANIAN'
         ? t('dashboard.finance.rial-description')
         : newGateway === 'TRANSFER-IRANIAN-CARD'
-        ? t('dashboard.finance.transfer-iranian-card-description')
-        : newGateway === 'CRYPTOCURRENCY'
-        ? t('dashboard.finance.crypto-description')
-        : undefined;
+          ? t('dashboard.finance.transfer-iranian-card-description')
+          : newGateway === 'CRYPTOCURRENCY'
+            ? t('dashboard.finance.crypto-description')
+            : undefined;
 
     if (message) {
       toast(message, {
@@ -39,12 +39,12 @@ export default function SelectGateway({
 
   return (
     <>
-      <div className='col-12 row row-cols-3 row-cols-sm-1 row-cols-sm-3 btn-group g-1 mx-1 text-center fw-normal fs-6 mt-2'>
+      <div className='w-full grid grid-cols-3 grid-cols-sm-1 grid-cols-sm-3 btn-group gap-1 mx-1 text-center fw-normal fs-6 mt-2'>
         {allGatewaysFiltered.map((g) => {
           return (
             <div
               key={g.id}
-              className={`col cursor-pointer pb-1 ${
+              className={`w-full cursor-pointer pb-1 ${
                 gateway === g.id ? activeButton : deactiveButton
               }`}
               onClick={() => handleSetGateway(g.id)}

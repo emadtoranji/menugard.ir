@@ -15,15 +15,15 @@ export default async function Index({ params }) {
 
   return (
     <AnimatedPage>
-      <div className='container-fluid col-auto col-md-12 col-lg-11 col-xxl-10'>
+      <div className='container-fluid w-auto md:w-full lg:w-9/10 col-xxl-10'>
         <div className='pb-5'>
-          <div className='d-flex align-items-center justify-content-between col mb-3 mx-auto'>
+          <div className='flex items-center justify-between w-full mb-3 mx-auto'>
             <h3>{t('dashboard.finance.topup')}</h3>
             <Link href={`/${currentLang}/dashboard/finance`}>
-              <button className='d-none d-md-block btn btn-success fw-bold'>
+              <button className='hidden d-md-block btn btn-success font-bold'>
                 {t('dashboard.finance.title')}
               </button>
-              <button className='btn d-block d-md-none animate__animated animate__pulse animate__infinite'>
+              <button className='btn block md:hidden animate__animated animate__pulse animate__infinite'>
                 <Image
                   src='/images/dashboard/transaction-history.png'
                   className=''
@@ -35,11 +35,11 @@ export default async function Index({ params }) {
             </Link>
           </div>
 
-          <div className='d-flex row row-cols-md align-items-start justify-content-center gap-4 col-12 mx-auto'>
-            <div className='col-12 col-lg-6 card border-0 shadow rounded'>
+          <div className='flex grid grid-cols-md align-items-start justify-center gap-4 w-full mx-auto'>
+            <div className='w-full lg:w-1/2 card border-0 shadow rounded'>
               <TopUpForm currentLang={currentLang} />
             </div>
-            <div className='col card border-0 shadow rounded'>
+            <div className='w-full card border-0 shadow rounded'>
               <TopUpDescription t={t} />
             </div>
           </div>
