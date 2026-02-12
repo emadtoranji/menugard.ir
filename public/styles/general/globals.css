@@ -6,6 +6,7 @@
 :root {
   --header-height: 66px;
   --font-family: 'sans-serif';
+  --font-size-base: 1rem;
 
   --color-white: #fff;
   --color-purple: #560356;
@@ -39,6 +40,15 @@ body {
   line-height: 1.7;
 }
 
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: auto;
+}
+
 header {
   margin-bottom: var(--header-height) !important;
 }
@@ -62,6 +72,10 @@ header nav {
 a {
   color: none !important;
   text-decoration: none !important;
+}
+
+.btn {
+  border-radius: 8px;
 }
 
 .text-justify {
@@ -199,4 +213,16 @@ select.form-select {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1em auto;
+}
+
+.card {
+  background-color: white;
+  padding: 16px 20px;
+}
+
+.card-header,
+.card-title,
+.card-header-sm,
+.card-title-sm {
+  margin-bottom: 8px;
 }
