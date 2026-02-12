@@ -1,8 +1,34 @@
 @import 'tailwindcss';
+@import './fonts.css';
+@import './colors.css';
+@import './custom-tailwind.css';
 
 :root {
   --header-height: 66px;
   --font-family: 'sans-serif';
+
+  --color-white: #fff;
+  --color-purple: #560356;
+  /* main colors */
+  --color-bg-main: #e7cbcb;
+  --color-text-main: #643843;
+
+  --color-bg-sub: var(--color-white);
+  --color-text-sub: #6e0a82;
+
+  --color-bg-nav: var(--color-purple);
+  --color-text-nav: var(--color-white);
+
+  /* gradiant */
+
+  /* z-index */
+  --zindex-loader: 9999999;
+  --zindex-modal-backdrop: 1050 !important;
+  --zindex-modal: 1055 !important;
+  --zindex-offcanvas: 1060 !important;
+  --zindex-footer: 1000 !important;
+  --zindex-nav: 1030 !important;
+  --zindex-scrollbar: 2000 !important;
 }
 
 html,
@@ -13,7 +39,15 @@ body {
   line-height: 1.7;
 }
 
-.main-vh-100 {
+header {
+  margin-bottom: var(--header-height) !important;
+}
+
+header nav {
+  height: var(--header-height) !important;
+}
+
+.main-h-full {
   height: calc(100vh - var(--header-height));
 }
 
@@ -26,7 +60,7 @@ body {
 }
 
 a {
-  color: inherit !important;
+  color: none !important;
   text-decoration: none !important;
 }
 
@@ -90,6 +124,7 @@ input[type='number'] {
 }
 
 body::-webkit-scrollbar {
+  z-index: var(--zindex-scrollbar);
   width: 0.8rem !important;
 }
 
@@ -122,14 +157,6 @@ body::-webkit-scrollbar-thumb {
   word-break: break-word;
 }
 
-.navbar-toggler,
-.navbar-toggler:focus,
-.navbar-toggler:active {
-  border: 1px rgb(255, 255, 255, 0.25) solid !important;
-  box-shadow: inherit !important;
-  outline: inherit !important;
-}
-
 .blurred {
   filter: blur(6px);
   -webkit-filter: blur(6px);
@@ -153,4 +180,23 @@ body::-webkit-scrollbar-thumb {
   gap: 2rem;
   white-space: nowrap;
   will-change: transform;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+select.form-select {
+  background-image: url('data:image/svg+xml,<svg ...>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em auto;
 }
