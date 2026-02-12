@@ -16,7 +16,6 @@ export default function Input({
 }) {
   return (
     <div className='w-full'>
-      <h6>{label || name}</h6>
       {type === 'numeric' ? (
         <>
           <input

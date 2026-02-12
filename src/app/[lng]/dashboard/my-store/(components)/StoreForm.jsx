@@ -13,6 +13,17 @@ import StoreValidationForm from '@utils/dashboard/store/validation';
 import { useParams, useRouter } from 'next/navigation';
 import { fallbackLng } from '@i18n/settings';
 
+function CardWrapper({ children, hasError = false, label = '' }) {
+  return (
+    <div
+      className={`card w-auto ${hasError ? 'is-invalid shadow-lg shadow-red-800' : ''}`}
+    >
+      <div className='card-title'>{label ?? ''}</div>
+      <div className='card-body'>{children}</div>
+    </div>
+  );
+}
+
 export default function Form({
   isNewStore = true,
   oldStoreData = {},
@@ -262,20 +273,27 @@ export default function Form({
         onSubmit={HandleSubmit}
         className='w-full mt-7 mb-7 pb-7'
       >
-        {/* name + slug */}
-        <div className='flex gap-3 pb-5 rounded'>
-          <div className='w-full lg:w-1/2'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+          <CardWrapper
+            key='name'
+            hasError={errors.name}
+            label={t('key-names.name')}
+          >
             <Input
               name='name'
               value={name}
-              HandleChange={HandleChange}
               label={t('key-names.name')}
+              HandleChange={HandleChange}
               disabled={false}
               isRtl={!/^[a-zA-Z]/.test(name)}
               hasValidValue={!errors.name}
             />
-          </div>
-          <div className='w-full lg:w-1/2'>
+          </CardWrapper>
+          <CardWrapper
+            key='slug'
+            hasError={errors.slug}
+            label={t('key-names.slug')}
+          >
             <Input
               name='slug'
               value={slug}
@@ -285,12 +303,12 @@ export default function Form({
               hasValidValue={!errors.slug}
               isRtl={false}
             />
-          </div>
-        </div>
-
-        {/* description */}
-        <div className='pb-5 rounded'>
-          <div className='w-full'>
+          </CardWrapper>
+          <CardWrapper
+            key='description'
+            hasError={errors.description}
+            label={t('key-names.description')}
+          >
             <Input
               type='textarea'
               name='description'
@@ -301,100 +319,97 @@ export default function Form({
               hasValidValue={!errors.description}
               isRtl={!/^[a-zA-Z]/.test(description)}
             />
-          </div>
-        </div>
-
-        {/* categories */}
-        <div
-          className={` mt-1 py-3 ${errors.categories ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
-        >
-          <h6>{t('key-names.categories')}</h6>
-          <div className='flex flex-wrap gap-2'>
-            {storeCategories.map((itemValue) => (
-              <button
-                type='button'
-                key={itemValue}
-                className={`btn btn-sm ${
-                  categories.includes(itemValue)
-                    ? 'btn-active font-bold'
-                    : 'btn-inactive opacity-75'
-                }`}
-                onClick={() => HandleChange('categories', itemValue)}
-              >
-                <span className='text-capitalize'>
-                  {tStoreCategories(itemValue, itemValue)}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* country */}
-        <div
-          className={`mt-1 py-3  ${errors.country ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
-        >
-          <h6>
-            {t('key-names.country')}
-            {!uniqueCountries.length ? (
-              <Spinner small={true} categories='grow' center={false} />
-            ) : undefined}
-          </h6>
-          <div className='flex flex-wrap gap-2'>
-            {!uniqueCountries.length
-              ? undefined
-              : uniqueCountries.map((item) => {
-                  const slug = item.countrySlug;
-                  const local = item.countryLocal;
+          </CardWrapper>
+          <CardWrapper
+            key='categories'
+            hasError={errors.categories}
+            label={t('key-names.categories')}
+          >
+            <div className='flex flex-wrap gap-2'>
+              {storeCategories.map((itemValue) => (
+                <button
+                  type='button'
+                  key={itemValue}
+                  className={`btn btn-sm ${
+                    categories.includes(itemValue)
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('categories', itemValue)}
+                >
+                  <span className='text-capitalize'>
+                    {tStoreCategories(itemValue, itemValue)}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </CardWrapper>
+          <CardWrapper
+            key='countries'
+            hasError={errors.country}
+            label={t('key-names.country')}
+          >
+            <div className='my-3'>
+              {!uniqueCountries.length ? (
+                <Spinner small={true} categories='grow' center={false} />
+              ) : undefined}
+            </div>
+            <div className='flex flex-wrap gap-2'>
+              {!uniqueCountries.length
+                ? undefined
+                : uniqueCountries.map((item) => {
+                    const slug = item.countrySlug;
+                    const local = item.countryLocal;
+                    return (
+                      <button
+                        type='button'
+                        key={slug}
+                        className={`btn btn-sm ${
+                          country === slug
+                            ? 'btn-active font-bold'
+                            : 'btn-inactive opacity-75'
+                        }`}
+                        onClick={() => HandleChange('country', slug)}
+                      >
+                        <span className='text-uppercase'>{local}</span>
+                      </button>
+                    );
+                  })}
+            </div>
+          </CardWrapper>
+          {provinces && (
+            <CardWrapper
+              key='province'
+              hasError={errors.province}
+              label={t('key-names.province')}
+            >
+              <div className='flex flex-wrap gap-2'>
+                {provinces.map((item) => {
+                  const slug = item.provinceSlug;
+                  const local = item.provinceLocal;
                   return (
                     <button
                       type='button'
                       key={slug}
                       className={`btn btn-sm ${
-                        country === slug
+                        province === slug
                           ? 'btn-active font-bold'
                           : 'btn-inactive opacity-75'
                       }`}
-                      onClick={() => HandleChange('country', slug)}
+                      onClick={() => HandleChange('province', slug)}
                     >
-                      <span className='text-uppercase'>{local}</span>
+                      {local}
                     </button>
                   );
                 })}
-          </div>
-        </div>
-
-        {/* province */}
-        {provinces && (
-          <div
-            className={` mt-1 py-3  ${errors.province ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
+              </div>
+            </CardWrapper>
+          )}
+          <CardWrapper
+            key='address'
+            hasError={errors.address}
+            label={t('key-names.address')}
           >
-            <h6>{t('key-names.province')}</h6>
-            <div className='flex flex-wrap gap-2'>
-              {provinces.map((item) => {
-                const slug = item.provinceSlug;
-                const local = item.provinceLocal;
-                return (
-                  <button
-                    type='button'
-                    key={slug}
-                    className={`btn btn-sm ${
-                      province === slug
-                        ? 'btn-active font-bold'
-                        : 'btn-inactive opacity-75'
-                    }`}
-                    onClick={() => HandleChange('province', slug)}
-                  >
-                    {local}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* address + phone */}
-        <div className='grid gap-3 mt-1 py-3 border-t border-stone-400 rounded'>
-          <div className='w-full lg:w-1/2'>
             <Input
               name='address'
               value={address}
@@ -404,8 +419,12 @@ export default function Form({
               isRtl={!/^[a-zA-Z]/.test(address)}
               hasValidValue={!errors.address}
             />
-          </div>
-          <div className='w-full lg:w-1/2'>
+          </CardWrapper>
+          <CardWrapper
+            key='phone'
+            hasError={errors.phone}
+            label={t('key-names.phone')}
+          >
             <Input
               name='phone'
               value={phone}
@@ -415,93 +434,91 @@ export default function Form({
               isRtl={false}
               hasValidValue={!errors.phone}
             />
-          </div>
-        </div>
-
-        {/* currency */}
-        <div
-          className={` mt-1 py-3  ${errors.currency ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
-        >
-          <h6>{t('key-names.currency')}</h6>
-          <div className='flex flex-wrap gap-2'>
-            {storeCurrencies.map((itemValue) => (
-              <button
-                type='button'
-                key={itemValue}
-                className={`btn btn-sm ${
-                  currency === itemValue
-                    ? 'btn-active font-bold'
-                    : 'btn-inactive opacity-75'
-                }`}
-                onClick={() => HandleChange('currency', itemValue)}
-              >
-                <span className='currency-font text-uppercase'>
-                  {t(`currencies.${itemValue}`, itemValue)}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* branch */}
-        <div
-          className={` mt-1 py-3  ${errors.headBranchStoreId ? 'rounded is-invalid px-2' : 'border-t border-stone-400'}`}
-        >
-          <div className='w-full'>
-            <h6>{t('key-names.is-branch')}</h6>
-            <div className='grid gap-2'>
-              <button
-                type='button'
-                className={`btn btn-sm ${
-                  isBranchStore
-                    ? 'btn-active font-bold'
-                    : 'btn-inactive opacity-75'
-                }`}
-                onClick={() => HandleChange('is-branch', true)}
-              >
-                {t('key-names.is-branch-yes')}
-              </button>
-              <button
-                type='button'
-                className={`btn btn-sm ${
-                  !isBranchStore
-                    ? 'btn-active font-bold'
-                    : 'btn-inactive opacity-75'
-                }`}
-                onClick={() => HandleChange('is-branch', false)}
-              >
-                {t('key-names.is-branch-no')}
-              </button>
+          </CardWrapper>
+          <CardWrapper
+            key='currency'
+            hasError={errors.currency}
+            label={t('key-names.currency')}
+          >
+            <div className='flex flex-wrap gap-2'>
+              {storeCurrencies.map((itemValue) => (
+                <button
+                  type='button'
+                  key={itemValue}
+                  className={`btn btn-sm ${
+                    currency === itemValue
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('currency', itemValue)}
+                >
+                  <span className='currency-font text-uppercase'>
+                    {t(`currencies.${itemValue}`, itemValue)}
+                  </span>
+                </button>
+              ))}
             </div>
-          </div>
-          <div className='mt-2'>
-            {isBranchStore ? (
-              Array.isArray(headStores) ? (
-                <div className='container grid grid-cols-auto gap-2'>
-                  {headStores.map((head) => {
-                    return (
-                      <button
-                        key={`head-store-${head.id}`}
-                        type='button'
-                        className={`btn btn-sm w-auto ${head.id === headBranchStoreId ? 'btn-active' : 'btn-inactive'}`}
-                        onClick={() => HandleChange('head-store', head.id)}
-                      >
-                        {head.name}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <Spinner />
-              )
-            ) : undefined}
-          </div>
-        </div>
-
-        {/* tax */}
-        <div className='mt-1 py-3 border-t border-stone-400 rounded'>
-          <div className='w-full'>
-            <h6>{t('key-names.tax-enabled')}</h6>
+          </CardWrapper>
+          <CardWrapper
+            key='is-branch'
+            hasError={errors.headBranchStoreId}
+            label={t('key-names.is-branch')}
+          >
+            <div className='w-full'>
+              <div className='grid gap-2'>
+                <button
+                  type='button'
+                  className={`btn btn-sm ${
+                    isBranchStore
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('is-branch', true)}
+                >
+                  {t('key-names.is-branch-yes')}
+                </button>
+                <button
+                  type='button'
+                  className={`btn btn-sm ${
+                    !isBranchStore
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('is-branch', false)}
+                >
+                  {t('key-names.is-branch-no')}
+                </button>
+              </div>
+            </div>
+            <div className='mt-2'>
+              {isBranchStore ? (
+                Array.isArray(headStores) ? (
+                  <div className='border-t border-stone-400 pt-3 mt-3'>
+                    <h6 className='text-sm font-light mb-3'>
+                      {t('key-names.is-branch-yes-select-head-store')}
+                    </h6>
+                    <div className='grid px-2 gap-2'>
+                      {headStores.map((head) => {
+                        return (
+                          <button
+                            key={`head-store-${head.id}`}
+                            type='button'
+                            className={`btn btn-sm w-fit ${head.id === headBranchStoreId ? 'btn-active' : 'btn-inactive'}`}
+                            onClick={() => HandleChange('head-store', head.id)}
+                          >
+                            {head.name}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <Spinner />
+                )
+              ) : undefined}
+            </div>
+          </CardWrapper>
+          <CardWrapper key='tax-enabled' label={t('key-names.tax-enabled')}>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
               <button
                 type='button'
@@ -526,39 +543,36 @@ export default function Form({
                 {t('key-names.tax-enabled-no')}
               </button>
             </div>
-          </div>
-
-          {tax.enable && (
-            <>
-              <div className='w-full lg:w-1/2'>
-                <h6>{t('key-names.tax-included')}</h6>
-                <div className='grid gap-2'>
-                  <button
-                    type='button'
-                    className={`btn btn-sm ${
-                      tax.included
-                        ? 'btn-active font-bold'
-                        : 'btn-inactive opacity-75'
-                    }`}
-                    onClick={() => HandleChange('tax-included', true)}
-                  >
-                    {t('key-names.tax-included-yes')}
-                  </button>
-                  <button
-                    type='button'
-                    className={`btn btn-sm ${
-                      !tax.included
-                        ? 'btn-active font-bold'
-                        : 'btn-inactive opacity-75'
-                    }`}
-                    onClick={() => HandleChange('tax-included', false)}
-                  >
-                    {t('key-names.tax-included-no')}
-                  </button>
-                </div>
+          </CardWrapper>
+          {tax.enable ? (
+            <CardWrapper key='tax-included' label={t('key-names.tax-included')}>
+              <div className='flex flex-col gap-2'>
+                <button
+                  type='button'
+                  className={`btn btn-sm w-full ${
+                    tax.included
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('tax-included', true)}
+                >
+                  {t('key-names.tax-included-yes')}
+                </button>
+                <button
+                  type='button'
+                  className={`btn btn-sm w-full ${
+                    !tax.included
+                      ? 'btn-active font-bold'
+                      : 'btn-inactive opacity-75'
+                  }`}
+                  onClick={() => HandleChange('tax-included', false)}
+                >
+                  {t('key-names.tax-included-no')}
+                </button>
               </div>
 
-              <div className='w-full'>
+              <div className='w-full pt-5 mt-5 border-t border-stone-400'>
+                <h6>{t('key-names.tax-percent')}</h6>
                 <Input
                   name='tax-percent'
                   value={tax.percent}
@@ -569,34 +583,31 @@ export default function Form({
                   hasValidValue={!errors['tax.percent']}
                 />
               </div>
-            </>
-          )}
-        </div>
+            </CardWrapper>
+          ) : undefined}
 
-        <div className='mt-1 py-5 border-t border-stone-400 rounded'>
-          <h6>{t('key-names.is-active')}</h6>
-          <div className='flex gap-2'>
-            <button
-              type='button'
-              className={`btn w-full ${
-                isStoreActive ? 'btn-active font-bold' : 'btn-inactive'
-              }`}
-              onClick={() => HandleChange('is-active', true)}
-            >
-              {t('key-names.is-active-yes')}
-            </button>
-            <button
-              type='button'
-              className={`btn w-full ${
-                !isStoreActive
-                  ? 'btn-danger font-bold'
-                  : 'border border-red-600'
-              }`}
-              onClick={() => HandleChange('is-active', false)}
-            >
-              {t('key-names.is-active-no')}
-            </button>
-          </div>
+          <CardWrapper key='is-store-active' label={t('key-names.is-active')}>
+            <div className='flex flex-col gap-2'>
+              <button
+                type='button'
+                className={`btn w-full ${
+                  isStoreActive ? 'btn-active font-bold' : 'btn-inactive'
+                }`}
+                onClick={() => HandleChange('is-active', true)}
+              >
+                {t('key-names.is-active-yes')}
+              </button>
+              <button
+                type='button'
+                className={`btn w-full ${
+                  !isStoreActive ? 'btn-danger font-bold' : 'btn-outline-danger'
+                }`}
+                onClick={() => HandleChange('is-active', false)}
+              >
+                {t('key-names.is-active-no')}
+              </button>
+            </div>
+          </CardWrapper>
         </div>
 
         {/* submit */}
@@ -607,7 +618,7 @@ export default function Form({
             className={`w-full btn btn-lg ${
               submitIsAvailble
                 ? 'btn-success'
-                : 'border border-green-600 opacity-75'
+                : 'btn-outline-success opacity-75'
             }`}
           >
             {isSubmiting ? (

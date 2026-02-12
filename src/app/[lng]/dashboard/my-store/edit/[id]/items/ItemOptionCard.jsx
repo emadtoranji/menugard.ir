@@ -53,8 +53,11 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
   }, [normalizedOption, onChange, option]);
 
   return (
-    <div className='text-bg-light rounded p-3'>
+    <div className='bg-white text-black rounded p-3'>
       <div className='mt-2'>
+        <h6 className='card-title'>
+          {t('edit.sections.items.item-option-title')}
+        </h6>
         <Input
           type='text'
           name='title'
@@ -75,16 +78,18 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
       </div>
 
       <div className='my-3'>
-        <h6>{t('edit.sections.items.item-option-required-title')}</h6>
+        <h6 className='card-title'>
+          {t('edit.sections.items.item-option-required-title')}
+        </h6>
         <div className='flex gap-2'>
           <button
-            className={`btn btn-sm w-full ${option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
+            className={`btn btn-sm w-full ${option.isRequired ? 'btn-active' : 'btn-inactive'}`}
             onClick={() => set('isRequired', true)}
           >
             {t('edit.sections.items.required')}
           </button>
           <button
-            className={`btn btn-sm w-full ${!option.isRequired ? 'btn-active' : 'btn-outline-secondary'}`}
+            className={`btn btn-sm w-full ${!option.isRequired ? 'btn-active' : 'btn-inactive'}`}
             onClick={() => set('isRequired', false)}
           >
             {t('edit.sections.items.optional')}
@@ -93,92 +98,118 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
       </div>
 
       <div className='my-3'>
-        <h6>{t('edit.sections.items.item-option-count-title')}</h6>
-        <div className='flex gap-2'>
+        <h6 className='card-title'>
+          {t('edit.sections.items.item-option-count-title')}
+        </h6>
+        <div className='grid grid-cols-2 gap-2'>
           <button
             onClick={() => setIsForcedOne(true)}
-            className={`btn btn-sm btn-${isForcedOne ? 'active' : 'outline-secondary'} w-full mb-1`}
+            className={`btn btn-sm btn-${isForcedOne ? 'active' : 'inactive'} w-full mb-1`}
           >
             {t('edit.sections.items.item-option-count-one')}
           </button>
           <button
             onClick={() => setIsForcedOne(false)}
-            className={`btn btn-sm btn-${isForcedOne ? 'outline-secondary' : 'active'} col`}
+            className={`btn btn-sm btn-${isForcedOne ? 'inactive' : 'active'} col`}
           >
             {t('edit.sections.items.item-option-count-multi')}
           </button>
         </div>
 
-        <div className='mt-3 flex gap-3'>
+        <div className='mt-3 grid grid-cols-2 gap-3'>
+          <div>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-option-minimum')}
+            </h6>
+            <Input
+              type='numeric'
+              name='minSelect'
+              value={option.minSelect}
+              HandleChange={set}
+              label={t('edit.sections.items.item-option-minimum')}
+              disabled={!option.isRequired || isForcedOne}
+              hasValidValue={
+                option.isRequired
+                  ? option.minSelect >= 1
+                  : option.minSelect >= 0
+              }
+              isRtl={false}
+              min={option.isRequired ? 1 : 0}
+              max={undefined}
+            />
+          </div>
+          <div>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-option-maximum')}
+            </h6>
+            <Input
+              type='numeric'
+              name='maxSelect'
+              value={option.maxSelect}
+              HandleChange={set}
+              label={t('edit.sections.items.item-option-maximum')}
+              disabled={isForcedOne}
+              hasValidValue={
+                option.maxSelect >= 0 && option.minSelect <= option.maxSelect
+              }
+              isRtl={false}
+              min={1}
+              max={undefined}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className='mt-3 grid grid-cols-2 gap-3'>
+        <div>
+          <h6 className='card-title'>
+            {t('edit.sections.items.item-option-price')}
+          </h6>
           <Input
             type='numeric'
-            name='minSelect'
-            value={option.minSelect}
+            name='price'
+            value={option.price}
             HandleChange={set}
-            label={t('edit.sections.items.item-option-minimum')}
-            disabled={!option.isRequired || isForcedOne}
-            hasValidValue={
-              option.isRequired ? option.minSelect >= 1 : option.minSelect >= 0
-            }
+            label={t('edit.sections.items.item-option-price')}
+            disabled={false}
+            hasValidValue={option.price >= 0}
             isRtl={false}
-            min={option.isRequired ? 1 : 0}
+            min={0}
             max={undefined}
           />
+        </div>
+        <div>
+          <h6 className='card-title'>
+            {t('edit.sections.items.item-option-discount-percent')}
+          </h6>
           <Input
             type='numeric'
-            name='maxSelect'
-            value={option.maxSelect}
+            name='discountPercent'
+            value={option.discountPercent}
             HandleChange={set}
-            label={t('edit.sections.items.item-option-maximum')}
-            disabled={isForcedOne}
-            hasValidValue={
-              option.maxSelect >= 0 && option.minSelect <= option.maxSelect
-            }
+            label={t('edit.sections.items.item-option-discount-percent')}
+            disabled={false}
+            hasValidValue={option.price >= 0 || option.price <= 100}
             isRtl={false}
-            min={1}
-            max={undefined}
+            min={0}
+            max={100}
           />
         </div>
       </div>
 
-      <div className='mt-3 flex gap-3'>
-        <Input
-          type='numeric'
-          name='price'
-          value={option.price}
-          HandleChange={set}
-          label={t('edit.sections.items.item-option-price')}
-          disabled={false}
-          hasValidValue={option.price >= 0}
-          isRtl={false}
-          min={0}
-          max={undefined}
-        />
-        <Input
-          type='numeric'
-          name='discountPercent'
-          value={option.discountPercent}
-          HandleChange={set}
-          label={t('edit.sections.items.item-option-discount-percent')}
-          disabled={false}
-          hasValidValue={option.price >= 0 || option.price <= 100}
-          isRtl={false}
-          min={0}
-          max={100}
-        />
-      </div>
-
       <div className='my-3'>
-        <h6>{t('edit.sections.items.item-option-enable-title')}</h6>
+        <h6 className='card-title'>
+          {t('edit.sections.items.item-option-enable-title')}
+        </h6>
         <div className='flex gap-2'>
           <button
-            className={`btn btn-sm w-full ${option.isActive ? 'btn-success' : 'btn-outline-success'}`}
+            className={`btn w-full ${option.isActive ? 'btn-success' : 'btn-outline-success'}`}
             onClick={() => set('isActive', true)}
           >
             {t('edit.sections.items.active')}
           </button>
           <button
-            className={`btn btn-sm w-full ${!option.isActive ? 'btn-warning' : 'btn-outline-warning'}`}
+            className={`btn w-full ${!option.isActive ? 'btn-danger' : 'btn-outline-danger'}`}
             onClick={() => set('isActive', false)}
           >
             {t('edit.sections.items.deactive')}
@@ -186,7 +217,7 @@ export default function ItemOptionCard({ option, onChange, onDelete }) {
         </div>
       </div>
 
-      <button className='btn btn-sm btn-danger w-full mt-2' onClick={onDelete}>
+      <button className='btn btn-danger w-full mt-5 pt-5' onClick={onDelete}>
         {t('edit.sections.items.option-delete')}
       </button>
     </div>

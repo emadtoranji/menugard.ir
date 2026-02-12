@@ -76,10 +76,13 @@ export default function StoreItemCard({
   }
 
   return (
-    <div className='card p-2 shadow border-0 text-bg-white h-full'>
+    <div className='card h-full'>
       <div className='card-body flex flex-col gap-3'>
-        <div className='grid grid-cols-1 grid-cols-lg-2 gap-3 gap-xl-4 w-full'>
+        <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-3 xl:gap-4'>
           <div className=''>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-title')}
+            </h6>
             <Input
               type='text'
               name='title'
@@ -100,6 +103,9 @@ export default function StoreItemCard({
           </div>
 
           <div className=''>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-description')}
+            </h6>
             <Input
               type='textarea'
               name='description'
@@ -120,14 +126,16 @@ export default function StoreItemCard({
           </div>
         </div>
 
-        <div className='w-full py-8'>
-          <h6>{t(`edit.sections.items.item-category-title`)}</h6>
-          <div className='grid row-w-auto gap-1'>
+        <div className='w-full pt-6 mt-6'>
+          <h6 className='card-title'>
+            {t(`edit.sections.items.item-category-title`)}
+          </h6>
+          <div className='flex flex-wrap gap-2'>
             {StoreItemsCategoriesKey.map((itemCategory) => {
               return (
                 <button
                   key={`item-category-${itemCategory}`}
-                  className={`w-full btn text-nowrap ${data.category === itemCategory ? 'btn-active' : 'btn-inactive'}`}
+                  className={`w-auto btn text-nowrap ${data.category === itemCategory ? 'btn-active' : 'btn-inactive'}`}
                   onClick={() => set('category', itemCategory)}
                 >
                   <span className='text-capitalize'>
@@ -139,44 +147,54 @@ export default function StoreItemCard({
           </div>
         </div>
 
-        <div className='flex w-full gap-3 gap-xl-4'>
-          <Input
-            type='numeric'
-            name='price'
-            value={data.price}
-            HandleChange={set}
-            label={t('edit.sections.items.item-price')}
-            disabled={false}
-            hasValidValue={data.price >= 0}
-            isRtl={false}
-            min={0}
-            max={undefined}
-          />
-          <Input
-            type='numeric'
-            name='discountPercent'
-            value={data.discountPercent}
-            HandleChange={set}
-            label={t('edit.sections.items.item-discount-percnet')}
-            disabled={false}
-            hasValidValue={
-              data.discountPercent >= 0 && data.discountPercent <= 100
-            }
-            isRtl={false}
-            min={0}
-            max={100}
-          />
+        <div className='grid grid-cols-2 w-full gap-3 xl:gap-4 py-6 my-6 border-y border-stone-400'>
+          <div>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-price')}
+            </h6>
+            <Input
+              type='numeric'
+              name='price'
+              value={data.price}
+              HandleChange={set}
+              label={t('edit.sections.items.item-price')}
+              disabled={false}
+              hasValidValue={data.price >= 0}
+              isRtl={false}
+              min={0}
+              max={undefined}
+            />
+          </div>
+          <div>
+            <h6 className='card-title'>
+              {t('edit.sections.items.item-discount-percnet')}
+            </h6>
+            <Input
+              type='numeric'
+              name='discountPercent'
+              value={data.discountPercent}
+              HandleChange={set}
+              label={t('edit.sections.items.item-discount-percnet')}
+              disabled={false}
+              hasValidValue={
+                data.discountPercent >= 0 && data.discountPercent <= 100
+              }
+              isRtl={false}
+              min={0}
+              max={100}
+            />
+          </div>
         </div>
 
-        <div className='flex gap-2 gap-xl-3 py-3'>
+        <div className='grid grid-cols-2 w-full gap-2 xl:gap-3 py-3'>
           <button
-            className={`btn ${data.isAvailable ? 'btn-success' : 'btn-outline-secondary'}`}
+            className={`btn ${data.isAvailable ? 'btn-success' : 'btn-outline-success'}`}
             onClick={() => set('isAvailable', true)}
           >
             {t('edit.sections.items.isAvailable')}
           </button>
           <button
-            className={`btn ${!data.isAvailable ? 'btn-danger' : 'btn-outline-secondary'}`}
+            className={`btn ${!data.isAvailable ? 'btn-danger' : 'btn-outline-danger'}`}
             onClick={() => set('isAvailable', false)}
           >
             {t('edit.sections.items.isNotAvailable')}
@@ -189,7 +207,7 @@ export default function StoreItemCard({
         />
 
         <div
-          className={`grid grid-cols-1 ${loading ? '' : 'grid-cols-lg-2'} gap-2 mt-auto w-full py-3`}
+          className={`grid grid-cols-1 ${loading ? '' : 'lg:grid-cols-2'} gap-2 mt-auto w-full py-3`}
         >
           {loading ? (
             <button className='btn btn-lg btn-warning w-full' disabled={true}>

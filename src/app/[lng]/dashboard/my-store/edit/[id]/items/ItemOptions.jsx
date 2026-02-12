@@ -35,10 +35,10 @@ export default function ItemOptions({ options, onChange }) {
   }
 
   return (
-    <div className='w-full text-bg-dark rounded px-3 py-8'>
+    <div className='w-full bg-black text-white rounded px-4 py-8'>
       <strong>{t('edit.sections.items.options-title')}</strong>
 
-      <ul className='list-group list-group-flush bg-dark fst-italic small px-0 py-2'>
+      <ul className='bg-black italic text-sm px-0 py-2'>
         {t('edit.sections.items.options-samples-idea', {
           returnObjects: true,
         }).map((idea, index) => {
@@ -46,7 +46,7 @@ export default function ItemOptions({ options, onChange }) {
             return (
               <li
                 key={`option-sample-idea-${index}`}
-                className='list-group-item text-bg-dark'
+                className='bg-black text-white'
               >
                 {idea}
               </li>
@@ -59,7 +59,7 @@ export default function ItemOptions({ options, onChange }) {
       </button>
 
       <div className='my-2'>
-        <div className='grid grid-cols-1 grid-cols-xl-2 gap-2'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 3xl:grid-cols-3 gap-2'>
           {options.map((opt, i) => (
             <div className='w-full' key={opt.id ?? i}>
               <ItemOptionCard
