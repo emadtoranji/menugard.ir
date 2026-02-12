@@ -48,7 +48,7 @@ export default async function Index({ params }) {
 
           <>
             {myStoresData === undefined ? (
-              <h4>{t('general.unknown-problem')}</h4>
+              <h2>{t('general.unknown-problem')}</h2>
             ) : myStoresData.length ? (
               <div className='flex gap-3 mb-8'>
                 {myStoresData.map((item) => {
@@ -70,14 +70,12 @@ export default async function Index({ params }) {
                         </div>
                         <div className='card-body'>
                           <div className='flex items-center justify-between'>
-                            <h4 className='h4 font-bold'>
-                              {item?.name || '-'}
-                            </h4>
+                            <h2 className='font-bold'>{item?.name || '-'}</h2>
                             <i
                               className={`bi ${item?.isActive ? 'bi-bag-check text-success' : 'bi-bag-x text-danger'} text-3xl`}
                             ></i>
                           </div>
-                          <p className='h6 font-light my-2'>
+                          <p className='h4 font-semibold my-2 px-2'>
                             {item?.description || ''}
                           </p>
                           <div className='flex gap-2 w-full text-center'>
@@ -102,8 +100,8 @@ export default async function Index({ params }) {
               </div>
             ) : (
               <Link href={`/${lng}/dashboard/my-store/new`}>
-                <div
-                  className='mt-5 text-muted'
+                <h3
+                  className='mt-5'
                   dangerouslySetInnerHTML={{
                     __html: domPurifyServer(t('no-store-found')),
                   }}

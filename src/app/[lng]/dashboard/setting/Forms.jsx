@@ -200,7 +200,7 @@ export default function Index({ user, currentLang }) {
 
   return (
     <div className=''>
-      <h3 className='mb-5'>{t('dashboard.account.title')}</h3>
+      <h2 className='font-bold mb-5'>{t('dashboard.account.title')}</h2>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
         <div className=''>
           <div className='card p-3 flex flex-col gap-2'>

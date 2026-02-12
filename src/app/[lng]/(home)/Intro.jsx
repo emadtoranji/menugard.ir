@@ -8,7 +8,7 @@ export default async function Intro({ lng }) {
 
   return (
     <section id='intro' className='w-screen h-screen relative px-0'>
-      <div className='container flex flex-col lg:flex-grid justify-start lg:justify-between lg:items-center gap-5 h-full w-full pt-20 lg:pt-0'>
+      <div className='container flex flex-col lg:flex-row justify-start lg:justify-between items-center gap-5 h-full w-full pt-20 lg:pt-0'>
         <div className='order-1 lg:order-2 text-center mb-3 lg:mb-0'>
           <Image
             width={280}
@@ -22,10 +22,8 @@ export default async function Intro({ lng }) {
 
         <div className='w-full lg:w-8/12 order-2 lg:order-1'>
           <div className='w-full text-center lg:text-justify'>
-            <h2 className='lg:text-4xl font-bold mb-3'>{t('intro.title')}</h2>
-            <p className='text-base text-muted leading-relaxed'>
-              {t('intro.text')}
-            </p>
+            <h2 className='font-bold mb-3'>{t('intro.title')}</h2>
+            <p className='text-muted leading-relaxed'>{t('intro.text')}</p>
           </div>
 
           <div className='w-full flex items-center mt-4 gap-2'>

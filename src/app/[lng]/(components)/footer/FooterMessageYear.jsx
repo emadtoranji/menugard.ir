@@ -19,11 +19,11 @@ export default function FooterMessageYear() {
     year = new Date().getFullYear();
   }
   return (
-    <p className='mb-0 text-sm'>
+    <h5 className='mb-0'>
       {t('footer.copy', {
         year: numberToFarsi(year, lng),
       })}
-    </p>
+    </h5>
   );
   return;
 }

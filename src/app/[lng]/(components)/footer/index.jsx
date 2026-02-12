@@ -16,15 +16,17 @@ export default async function Footer({ lng }) {
     >
       <div className='container lg:flex lg:justify-between items-center gap-5'>
         <div className='w-full lg:w-1/3'>
-          <h5 className='mb-3 font-semibold'>{t('footer.brand')}</h5>
-          <p className='text-base mb-0'>{t('footer.description')}</p>
+          <h3 className='mb-3 font-semibold'>{t('footer.brand')}</h3>
+          <h4 className='text-base mb-0'>
+            <p>{t('footer.description')}</p>
+          </h4>
         </div>
 
         <hr className={hrClass} />
 
         <div className='w-full lg:w-1/3'>
-          <h6 className='font-bold mb-3'>{t('footer.quick_links.title')}</h6>
-          <ul className='grid grid-flow-col grid-rows-4 sm:grid-rows-2  gap-4 m-0 p-0'>
+          <h3 className='font-bold mb-3'>{t('footer.quick_links.title')}</h3>
+          <ul className='grid grid-flow-col grid-rows-4 sm:grid-rows-2  gap-4 m-0 p-0 h4'>
             <li className='w-full'>
               <Link href={`/${lng}/faqs`}>{t('footer.quick_links.faqs')}</Link>
             </li>
@@ -85,7 +87,7 @@ export default async function Footer({ lng }) {
           target='_blank'
           aria-label='LinkedIn'
         >
-          <i className='hidden bi bi-linkedin text-2xl'></i>
+          <i className='bi bi-linkedin text-2xl'></i>
         </Link>
       </div>
     </footer>

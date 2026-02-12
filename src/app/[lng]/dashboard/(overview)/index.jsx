@@ -39,9 +39,9 @@ export default function Dashboard({ params }) {
   return (
     <AnimatedPage>
       <div className='container mx-auto'>
-        <div className='flex flex-col gap-2 mb-3'>
-          <h3 className=''>{t('dashboard.overview.title')}</h3>
-          <div className=''>{t('dashboard.overview.subtitle')}</div>
+        <div className='grid gap-2 mb-3'>
+          <h2 className='font-bold'>{t('dashboard.overview.title')}</h2>
+          <p className=''>{t('dashboard.overview.subtitle')}</p>
         </div>
 
         {storeStatsData === null ? (
@@ -50,7 +50,7 @@ export default function Dashboard({ params }) {
           storeStatsData.map((store) => (
             <div
               key={store.id}
-              className='mb-8 pb-3 border-b border-gray-400 last:border-b-0'
+              className='mb-8 pb-3 border-b-2 border-purple-300 last:border-b-0'
             >
               <h2 className='mb-3'>{store.name}</h2>
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid:cols-5 3xl:grid:cols-6 gap-3 mb-8'>
