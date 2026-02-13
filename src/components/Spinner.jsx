@@ -17,7 +17,7 @@ export default function Spinner({
         <div
           className={`${sizeClass} border-4 border-t-transparent border-solid rounded-full animate-spin ${color}`}
         />
-        <span className='visually-hidden'>Loading...</span>
+        <span className='sr-only'>Loading...</span>
       </div>
     );
   } else if (type === 'grow') {
@@ -26,7 +26,7 @@ export default function Spinner({
         <div
           className={`${sizeClass} rounded-full bg-current opacity-75 animate-pulse`}
         />
-        <span className='visually-hidden'>Loading...</span>
+        <span className='sr-only'>Loading...</span>
       </div>
     );
   }

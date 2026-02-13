@@ -33,7 +33,7 @@ export function SearchForm({ t, fetchUsers }) {
           onClick={handleSetQuery}
           disabled={!searchQuery.length}
         >
-          <span className='visually-hidden'>Make Search Box Empty</span>
+          <span className='sr-only'>Make Search Box Empty</span>
           <i className='icon bi bi-arrow-repeat'></i>
         </button>
         <button
@@ -44,7 +44,7 @@ export function SearchForm({ t, fetchUsers }) {
           }`}
           disabled={!searchQuery.length}
         >
-          <span className='visually-hidden'>Submit Search</span>
+          <span className='sr-only'>Submit Search</span>
           <i className='icon bi bi-search'></i>
         </button>
       </div>

@@ -48,7 +48,7 @@ export default function OptionQuantityButton({ item = null, option }) {
 
   return !isOrderableOption ? (
     <button type='button' className='btn btn-danger btn-sm' disabled>
-      <span className='visually-hidden'>Is Not Active</span>
+      <span className='sr-only'>Is Not Active</span>
       {t('is-not-active')}
     </button>
   ) : isRequiredAndIsSimple ? (
@@ -57,7 +57,7 @@ export default function OptionQuantityButton({ item = null, option }) {
       className='flex gap-1 items-center btn btn-active p-2'
       disabled
     >
-      <span className='visually-hidden'>Is Requried</span>
+      <span className='sr-only'>Is Requried</span>
       <i className='p-1 icon bi bi-check2-circle'></i>
       <span className='hidden'>{t('is-required')}</span>
     </button>
@@ -74,7 +74,7 @@ export default function OptionQuantityButton({ item = null, option }) {
         })
       }
     >
-      <span className='visually-hidden'>Add Option</span>
+      <span className='sr-only'>Add Option</span>
       <i className='p-1 icon bi bi-plus-lg'></i>
       <span className='hidden'>{t('add-option')}</span>
     </button>
@@ -91,7 +91,7 @@ export default function OptionQuantityButton({ item = null, option }) {
         })
       }
     >
-      <span className='visually-hidden'>Remove Option</span>
+      <span className='sr-only'>Remove Option</span>
       <i className='p-1 icon bi bi-trash3'></i>
       <span className='hidden'>{t('remove-option')}</span>
     </button>
@@ -110,7 +110,7 @@ export default function OptionQuantityButton({ item = null, option }) {
           })
         }
       >
-        <span className='visually-hidden'>Add Option</span>
+        <span className='sr-only'>Add Option</span>
         <span>+</span>
       </button>
 
@@ -131,7 +131,7 @@ export default function OptionQuantityButton({ item = null, option }) {
           })
         }
       >
-        <span className='visually-hidden'>Remove Option</span>
+        <span className='sr-only'>Remove Option</span>
         <span>-</span>
       </button>
     </div>

@@ -65,7 +65,7 @@ export default function SearchForm({
             onClick={handleReset}
             disabled={searchQuery.length === 0}
           >
-            <span className='visually-hidden'>Reset Search Input</span>
+            <span className='sr-only'>Reset Search Input</span>
             <i className='icon bi bi-arrow-repeat text-active'></i>
           </button>
           <button
@@ -75,7 +75,7 @@ export default function SearchForm({
             }`}
             disabled={searchQuery.length === 0}
           >
-            <span className='visually-hidden'>Submit Search</span>
+            <span className='sr-only'>Submit Search</span>
             <i className='icon bi bi-search text-active'></i>
           </button>
         </div>

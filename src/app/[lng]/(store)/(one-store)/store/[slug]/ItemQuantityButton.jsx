@@ -62,7 +62,7 @@ export default function ItemQuantityButton({ item = {} }) {
       onClick={() => handleAddItem(item)}
     >
       <span className='flex items-center gap-1'>
-        <span className='visually-hidden'>Add Item</span>
+        <span className='sr-only'>Add Item</span>
         {isOrderable ? (
           <>
             <i className='p-1 icon bi bi-plus-lg'></i>
@@ -81,7 +81,7 @@ export default function ItemQuantityButton({ item = {} }) {
         onClick={() => handleAddItem(item)}
         disabled={!isOrderable}
       >
-        <span className='visually-hidden'>Add Item</span>
+        <span className='sr-only'>Add Item</span>
         <i className='p-1 icon bi bi-plus-lg'></i>
       </button>
       <span className='px-2 font-bold'>{quantity}</span>
@@ -90,7 +90,7 @@ export default function ItemQuantityButton({ item = {} }) {
         className='btn btn-danger p-2'
         onClick={() => handleRemoveItem(item)}
       >
-        <span className='visually-hidden'>Remove Item</span>
+        <span className='sr-only'>Remove Item</span>
         <i
           className={`p-1 icon bi ${quantity === 1 ? 'bi-trash3' : 'bi-dash-lg'}`}
         ></i>

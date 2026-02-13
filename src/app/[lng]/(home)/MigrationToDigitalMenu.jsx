@@ -6,11 +6,11 @@ export default async function MigrationToDigitalMenu({ lng }) {
   return (
     <section id='migration' className='container my-12 py-16'>
       <div className='lg:w-10/12 mx-auto'>
-        <div className='py-16 px-8 rounded-4 bg-white text-center shadow rounded-lg'>
-          <h2 className='font-bold mb-3 text-active'>
+        <div className='py-16 px-8 rounded-4 bg-white shadow rounded-lg'>
+          <h2 className='font-bold mb-3 text-active text-center'>
             {t('migration-to-digital-menu.title')}
           </h2>
-          <p className='text-gray-600 leading-relaxed text-base'>
+          <p className='text-gray-600 leading-relaxed text-justify'>
             {t('migration-to-digital-menu.text')}
           </p>
         </div>

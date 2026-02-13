@@ -21,11 +21,11 @@ export default async function QrCodeUsage({ lng }) {
           </div>
         </div>
 
-        <div className='w-full text-center lg:text-justify'>
-          <h2 className='font-bold mb-8 text-active'>
+        <div className='w-full'>
+          <h2 className='font-bold mb-8 text-active text-center lg:text-justify'>
             {t('qrcode-usage.title')}
           </h2>
-          <p className='text-gray-600 leading-relaxed'>
+          <p className='text-gray-600 leading-relaxed text-justify'>
             {t('qrcode-usage.text')}
           </p>
         </div>
