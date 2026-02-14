@@ -54,7 +54,7 @@ export default async function Page({ params }) {
           hasHomeEdit={true}
         />
 
-        <div className='d-flex gap-2 mt-4 mb-5'>
+        <div className='flex gap-2 mt-8 mb-5'>
           <div
             dangerouslySetInnerHTML={{
               __html: domPurifyServer(

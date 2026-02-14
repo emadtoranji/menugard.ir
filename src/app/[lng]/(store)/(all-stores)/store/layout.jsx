@@ -2,7 +2,6 @@ import { getT } from '@i18n/server';
 import Main from '@components/Main';
 import Header from '@app/[lng]/(components)/header';
 import Footer from '@app/[lng]/(components)/footer';
-import './style.css';
 
 export async function generateMetadata(props) {
   const m = await import('@utils/metadata');
@@ -15,8 +14,8 @@ export default async function Layout({ children, params }) {
   return (
     <>
       <Header t={t} currentLang={currentLang} section='store' />
-      <Main customClass={'store-section mb-5'}>{children}</Main>
-      <Footer t={t} currentLang={currentLang} />
+      <Main customClass={''}>{children}</Main>
+      <Footer t={t} lng={currentLang} />
     </>
   );
 }

@@ -4,42 +4,40 @@ import Head from '../../(components)/Head';
 
 function SectionCard({ section, customBtnColor = 'btn-active', id, t, lng }) {
   return (
-    <div className='col-12 col-lg-6 col-xxl-4 d-flex'>
-      <div className='card border-0 shadow bg-light px-3 pt-2 pb-4 w-100 h-100 d-flex flex-column'>
-        <div className='card-header bg-light'>
-          <div className='d-flex justify-content-between align-items-center'>
-            <h2>{t(`edit.sections.${section}.title`)}</h2>
-            <div>
-              {section === 'general' && (
-                <i className='bi bi-columns-gap text-info fs-4'></i>
-              )}
-              {section === 'items' && (
-                <i className='bi bi-cup-hot text-dark fs-4'></i>
-              )}
-              {section === 'tables' && (
-                <i className='bi bi-dice-6 text-dark fs-4'></i>
-              )}
-              {section === 'working-hour' && (
-                <i className='bi bi-clock-history text-success fs-4'></i>
-              )}
-              {section === 'delete' && (
-                <i className='bi bi-trash3 fs-4 text-danger'></i>
-              )}
-            </div>
+    <div className='card bg-white px-3 pt-2 pb-8 w-full h-full flex flex-col'>
+      <div className='card-title bg-white'>
+        <div className='flex justify-between items-center'>
+          <h2>{t(`edit.sections.${section}.title`)}</h2>
+          <div>
+            {section === 'general' && (
+              <i className='icon bi bi-building-fill-gear text-stone-600'></i>
+            )}
+            {section === 'items' && (
+              <i className='icon bi bi-cup-hot-fill text-orange-900'></i>
+            )}
+            {section === 'tables' && (
+              <i className='icon bi bi-dice-6-fill text-blue-500'></i>
+            )}
+            {section === 'working-hour' && (
+              <i className='icon bi bi-clock-fill text-green-500'></i>
+            )}
+            {section === 'delete' && (
+              <i className='icon bi bi-trash3-fill text-red-700'></i>
+            )}
           </div>
         </div>
-
-        <div className='card-body flex-grow-1'>
-          {t(`edit.sections.${section}.description`)}
-        </div>
-
-        <Link
-          href={`/${lng}/dashboard/my-store/edit/${id}/${section}`}
-          className={`btn ${customBtnColor} mt-3`}
-        >
-          {t('edit.open-section')}
-        </Link>
       </div>
+
+      <div className='card-body grow'>
+        {t(`edit.sections.${section}.description`)}
+      </div>
+
+      <Link
+        href={`/${lng}/dashboard/my-store/edit/${id}/${section}`}
+        className={`btn btn-lg ${customBtnColor} mt-3 text-center`}
+      >
+        {t('edit.open-section')}
+      </Link>
     </div>
   );
 }
@@ -57,7 +55,7 @@ export default async function Page({ params }) {
         hasStore={true}
       />
 
-      <div className='row d-flex align-items-stretch align-items-center justify-content-center g-3 mt-3'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 align-items-stretch items-center justify-center gap-3 my-6'>
         <SectionCard
           key={`edit-general-${id}`}
           id={id}
@@ -92,7 +90,7 @@ export default async function Page({ params }) {
           id={id}
           t={t}
           lng={lng}
-          customBtnColor='btn-danger text-light'
+          customBtnColor='btn-danger'
         />
       </div>
     </div>

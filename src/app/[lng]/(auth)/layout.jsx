@@ -14,7 +14,9 @@ export default async function layout({ children, params }) {
   return (
     <>
       <Header t={t} currentLang={currentLang} section='auth' />
-      <Main>{children}</Main>
+      <Main customClass={'max-w-5xl m-auto'}>
+        <section className='container m-auto mt-8'>{children}</section>
+      </Main>
     </>
   );
 }

@@ -55,12 +55,12 @@ export default function StoreItemsCategories() {
   return (
     <section
       id='item-categories'
-      className='container-fluid bg-white mt-5 py-1 position-absolute bottom-0 text-active'
+      className='w-full bg-white mt-5 py-1 absolute bottom-0 text-active'
     >
       <div ref={containerRef} className='marquee-container'>
-        <div ref={trackRef} className='marquee-track d-inline-flex gap-5'>
+        <div ref={trackRef} className='marquee-track inline-flex gap-5'>
           {items.map((category, i) => (
-            <span className='text-nowrap fw-bold' key={i}>
+            <span className='text-nowrap font-bold' key={i}>
               {t(category, category)}
             </span>
           ))}

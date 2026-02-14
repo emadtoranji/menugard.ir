@@ -4,10 +4,12 @@ export default async function DashboardSimple({ lng }) {
   const { t } = await getT(lng, 'home');
 
   return (
-    <section id='dashboard' className='my-5 py-5 bg-dark text-light'>
-      <div className='container text-center'>
-        <h2 className='fw-bold mb-4'>{t('dashboard-simple.title')}</h2>
-        <p className='lh-lg text-white text-opacity-75 mx-auto'>
+    <section id='dashboard' className='my-12 py-16 bg-neutral-800'>
+      <div className='container text-white'>
+        <h2 className='font-bold mb-8 text-center'>
+          {t('dashboard-simple.title')}
+        </h2>
+        <p className='leading-relaxed text-white/70 text-justify lg:text-center'>
           {t('dashboard-simple.text')}
         </p>
       </div>

@@ -7,25 +7,27 @@ export default async function QrCodeUsage({ lng }) {
   const qrCodeUrl = '/api/website-qrcode';
 
   return (
-    <section id='qrcode' className='container my-5 py-5'>
-      <div className='row align-items-center flex-column flex-lg-row'>
-        <div className='col-lg-3 text-center mb-4 mb-lg-0'>
-          <div className='d-inline-block p-4 rounded-4'>
+    <section id='qrcode' className='container my-12 py-16'>
+      <div className='flex items-center gap-5 flex-col lg:flex-row'>
+        <div className='w-screen lg:w-4/12 text-center mb-8 lg:mb-0'>
+          <div className='p-4 rounded-4'>
             <Image
               height={200}
               width={200}
               src={qrCodeUrl}
               alt='QR Code Main Website'
-              className='img-fluid shadow animate__animated animate__pulse animate__slower animate__infinite'
+              className='justify-center mx-auto shadow-lg animate__animated animate__pulse animate__slower animate__infinite'
             />
           </div>
         </div>
 
-        <div className='col text-justify'>
-          <h2 className='fw-bold mb-4 text-active'>
+        <div className='w-full'>
+          <h2 className='font-bold mb-8 text-active text-center lg:text-justify'>
             {t('qrcode-usage.title')}
           </h2>
-          <p className='text-muted lh-lg'>{t('qrcode-usage.text')}</p>
+          <p className='text-gray-600 leading-relaxed text-justify'>
+            {t('qrcode-usage.text')}
+          </p>
         </div>
       </div>
     </section>

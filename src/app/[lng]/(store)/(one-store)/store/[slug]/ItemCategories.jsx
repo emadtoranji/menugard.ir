@@ -16,15 +16,14 @@ export default function ItemCategories({
 
   return (
     <>
-      <div className='container-fluid store-categories fixed-top'>
-        <div className='d-flex gap-2 overflow-auto hide-scrollbar px-2'>
+      <nav className='container-fluid store-categories fixed top-0 w-full'>
+        <div className='flex gap-2 overflow-auto hide-scrollbar px-2'>
           <button
             type='button'
             onClick={() => setActiveCategory(null)}
-            style={{ color: 'inherit' }}
             className={`text-nowrap btn btn-lg ${activeCategory === null ? 'opacity-100' : 'opacity-75'}`}
           >
-            <span className='visually-hidden'>All</span>
+            <span className='sr-only'>All</span>
             <span>{t('all-categories')}</span>
           </button>
 
@@ -33,16 +32,15 @@ export default function ItemCategories({
               type='button'
               key={`item-category-${category}`}
               onClick={() => setActiveCategory(category)}
-              style={{ color: 'inherit' }}
-              className={`text-nowrap btn btn-lg ${activeCategory === category ? 'opacity-100 fw-bold' : 'opacity-75'}`}
+              className={`text-nowrap btn btn-lg ${activeCategory === category ? 'opacity-100 font-bold' : 'opacity-75'}`}
             >
-              <span className='visually-hidden'>{category}</span>
+              <span className='sr-only'>{category}</span>
               <span className='text-capitalize'>{t(category, category)}</span>
             </button>
           ))}
         </div>
-      </div>
-      <div style={{ marginTop: '4rem' }}></div>
+      </nav>
+      <div className='mt-12'></div>
       <WorkingTime />
     </>
   );

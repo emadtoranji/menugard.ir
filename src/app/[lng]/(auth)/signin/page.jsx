@@ -15,9 +15,9 @@ export default async function Index({ params }) {
   }
 
   const enabledLoginProviders = [
-    { id: 'github', class: 'btn-dark', file: 'github.svg' },
-    { id: 'google', class: 'btn-success', file: 'google.svg' },
-    { id: 'twitter', class: 'btn-dark', file: 'x.png' },
+    { id: 'github', class: '', file: 'github.svg' },
+    { id: 'google', class: '', file: 'google.svg' },
+    { id: 'twitter', class: '', file: 'x.png' },
   ].filter((p) => process.env[`AUTH_${p.id.toUpperCase()}_ID`]);
 
   return <SignInForm enabledLoginProviders={enabledLoginProviders} />;

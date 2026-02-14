@@ -34,30 +34,30 @@ export default async function CheckToken({ currentLang, token }) {
   }
 
   return (
-    <div className='container-fluid'>
-      <h1 className='mx-auto'>
+    <div className='w-full'>
+      <h1>
         {t(
           `code-responses.${responseData.message}`,
-          t(responseData.ok ? 'new-password-title' : 'link-expired')
+          t(responseData.ok ? 'new-password-title' : 'link-expired'),
         )}
       </h1>
 
-      <h6 className='mt-3 px-1 fw-light'>
+      <h4 className='mt-3'>
         {t(
           responseData.ok
             ? 'new-password-description'
-            : 'link-expired-description'
+            : 'link-expired-description',
         )}
-      </h6>
+      </h4>
       {responseData?.newPassword ? (
         <div className='mt-3'>
           <CopyNewPassword newPassword={responseData.newPassword} />
         </div>
       ) : undefined}
 
-      <div className='d-flex justify-content-center mt-3 w-100'>
+      <div className='mt-8'>
         <Link href={`/${currentLang}/dashboard/setting`}>
-          <button className='btn btn-success px-3' type='button'>
+          <button className='btn btn-lg btn-success w-full' type='button'>
             {t('button-route-to-dashboard-setting')}
           </button>
         </Link>

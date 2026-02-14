@@ -13,20 +13,18 @@ export default async function BranchStoreCannotBeModified({
 
   return (
     <AnimatedPage>
-      <div className='container-fluid px-0 px-lg-2 px-xxl-3'>
-        <div className='container-lg'>
-          <Head
-            lng={lng}
-            title='edit.title'
-            subTitle={null}
-            id={id}
-            hasStore={true}
-            hasHomeEdit={true}
-          />
-        </div>
+      <div className='container'>
+        <Head
+          lng={lng}
+          title='edit.title'
+          subTitle={null}
+          id={id}
+          hasStore={true}
+          hasHomeEdit={true}
+        />
 
         {message ? (
-          <h4 className='container text-bg-danger mt-5 p-2 rounded'>
+          <h4 className='container text-black bg-red-600 mt-5 p-2 rounded-lg'>
             {t(message)}
           </h4>
         ) : undefined}

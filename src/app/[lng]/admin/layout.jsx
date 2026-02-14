@@ -26,7 +26,7 @@ export default async function layoutAdmin({ children, params }) {
   return (
     <>
       <Header t={t} currentLang={currentLang} section='admin' />
-      <Main customClass='mt-4'>{children}</Main>
+      <Main>{children}</Main>
     </>
   );
 }

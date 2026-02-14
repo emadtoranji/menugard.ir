@@ -12,7 +12,7 @@ import OptionPrice from './OptionPrice';
 import { useParams } from 'next/navigation';
 import { fallbackLng } from '@i18n/settings';
 
-export default function SelectedItemsList({ storeCurrency }) {
+export default function SelectedItemsList() {
   const { state } = useOrder();
   const { t } = useT('store');
   const lng = useParams()?.lng || fallbackLng;
@@ -20,34 +20,40 @@ export default function SelectedItemsList({ storeCurrency }) {
   if (state === null) return <Loading />;
   if (!state?.items?.length) return <h3>{t('order-list-empty')}</h3>;
 
-  const currencySpan = <CurrencySpan storeCurrency={storeCurrency} />;
+  const currencySpan = <CurrencySpan storeCurrency={state.store.currency} />;
 
   return (
-    <div className='container-lg mx-auto row row-cols-1 g-2'>
+    <div className='container mx-auto grid grid-cols-1 gap-2'>
       {state.items.map((item, index) => {
         return (
-          <div key={index} className='py-3 border-bottom border-3 text-active'>
-            <div className='d-flex align-items-center justify-content-between my-auto'>
+          <div
+            key={index}
+            className='py-3 border-b-2  border-purple-500 text-active'
+          >
+            <div className='flex items-center justify-between my-auto'>
               <h4>{item.title}</h4>
               <ItemQuantityButton item={item} />
             </div>
 
-            <ItemPrice item={item} storeCurrency={storeCurrency} />
+            <ItemPrice item={item} storeCurrency={state.store.currency} />
 
-            <div className='container mx-auto row row-cols-1 g-2 mt-2'>
+            <div className='container mx-auto grid grid-cols-1 gap-2 pt-4'>
               {item.options.map((option) => {
                 if (option.count <= 0 || !option?.isActive) return undefined;
                 return (
-                  <div key={option.id} className='my-auto border-top py-2'>
-                    <div className='d-flex align-items-center justify-content-between'>
-                      <div className='d-flex align-items-baseline gap-1 m-0'>
+                  <div
+                    key={option.id}
+                    className='my-auto border-t-2 border-purple-300 py-2'
+                  >
+                    <div className='flex items-center justify-between'>
+                      <div className='flex align-items-baseline gap-1 m-0'>
                         {option.isRequired && (
-                          <i className='d-flex align-items-center fs-11 bi bi-asterisk text-danger'></i>
+                          <i className='icon-sm bi bi-asterisk text-danger'></i>
                         )}
                         <div>{option.title}</div>
                         <OptionPrice
                           option={option}
-                          storeCurrency={storeCurrency}
+                          storeCurrency={state.store.currency}
                         />
                       </div>
                       <OptionQuantityButton item={item} option={option} />
@@ -61,27 +67,27 @@ export default function SelectedItemsList({ storeCurrency }) {
       })}
 
       <div className='mt-3 num-align'>
-        <div className='d-flex align-items-center justify-content-between h5'>
-          <div>{t('order-list-tax-title')}</div>
-          <div className='d-flex gap-1'>
+        <h3 className='flex items-center justify-between font-semibold'>
+          <div className=''>{t('order-list-tax-title')}</div>
+          <div className='flex gap-1'>
             <span>{formatNumber(state.taxPrice, lng)}</span>
             <span>{currencySpan}</span>
           </div>
-        </div>
-        <div className='d-flex align-items-center justify-content-between mt-2 h5'>
-          <div>{t('order-list-title')}</div>
-          <div className='d-flex gap-1'>
+        </h3>
+        <h3 className='flex items-center justify-between mt-2 font-semibold'>
+          <div className=''>{t('order-list-title')}</div>
+          <div className='flex gap-1'>
             <span>{formatNumber(state.itemsPrice, lng)}</span>
             <span>{currencySpan}</span>
           </div>
-        </div>
-        <div className='d-flex align-items-center justify-content-between mt-4 h4'>
-          <div>{t('order-list-total-price-title')}</div>
-          <div className='d-flex gap-1'>
+        </h3>
+        <h3 className='flex items-center justify-between mt-8 font-bold'>
+          <div className=''>{t('order-list-total-price-title')}</div>
+          <div className='flex gap-1 text-2xl'>
             <span>{formatNumber(state.totalPrice, lng)}</span>
             <span>{currencySpan}</span>
           </div>
-        </div>
+        </h3>
       </div>
     </div>
   );

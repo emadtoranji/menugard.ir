@@ -34,18 +34,16 @@ export default async function Index({ params, searchParams }) {
 
   return (
     <>
-      <div className='container d-flex justify-content-center h-100 my-auto'>
-        <div className='card shadow border-0 mt-5  p-5 rounded lead fw-bolder'>
-          <span className={`mb-3 text-${status ? 'success' : 'danger'}`}>
-            {status ? t('email-verified') : t('link-expired')}
-          </span>
+      <div className='card max-w-2xl mx-auto'>
+        <h2 className={`mb-12 fw-bolder text-${status ? 'success' : 'danger'}`}>
+          {status ? t('email-verified') : t('link-expired')}
+        </h2>
 
-          <Link className='mx-auto' href={`/${currentLang}/dashboard/account`}>
-            <button className='btn btn-primary col px-3'>
-              {t('button-title')}
-            </button>
-          </Link>
-        </div>
+        <Link href={`/${currentLang}/dashboard/setting`}>
+          <button className='btn btn-lg btn-primary w-full'>
+            {t('button-title')}
+          </button>
+        </Link>
       </div>
     </>
   );

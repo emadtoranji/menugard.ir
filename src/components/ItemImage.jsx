@@ -43,10 +43,7 @@ export default function ItemImage({
 
   if (!finalSrc) {
     return (
-      <div
-        className='d-flex align-items-center m-auto'
-        style={{ width, height }}
-      >
+      <div className='flex items-center m-auto' style={{ width, height }}>
         <Spinner type='grow' />
       </div>
     );
@@ -54,7 +51,7 @@ export default function ItemImage({
 
   return (
     <NextImage
-      className='rounded p-1'
+      className='mx-auto rounded p-1'
       src={finalSrc}
       alt={title}
       width={width}

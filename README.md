@@ -9,7 +9,7 @@
 پروژه با جدیدترین تکنولوژی‌های توسعه وب ساخته شده است:
 
 - **فریم‌ورک:** [Next.js 19](https://nextjs.org/) (با قابلیت‌های React)
-- **استایل‌دهی:** [Bootstrap 5.3](https://getbootstrap.com/) و CSS
+- **استایل‌دهی:** [Tailwind CSS +4](https://tailwindcss.com/) و CSS
 - **زبان:** TypeScript / JavaScript / JSX
 - **پایگاه داده:** PostgreSQL
 - **سیستم احراز هویت:** [Next-Auth v5](https://authjs.dev/)

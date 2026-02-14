@@ -4,7 +4,7 @@ export default function StoreIntro({ name, logoUrl }) {
   if (!name) name = '...';
 
   return (
-    <div className='d-flex align-items-center gap-2 mb-3'>
+    <div className='flex items-center gap-2 mb-3 mx-2 md:mx-4 lg:mx-8 xl:mx-12 2xl:mx-16'>
       <Image
         className='rounded'
         src={logoUrl}

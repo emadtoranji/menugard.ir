@@ -39,7 +39,7 @@ export default function GatewayForm({ gateway, currentLang }) {
         t('dashboard.finance.amountRangeInvalid', {
           min: formatNumber(iranianGatewayAmountRange.min, currentLang),
           max: formatNumber(iranianGatewayAmountRange.max, currentLang),
-        })
+        }),
       );
       return;
     }
@@ -62,13 +62,16 @@ export default function GatewayForm({ gateway, currentLang }) {
           toast.success(
             t(
               `code-responses.${result?.message}`,
-              t('dashboard.finance.topupDone')
-            )
+              t('dashboard.finance.topupDone'),
+            ),
           );
           router.push(result.result.payment_url);
         } else {
           toast.error(
-            t(`code-responses.${result?.message}`, t('general.unknown-problem'))
+            t(
+              `code-responses.${result?.message}`,
+              t('general.unknown-problem'),
+            ),
           );
         }
       })
@@ -81,13 +84,13 @@ export default function GatewayForm({ gateway, currentLang }) {
 
   return (
     <>
-      <div className='row row-cols-1 row-cols-sm-2 row-cols-md-4 g-1 mb-3'>
+      <div className='grid grid-cols-1 grid-cols-sm-2 grid-cols-md-4 gap-1 mb-3'>
         {presetAmounts.map((preset) => (
-          <div key={preset} className='col'>
+          <div key={preset} className='w-full'>
             <button
               className={`btn btn-sm ${
                 amount == preset ? 'btn-success' : 'btn-secondary'
-              } w-100 d-flex justify-content-center align-items-center gap-1`}
+              } w-full flex justify-center items-center gap-1`}
               onClick={() => handleSetAmount(preset)}
             >
               <span>{formatNumber(preset, currentLang)}</span>
@@ -98,7 +101,7 @@ export default function GatewayForm({ gateway, currentLang }) {
       </div>
       <div className='col-7 mx-auto'>
         <div className=''>
-          <div className='form-floating col'>
+          <div className='form-floating w-full'>
             <NumericFormat
               id='floatingInputAmountTopUp'
               name='amount'
@@ -121,16 +124,16 @@ export default function GatewayForm({ gateway, currentLang }) {
             />
             <label
               htmlFor='floatingInputAmountTopUp'
-              className='currency-font mx-1 end-0 fw-bold fs-4'
+              className='currency-font mx-1 end-0 font-bold text-xl'
             >
               {t(
                 `currencies.${String(MAIN_CURRENCY).toLowerCase()}`,
-                MAIN_CURRENCY
+                MAIN_CURRENCY,
               )}
             </label>
           </div>
         </div>
-        <div className='d-flex justify-content-center mt-2'>
+        <div className='flex justify-center mt-2'>
           <button
             className='btn btn-success'
             type='button'

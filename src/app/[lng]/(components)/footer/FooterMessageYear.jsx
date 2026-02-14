@@ -18,12 +18,12 @@ export default function FooterMessageYear() {
   } else {
     year = new Date().getFullYear();
   }
+
   return (
-    <p className='mb-0 small'>
+    <h6>
       {t('footer.copy', {
         year: numberToFarsi(year, lng),
       })}
-    </p>
+    </h6>
   );
-  return;
 }

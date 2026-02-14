@@ -31,7 +31,7 @@ export default async function Index({ params }) {
 
   return (
     <AnimatedPage>
-      <div className='container-lg'>
+      <div className='container'>
         <Forms user={user} currentLang={lng} />
       </div>
     </AnimatedPage>

@@ -24,7 +24,7 @@ export default function Error({ error, reset }) {
           rel='stylesheet'
         />
       </head>
-      <body className={`container-fluid d-flex flex-column min-vh-100 m-0 p-0`}>
+      <body className={`container-fluid flex flex-col min-w-full m-0 p-0`}>
         <Problems
           content={content}
           code={500}

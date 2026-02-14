@@ -7,13 +7,11 @@ export default async function StoreNotFound({ params }) {
   const { t } = await getT(lng, 'dashboard-my-store');
   return (
     <div className='container'>
-      <div className='d-flex flex-column gap-2 mb-3'>
-        <div className='d-flex justify-content-between'>
-          <h3>{t('store-not-found')}</h3>
-          <Link href={`/${lng}/dashboard/my-store`}>
-            <button className='btn btn-success shadow'>{t('my-store')}</button>
-          </Link>
-        </div>
+      <div className='flex justify-between gap-2'>
+        <h3>{t('store-not-found')}</h3>
+        <Link href={`/${lng}/dashboard/my-store`}>
+          <button className='btn btn-success shadow-lg'>{t('my-store')}</button>
+        </Link>
       </div>
     </div>
   );

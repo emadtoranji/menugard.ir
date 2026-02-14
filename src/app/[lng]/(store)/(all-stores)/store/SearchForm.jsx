@@ -41,53 +41,45 @@ export default function SearchForm({
   };
 
   return (
-    <div className='text-center position-relative overflow-hidden position-relative search-section text-light position-relative overflow-hidden'>
-      <div className='d-flex justify-content-center align-items-center p-4'>
-        <form
-          className='d-flex justify-content-center w-100'
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch();
-          }}
-        >
-          <div className='search-container d-flex border border-2 border-white p-0 m-0 rounded-pill w-100 px-2'>
-            <input
-              type='text'
-              className='fs-5 search-input bg-transparent form-control rounded-0 border-0 border-light text-active'
-              placeholder={t('search-placeholder')}
-              value={searchQuery}
-              onChange={handleInputChange}
-            />
-            <button
-              type='button'
-              className={`search-button btn border-0 text-white ${
-                searchQuery.length === 0 ? 'opacity-50' : ''
-              }`}
-              onClick={handleReset}
-              disabled={searchQuery.length === 0}
-            >
-              <span className='visually-hidden'>Reset Search Input</span>
-              <i className='fs-5 bi bi-arrow-repeat text-active'></i>
-            </button>
-            <button
-              type='submit'
-              className={`search-button btn border-0 text-white ${
-                searchQuery.length === 0 ? 'opacity-50' : ''
-              }`}
-              disabled={searchQuery.length === 0}
-            >
-              <span className='visually-hidden'>Submit Search</span>
-              <i className='fs-5 bi bi-search text-active'></i>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div className='p-2 d-flex gap-2 d-none'>
-        <h1 className='fw-bold w-100 text-active'>
-          <span>{title || t('title')}</span>
-        </h1>
-      </div>
+    <div className='container pb-8'>
+      <form
+        className='flex justify-center w-full text-center relative text-active position-relative overflow-hidden'
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch();
+        }}
+      >
+        <div className='flex gap-3 bg-white p-0 m-0 rounded-full w-full px-4'>
+          <input
+            type='text'
+            className='text-lg border-none bg-transparent form-control'
+            placeholder={t('search-placeholder')}
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
+          <button
+            type='button'
+            className={`btn border-0 ${
+              searchQuery.length === 0 ? 'opacity-50' : ''
+            }`}
+            onClick={handleReset}
+            disabled={searchQuery.length === 0}
+          >
+            <span className='sr-only'>Reset Search Input</span>
+            <i className='icon bi bi-arrow-repeat text-active'></i>
+          </button>
+          <button
+            type='submit'
+            className={`btn border-0 ${
+              searchQuery.length === 0 ? 'opacity-50' : ''
+            }`}
+            disabled={searchQuery.length === 0}
+          >
+            <span className='sr-only'>Submit Search</span>
+            <i className='icon bi bi-search text-active'></i>
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

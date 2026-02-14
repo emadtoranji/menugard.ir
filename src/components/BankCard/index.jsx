@@ -11,10 +11,10 @@ export default function BankCard({
   const makeCopyToClipboard = useCopyToClipboard();
 
   return (
-    <div className='bank-card d-flex align-items-center justify-content-center mx-auto p-2 col-12 col-sm-10 col-md-8 col-lg-8 col-xxl-8 rounded'>
-      <div className='text-center py-3 text-dark'>
+    <div className='bank-card flex items-center justify-center mx-auto p-2 w-8/12 rounded'>
+      <div className='text-center py-3 text-black'>
         <h5
-          className='user-select-all cursor-pointer fw-semibold mb-2'
+          className='select-all cursor-pointer font-semibold mb-2'
           onClick={
             card_number ? () => makeCopyToClipboard(card_number) : undefined
           }
@@ -24,7 +24,7 @@ export default function BankCard({
             ? card_number.replace(/(\d{4})(?=\d)/g, '$1 ')
             : '---- ---- ---- ----'}
         </h5>
-        <div className='d-flex justify-content-center align-items-center flex-column'>
+        <div className='flex justify-center items-center flex-col'>
           {account_number ? (
             <small
               className='mb-1'
@@ -38,7 +38,7 @@ export default function BankCard({
             </small>
           ) : undefined}
           <h6
-            className='user-select-all cursor-pointer fw-bold mt-3'
+            className='select-all cursor-pointer font-bold mt-3'
             onClick={iban ? () => makeCopyToClipboard(iban) : undefined}
             style={{ direction: 'ltr' }}
           >

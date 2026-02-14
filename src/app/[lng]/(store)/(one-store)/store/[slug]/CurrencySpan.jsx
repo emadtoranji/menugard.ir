@@ -4,7 +4,7 @@ export default function CurrencySpan({ storeCurrency }) {
   const { t } = useT('store');
 
   return (
-    <span className='small currency-font'>
+    <span className='currency-font'>
       {t(`currencies.${storeCurrency}`, storeCurrency || '')}
     </span>
   );

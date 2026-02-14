@@ -35,10 +35,10 @@ export default function ItemOptions({ options, onChange }) {
   }
 
   return (
-    <div className='w-100 text-bg-dark rounded px-3 py-4'>
+    <div className='w-full bg-black text-white rounded px-4 py-8'>
       <strong>{t('edit.sections.items.options-title')}</strong>
 
-      <ul className='list-group list-group-flush bg-dark fst-italic small px-0 py-2'>
+      <ul className='bg-black italic text-sm px-0 py-2'>
         {t('edit.sections.items.options-samples-idea', {
           returnObjects: true,
         }).map((idea, index) => {
@@ -46,7 +46,7 @@ export default function ItemOptions({ options, onChange }) {
             return (
               <li
                 key={`option-sample-idea-${index}`}
-                className='list-group-item text-bg-dark'
+                className='bg-black text-white'
               >
                 {idea}
               </li>
@@ -54,14 +54,14 @@ export default function ItemOptions({ options, onChange }) {
         })}
       </ul>
 
-      <button className='btn btn-active w-100 my-2' onClick={addOption}>
+      <button className='btn btn-active w-full my-2' onClick={addOption}>
         {t('edit.sections.items.option-new')}
       </button>
 
       <div className='my-2'>
-        <div className='row row-cols-1 row-cols-xl-2 g-2'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 3xl:grid-cols-3 gap-2'>
           {options.map((opt, i) => (
-            <div className='col' key={opt.id ?? i}>
+            <div className='w-full' key={opt.id ?? i}>
               <ItemOptionCard
                 option={opt}
                 onChange={(o) => update(i, o)}

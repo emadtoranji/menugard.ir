@@ -48,23 +48,23 @@ export default function OptionQuantityButton({ item = null, option }) {
 
   return !isOrderableOption ? (
     <button type='button' className='btn btn-danger btn-sm' disabled>
-      <span className='visually-hidden'>Is Not Active</span>
+      <span className='sr-only'>Is Not Active</span>
       {t('is-not-active')}
     </button>
   ) : isRequiredAndIsSimple ? (
     <button
       type='button'
-      className='d-flex gap-1 align-items-center btn btn-active p-2'
+      className='flex gap-1 items-center btn btn-active p-2'
       disabled
     >
-      <span className='visually-hidden'>Is Requried</span>
-      <i className='d-flex align-items-center bi bi-check2-circle'></i>
-      <span className='d-none'>{t('is-required')}</span>
+      <span className='sr-only'>Is Requried</span>
+      <i className='p-1 icon-sm bi bi-check2-circle'></i>
+      <span className='hidden'>{t('is-required')}</span>
     </button>
   ) : isSimpleAdd && count === 0 ? (
     <button
       type='button'
-      className='d-flex gap-1 btn btn-active p-2'
+      className='flex gap-1 btn btn-active p-2'
       onClick={() =>
         handleOptionSelect({
           optionId,
@@ -74,14 +74,14 @@ export default function OptionQuantityButton({ item = null, option }) {
         })
       }
     >
-      <span className='visually-hidden'>Add Option</span>
-      <i className='d-flex align-items-center bi bi-plus-lg'></i>
-      <span className='d-none'>{t('add-option')}</span>
+      <span className='sr-only'>Add Option</span>
+      <i className='p-1 icon-sm bi bi-plus-lg'></i>
+      <span className='hidden'>{t('add-option')}</span>
     </button>
   ) : isSimpleAdd && count === 1 ? (
     <button
       type='button'
-      className='d-flex gap-1 btn btn-danger p-2'
+      className='flex gap-1 btn btn-danger p-2'
       onClick={() =>
         handleOptionSelect({
           optionId,
@@ -91,15 +91,15 @@ export default function OptionQuantityButton({ item = null, option }) {
         })
       }
     >
-      <span className='visually-hidden'>Remove Option</span>
-      <i className='d-flex align-items-center bi bi-trash3'></i>
-      <span className='d-none'>{t('remove-option')}</span>
+      <span className='sr-only'>Remove Option</span>
+      <i className='p-1 icon-sm bi bi-trash3'></i>
+      <span className='hidden'>{t('remove-option')}</span>
     </button>
   ) : (
-    <div className='d-flex align-items-center gap-1 rounded border border-dark'>
+    <div className='flex items-center gap-1 rounded border border-muted'>
       <button
         type='button'
-        className='rounded border border-light btn p-2'
+        className='rounded border-0 btn p-2'
         disabled={atMax}
         onClick={() =>
           handleOptionSelect({
@@ -110,17 +110,17 @@ export default function OptionQuantityButton({ item = null, option }) {
           })
         }
       >
-        <span className='visually-hidden'>Add Option</span>
+        <span className='sr-only'>Add Option</span>
         <span>+</span>
       </button>
 
-      <span className='small fw-bold border-start border-end px-2 px-lg-3'>
+      <span className='small font-bold border-x border-muted px-2 lg:px-3'>
         {formatNumber(count, lng)}
       </span>
 
       <button
         type='button'
-        className='rounded border border-light btn p-2'
+        className='rounded border-0 btn p-2'
         disabled={atMin}
         onClick={() =>
           handleOptionSelect({
@@ -131,7 +131,7 @@ export default function OptionQuantityButton({ item = null, option }) {
           })
         }
       >
-        <span className='visually-hidden'>Remove Option</span>
+        <span className='sr-only'>Remove Option</span>
         <span>-</span>
       </button>
     </div>

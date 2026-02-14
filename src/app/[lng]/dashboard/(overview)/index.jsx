@@ -39,18 +39,21 @@ export default function Dashboard({ params }) {
   return (
     <AnimatedPage>
       <div className='container mx-auto'>
-        <div className='d-flex flex-column gap-2 mb-3'>
-          <h3>{t('dashboard.overview.title')}</h3>
-          <div className='muted-small'>{t('dashboard.overview.subtitle')}</div>
+        <div className='grid gap-2 mb-3'>
+          <h2 className='font-bold'>{t('dashboard.overview.title')}</h2>
+          <p className=''>{t('dashboard.overview.subtitle')}</p>
         </div>
 
         {storeStatsData === null ? (
           <Loading />
         ) : (
           storeStatsData.map((store) => (
-            <div key={store.id} className='mb-4 pb-3 border-bottom'>
+            <div
+              key={store.id}
+              className='mb-8 pb-3 border-b-2 border-purple-300 last:border-b-0'
+            >
               <h2 className='mb-3'>{store.name}</h2>
-              <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 mb-4'>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid:cols-5 3xl:grid:cols-6 gap-3 mb-8'>
                 {[
                   { key: 'today', label: t('dashboard.stats.today') },
                   { key: 'yesterday', label: t('dashboard.stats.yesterday') },
@@ -73,8 +76,8 @@ export default function Dashboard({ params }) {
                   { key: 'all', label: t('dashboard.stats.all') },
                 ].map(({ key, label }) => (
                   <div key={key}>
-                    <div className='card border-0 shadow rounded p-3'>
-                      <div className='muted-small'>{label}</div>
+                    <div className='card p-3'>
+                      <div className='text-lg'>{label}</div>
                       <div className='big-number'>
                         {formatNumber(store.stats[key], lng) || '-'}
                       </div>

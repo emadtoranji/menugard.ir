@@ -7,21 +7,21 @@ export default async function Page({ params }) {
   const faqs = t('faqs', { returnObjects: true }) || [];
 
   return (
-    <section className='container mb-5 py-5'>
-      <h1 className='fw-bold mb-4 text-center' itemProp='headline'>
+    <section className='container mb-5 py-16'>
+      <h1 className='font-bold mb-12 text-center' itemProp='headline'>
         {t('faqTitle')}
       </h1>
 
       {faqs.length === 0 ? (
-        <p className='text-center text-muted'>{t('noFaqsFound')}</p>
+        <p className='text-center text-xl text-gray-600'>{t('noFaqsFound')}</p>
       ) : (
-        <div className='row g-4 mt-5'>
+        <div className='mt-10'>
           {faqs.map((item, idx) => (
-            <div className='col-12' key={idx}>
-              <h3 className='text-active fw-bold mb-2' itemProp='name'>
+            <div className='w-full mb-10' key={idx}>
+              <h3 className='text-active font-bold mb-2' itemProp='name'>
                 {item.q}
               </h3>
-              <p className='px-1 px-lg-2 px-xxl-3 lh-lg' itemProp='text'>
+              <p className='px-1 lg:px-4 2xl:px-6 text-xl' itemProp='text'>
                 {item.a}
               </p>
             </div>

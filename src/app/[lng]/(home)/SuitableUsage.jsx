@@ -24,21 +24,21 @@ export default async function SuitableUsage({ lng }) {
   ];
 
   return (
-    <section id='suitable' className='my-5 py-5 bg-body-tertiary shadow'>
+    <section id='suitable' className='my-16 py-16 bg-slate-100 shadow'>
       <div className='container'>
-        <div className='row g-4'>
+        <div className='flex flex-wrap -m-2.5'>
           {cards.map((card, i) => (
-            <div key={i} className='col-lg-4'>
-              <div className='card h-100 border-0 shadow'>
-                <div className='card-body text-center'>
+            <div key={i} className='w-full lg:w-4/12 p-2.5'>
+              <div className='bg-white rounded-lg shadow-lg h-full'>
+                <div className='p-4 text-center'>
                   <ItemImage
                     key={`logo-${card.category}`}
                     category={card.category}
                     title={card.title}
                   />
-                  <h4 className='mt-3 fw-bold text-active'>{card.title}</h4>
+                  <h4 className='mt-3 font-bold text-active'>{card.title}</h4>
                   <p
-                    className='text-muted lh-lg'
+                    className='text-muted leading-relaxed'
                     dangerouslySetInnerHTML={{
                       __html: domPurifyServer(card.text),
                     }}

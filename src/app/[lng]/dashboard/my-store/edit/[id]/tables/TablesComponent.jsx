@@ -25,22 +25,19 @@ export default function StoreTables({ store, BaseUrlAddress }) {
   }
 
   return (
-    <div className='row g-4'>
-      <div className='col-12'>
+    <div className=''>
+      <div className='w-full'>
         <button
-          className='btn btn-lg btn-active w-100 mb-3'
+          className='btn btn-lg btn-active w-full mb-5'
           onClick={addNewTableCard}
         >
           {t('edit.sections.tables.new-table-button')}
         </button>
       </div>
 
-      {tables.map((table, index) => (
-        <div
-          key={table.id ?? `new-${index}`}
-          className='col-12 col-md-6 col-xl-4'
-        >
-          <div className='card h-100 shadow border-0 rounded'>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2'>
+        {tables.map((table, index) => (
+          <div className='card h-full' key={table.id ?? `new-${index}`}>
             <StoreTableCard
               table={table}
               store={store}
@@ -56,13 +53,13 @@ export default function StoreTables({ store, BaseUrlAddress }) {
               onDelete={() => removeTableFromState(table.id, index)}
             />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {tables?.length >= 12 && (
-        <div className='col-12'>
+        <div className='w-full'>
           <button
-            className='btn btn-lg btn-active w-100 mt-3'
+            className='btn btn-lg btn-active w-full mt-3'
             onClick={addNewTableCard}
           >
             {t('edit.sections.tables.new-table-button')}
@@ -136,6 +133,7 @@ function StoreTableCard({
   }
 
   async function generateQrCode() {
+    if (qrCode) return;
     if (!tableLink) return toast.error(t('general.unknown-problem'));
     try {
       const dataUrl = await QRCode.toDataURL(tableLink, {
@@ -187,7 +185,7 @@ function StoreTableCard({
   }
 
   return (
-    <div className='card-body d-flex flex-column gap-3'>
+    <div className='card-body gap-3'>
       <input
         type='text'
         className='form-control mb-3'
@@ -196,17 +194,17 @@ function StoreTableCard({
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <div className='d-flex gap-2 mb-3'>
+      <div className='flex gap-2 mb-3'>
         <button
           type='button'
-          className={`btn btn-sm col ${isActive ? 'btn-success' : 'btn-outline-secondary'}`}
+          className={`btn btn-sm w-full ${isActive ? 'btn-success' : 'text-green-600 border border-green-600 rounded'}`}
           onClick={() => setIsActive(true)}
         >
           {t('edit.sections.tables.is-active')}
         </button>
         <button
           type='button'
-          className={`btn btn-sm col ${!isActive ? 'btn-danger' : 'btn-outline-secondary'}`}
+          className={`btn btn-sm w-full ${!isActive ? 'btn-danger' : 'text-red-600 border border-red-600 rounded'}`}
           onClick={() => setIsActive(false)}
         >
           {t('edit.sections.tables.is-deactive')}
@@ -214,17 +212,17 @@ function StoreTableCard({
       </div>
 
       {isEdit && (
-        <div className='d-flex gap-2 mb-3'>
+        <div className='flex gap-2 mb-3'>
           <button
-            className='btn btn-sm btn-active col'
+            className='btn btn-sm btn-active w-full'
             onClick={generateQrCode}
-            disabled={!table.id}
+            disabled={!table.id || qrCode}
           >
             {t('edit.sections.tables.generateQrCode')}
           </button>
           {qrCode && (
             <button
-              className='btn btn-sm btn-success col'
+              className='btn btn-sm btn-success w-full'
               onClick={downloadQrCode}
             >
               {t('edit.sections.tables.downloadQrCode')}
@@ -240,20 +238,20 @@ function StoreTableCard({
             height={200}
             src={qrCode}
             alt='QR Code'
-            className='mx-auto d-block'
+            className='mx-auto block'
           />
         </div>
       )}
 
-      <div className='d-flex gap-2'>
+      <div className='flex gap-2 pt-2 mt-7 border-t border-t-stone-300'>
         {isSubmitting ? (
-          <button className='btn btn-warning col' disabled>
+          <button className='btn btn-warning w-full' disabled>
             <Spinner />
           </button>
         ) : (
           <>
             <button
-              className='btn btn-success col'
+              className='btn btn-success w-full'
               onClick={submit}
               disabled={!title || isSubmitting}
             >
@@ -262,7 +260,7 @@ function StoreTableCard({
 
             {isEdit && (
               <button
-                className='btn btn-danger col'
+                className='btn btn-danger w-full'
                 onClick={deleteTable}
                 disabled={isSubmitting}
               >

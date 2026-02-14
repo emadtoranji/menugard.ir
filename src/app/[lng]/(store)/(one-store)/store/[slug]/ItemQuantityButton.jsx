@@ -61,12 +61,12 @@ export default function ItemQuantityButton({ item = {} }) {
       disabled={!isOrderable}
       onClick={() => handleAddItem(item)}
     >
-      <span className='d-flex align-items-center gap-1'>
-        <span className='visually-hidden'>Add Item</span>
+      <span className='flex items-center gap-1'>
+        <span className='sr-only'>Add Item</span>
         {isOrderable ? (
           <>
-            <i className='d-flex align-items-center bi bi-plus-lg'></i>
-            <span className='d-none'>{t('add-item')}</span>
+            <i className='p-1 icon-sm bi bi-plus-lg'></i>
+            <span className='hidden'>{t('add-item')}</span>
           </>
         ) : (
           t('is-not-active')
@@ -74,25 +74,25 @@ export default function ItemQuantityButton({ item = {} }) {
       </span>
     </button>
   ) : (
-    <div className='d-flex align-items-center gap-1'>
+    <div className='flex items-center gap-1'>
       <button
         type='button'
         className={`btn btn-active p-2`}
         onClick={() => handleAddItem(item)}
         disabled={!isOrderable}
       >
-        <span className='visually-hidden'>Add Item</span>
-        <i className='d-flex align-items-center bi bi-plus-lg'></i>
+        <span className='sr-only'>Add Item</span>
+        <i className='p-1 icon-sm bi bi-plus-lg'></i>
       </button>
-      <span className='px-2 fw-bold'>{quantity}</span>
+      <span className='px-2 font-bold'>{quantity}</span>
       <button
         type='button'
         className='btn btn-danger p-2'
         onClick={() => handleRemoveItem(item)}
       >
-        <span className='visually-hidden'>Remove Item</span>
+        <span className='sr-only'>Remove Item</span>
         <i
-          className={`d-flex align-items-center bi ${quantity === 1 ? 'bi-trash3' : 'bi-dash-lg'}`}
+          className={`p-1 icon-sm bi ${quantity === 1 ? 'bi-trash3' : 'bi-dash-lg'}`}
         ></i>
       </button>
     </div>

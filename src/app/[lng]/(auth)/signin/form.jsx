@@ -20,12 +20,17 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
   const router = useRouter();
   const [signupRequired, setSignupRequired] = useState(false);
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordVerify, setPasswordVerify] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitType, setSubmitType] = useState('');
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+
+  useEffect(() => {
+    setIsValidEmail(isValidQualityEmail(email));
+  }, [email]);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -117,128 +122,118 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
   };
 
   return (
-    <section className='container-fluid main-vh-100 d-flex align-items-center justify-content-center'>
-      <div className='form-signin p-4 shadow-lg bg-white rounded-4 col-12 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4'>
-        <div className='d-flex justify-content-between align-items-center mb-3 gap-2'>
-          <h1 className='h3 lead fw-semibold'>{t('dashboard.login.title')}</h1>
-          <button
-            className='btn btn-inactive btn-sm fw-bold'
-            onClick={() => setSignupRequired(!signupRequired)}
-          >
-            {signupRequired
-              ? t('dashboard.login.sign-in-button')
-              : t('dashboard.login.sign-up-button')}
-          </button>
-        </div>
-        <form onSubmit={handleSignIn} noValidate>
-          <div className='form-floating mb-3'>
-            <input
-              name='email'
-              style={{ textAlign: 'left', direction: 'ltr' }}
-              type='email'
-              className='form-control'
-              placeholder={t('dashboard.login.email-placeholder')}
-              value={email}
-              autoComplete='email'
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={isSubmitting}
-              required
-            />
-            <label className='end-0'>{t('dashboard.login.email')}</label>
-          </div>
+    <div className='p-6 shadow-lg bg-white rounded-2xl'>
+      <div className='grid sm:flex sm:justify-between items-center mb-3 gap-2'>
+        <h1 className='font-semibold'>{t('dashboard.login.title')}</h1>
+        <button
+          className='px-3 py-1 btn btn-sm btn-active'
+          onClick={() => setSignupRequired(!signupRequired)}
+        >
+          {signupRequired
+            ? t('dashboard.login.sign-in-button')
+            : t('dashboard.login.sign-up-button')}
+        </button>
+      </div>
 
-          <div className='form-floating mb-3'>
+      <form onSubmit={handleSignIn} noValidate>
+        <div className='relative mb-3'>
+          <input
+            id='email'
+            name='email'
+            style={{ textAlign: 'left', direction: 'ltr' }}
+            type='email'
+            className={`form-control ${isValidEmail ? 'is-valid' : 'is-invalid'}`}
+            placeholder={t('dashboard.login.email-placeholder')}
+            value={email}
+            autoComplete='email'
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <label className='absolute right-3 top-2 text-muted' htmlFor='email'>
+            {t('dashboard.login.email')}
+          </label>
+        </div>
+
+        <div className='relative mb-3'>
+          <input
+            id='password'
+            name='password'
+            style={{ textAlign: 'left', direction: 'ltr' }}
+            type='password'
+            className={`form-control ${
+              signupRequired && password !== passwordVerify
+                ? 'is-invalid'
+                : 'is-valid'
+            }`}
+            placeholder={t('dashboard.login.password-placeholder')}
+            value={password}
+            autoComplete={signupRequired ? 'new-password' : 'current-password'}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+          <label
+            className='absolute right-3 top-2 text-muted'
+            htmlFor='password'
+          >
+            {t('dashboard.login.password')}
+          </label>
+        </div>
+
+        {signupRequired && (
+          <div className='relative mb-3'>
             <input
-              name='password'
               style={{ textAlign: 'left', direction: 'ltr' }}
+              id='verify-password'
+              name='verify-password'
               type='password'
               className={`form-control ${
-                signupRequired && password !== passwordVerify
-                  ? 'border-danger'
-                  : ''
+                password !== passwordVerify ? 'is-invalid' : 'is-valid'
               }`}
-              placeholder={t('dashboard.login.password-placeholder')}
-              value={password}
-              autoComplete={
-                signupRequired ? 'new-password' : 'current-password'
-              }
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder={t('dashboard.login.password-verify-placeholder')}
+              value={passwordVerify}
+              autoComplete='off'
+              onChange={(e) => setPasswordVerify(e.target.value)}
               disabled={isSubmitting}
               required
             />
-            <label className='end-0'>{t('dashboard.login.password')}</label>
-          </div>
-
-          {signupRequired && (
-            <div className='form-floating mb-3'>
-              <input
-                style={{ textAlign: 'left', direction: 'ltr' }}
-                name='verify-password'
-                type='password'
-                className={`form-control ${
-                  password !== passwordVerify ? 'border-danger' : ''
-                }`}
-                placeholder={t('dashboard.login.password-verify-placeholder')}
-                value={passwordVerify}
-                autoComplete='off'
-                onChange={(e) => setPasswordVerify(e.target.value)}
-                disabled={isSubmitting}
-                required
-              />
-              <label className='end-0'>
-                {t('dashboard.login.password-verify')}
-              </label>
-            </div>
-          )}
-
-          <div className='row d-flex align-items-center justify-content-center g-1'>
-            <button
-              className='btn btn-active mb-3'
-              type='submit'
-              disabled={isSubmitting}
+            <label
+              className='absolute right-3 top-2 text-muted'
+              htmlFor='verify-password'
             >
-              {submitType === 'credentials' ? (
-                <Spinner small={true} />
-              ) : signupRequired ? (
-                t('dashboard.login.sign-up-button')
-              ) : (
-                t('dashboard.login.sign-in-button')
-              )}
-            </button>
+              {t('dashboard.login.password-verify')}
+            </label>
+          </div>
+        )}
 
-            <div className='row row-cols-4 gap-2 justify-content-center mt-4'>
-              {enabledLoginProviders.map((p, index) => {
-                if (!p?.id) {
-                  return undefined;
-                }
-                if (p?.file) {
-                  return (
-                    <Image
-                      key={index}
-                      alt={p.id}
-                      width={60}
-                      height={60}
-                      src={`/images/auth-providers/dark/${p.file}`}
-                      className={`w-auto ${p?.class || ''} ${
-                        isSubmitting ? 'opacity-75' : ''
-                      }`}
-                      onClick={() => {
-                        setSubmitType(p.id);
-                        setIsSubmitting(true);
-                        nextAuthLoginButtonHandler(
-                          p.id,
-                          `/${currentLang}/dashboard`,
-                        );
-                      }}
-                      type='button'
-                      disabled={isSubmitting}
-                    />
-                  );
-                }
+        <div className='flex flex-col items-center justify-center gap-1 mx-auto'>
+          <button
+            className='w-full px-4 py-2 btn btn-lg btn-active text-white rounded mb-3 opacity-70 hover:font-semibold'
+            type='submit'
+            disabled={isSubmitting}
+          >
+            {submitType === 'credentials' ? (
+              <Spinner color='text-white' />
+            ) : signupRequired ? (
+              t('dashboard.login.sign-up-button')
+            ) : (
+              t('dashboard.login.sign-in-button')
+            )}
+          </button>
+
+          <div className='flex gap-6 mt-8 justify-center items-center'>
+            {enabledLoginProviders.map((p, index) => {
+              if (!p?.id) return undefined;
+              if (p?.file) {
                 return (
-                  <button
+                  <Image
                     key={index}
-                    className={`btn ${p?.class || ''}`}
+                    alt={p.id}
+                    width={25}
+                    height={25}
+                    src={`/images/auth-providers/dark/${p.file}`}
+                    className={`w-10 h-10 ${p?.class || ''} opacity-70 hover:cursor-pointer`}
                     onClick={() => {
                       setSubmitType(p.id);
                       setIsSubmitting(true);
@@ -249,22 +244,38 @@ function SignInForm({ t, currentLang, enabledLoginProviders }) {
                     }}
                     type='button'
                     disabled={isSubmitting}
-                  >
-                    {submitType === p.id ? (
-                      <Spinner small={true} />
-                    ) : (
-                      <span className='text-capitalize'>
-                        {p.id} <i className={`bi bi-${p.id}`}></i>
-                      </span>
-                    )}
-                  </button>
+                  />
                 );
-              })}
-            </div>
+              }
+              return (
+                <button
+                  key={index}
+                  className={`px-3 py-2 w-36 h-36 rounded ${p?.class || ''} opacity-70`}
+                  onClick={() => {
+                    setSubmitType(p.id);
+                    setIsSubmitting(true);
+                    nextAuthLoginButtonHandler(
+                      p.id,
+                      `/${currentLang}/dashboard`,
+                    );
+                  }}
+                  type='button'
+                  disabled={isSubmitting}
+                >
+                  {submitType === p.id ? (
+                    <Spinner color='text-white' />
+                  ) : (
+                    <span className='capitalize flex items-center gap-1'>
+                      {p.id} <i className={`icon bi bi-${p.id}`}></i>
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
-        </form>
-      </div>
-    </section>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -11,7 +11,7 @@ export default async function Layout({ children, params }) {
 
   return (
     <>
-      <Main>{children}</Main>
+      <Main customClass={'m-0 p-0'}>{children}</Main>
       <Footer lng={lng} />
     </>
   );

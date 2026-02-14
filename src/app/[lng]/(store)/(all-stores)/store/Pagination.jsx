@@ -21,7 +21,7 @@ function ChangeByButton({
     }
   }
 
-  const LiclassName = `text-active border-0 fw-bolder mx-md-1 mx-xl-2`;
+  const LiclassName = `text-active font-semibold`;
   const LiTitle = <span>{isNext ? t('next') : t('prev')}</span>;
 
   return (
@@ -33,9 +33,7 @@ function ChangeByButton({
           disabled={true}
         >
           {LiTitle}
-          <span className='visually-hidden'>
-            {isNext ? 'Next Button' : 'Prev Button'}
-          </span>
+          <span className='sr-only'>{isNext ? 'Next' : 'Prev'} Button</span>
         </button>
       ) : (
         <Link
@@ -60,7 +58,7 @@ function NumberButtons({
   return (
     <li className=''>
       <Link
-        className={`py-2 px-3 rounded ${isActive ? 'shadow fw-bold' : ''}`}
+        className={`py-1 px-3 rounded ${isActive ? 'font-extrabold' : ''}`}
         href={`${baseHref}${queryString}page=${page}`}
       >
         <span>{formatNumber(page, lng)}</span>
@@ -105,9 +103,9 @@ export async function Pagination({
     : '?';
 
   return (
-    <div className='container-fluid container-md mx-0 mx-md-auto px-1 px-md-1 px-lg-2 px-xl-3 px-xxl-4 mt-5'>
-      <nav aria-label='Pagination'>
-        <ul className='pagination pagination-sm d-flex justify-content-between align-items-center gap-1 fs-7 bg-light rounded shadow text-active px-0 py-2'>
+    <div className='mx-0 mt-12'>
+      <nav>
+        <ul className='flex justify-between items-center gap-4 bg-white text-xl shadow-lg text-active md:rounded-lg max-w-3xl py-2 mx-0 px-8 sm:mx-auto'>
           <ChangeByButton
             total_pages={total_pages}
             current_page={current_page}
@@ -117,7 +115,7 @@ export async function Pagination({
             isNext={false}
           />
 
-          <div className='d-flex justify-content-center align-items-center gap-1 gap-md-2'>
+          <div className='flex justify-center items-center gap-1 md:gap-2'>
             {current_page > range + 1 && (
               <>
                 <NumberButtons

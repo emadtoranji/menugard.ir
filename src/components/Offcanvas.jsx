@@ -1,5 +1,8 @@
+'use client';
+
 export function OffcanvasButton({
-  id = null,
+  showCanvas = false,
+  setShowCanvas = undefined,
   btnTitle = 'Offcanvas',
   btnClass = 'btn-primary',
 }) {
@@ -7,9 +10,7 @@ export function OffcanvasButton({
     <button
       className={`btn ${btnClass}`}
       type='button'
-      data-bs-toggle='offcanvas'
-      data-bs-target={`#${id}`}
-      aria-controls={id}
+      onClick={() => setShowCanvas(!showCanvas)}
     >
       {btnTitle}
     </button>
@@ -18,32 +19,29 @@ export function OffcanvasButton({
 
 export function OffcanvasWrapper({
   title,
-  id = null,
   children,
-  zIndex = 1000,
+  showCanvas = false,
+  setShowCanvas = undefined,
+  zIndex = 5000,
 }) {
+  if (!showCanvas) return null;
+
   return (
-    <div
-      style={{ zIndex }}
-      className='offcanvas offcanvas-bottom h-100'
-      tabIndex='-1'
-      id={id}
-      aria-labelledby={`${id}Label`}
-    >
-      <div className='offcanvas-header d-flex align-items-center justify-content-between'>
-        <h5 className='offcanvas-title' id={`${id}Label`}>
-          {title}
-        </h5>
-        <div>
-          <button
-            type='button'
-            className='btn-close'
-            data-bs-dismiss='offcanvas'
-            aria-label='Close'
-          ></button>
-        </div>
+    <div style={{ zIndex }} className={`bg-white pb-16 my-0 min-h-screen`}>
+      <div className='container flex items-center justify-between border-b-2 border-muted py-3 shrink-0'>
+        <h1>{title}</h1>
+        <button
+          type='button'
+          className='btn'
+          onClick={() => setShowCanvas(false)}
+        >
+          <i className='icon bi bi-x-lg text-black text-2xl'></i>
+        </button>
       </div>
-      <div className='offcanvas-body'>{children}</div>
+
+      <div className=''>
+        <div className='container py-4'>{children}</div>
+      </div>
     </div>
   );
 }

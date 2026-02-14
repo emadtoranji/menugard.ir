@@ -16,14 +16,14 @@ export default function ActivePage({ nav }) {
   const isSignOut = nav?.id === 'signout';
 
   return (
-    <li className='nav-item d-flex justify-content-start justify-content-lg-center align-items-center'>
+    <li className=''>
       <Link
-        className={`nav-link ${isActive ? 'fw-bold' : 'fw-light'} ${
+        className={`${isActive ? 'font-bold' : 'font-light'} text-nowrap ${
           isSignIn
-            ? 'text-light'
+            ? 'text-white'
             : isSignOut
-              ? 'text-danger fw-bold'
-              : 'text-light'
+              ? 'text-red-700 font-bold'
+              : 'text-white'
         }`}
         href={nav.path}
       >
