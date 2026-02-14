@@ -70,7 +70,7 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
         <input
           type={type}
           className={`form-control ${extraClass} ${
-            editable ? '' : 'opacity-75'
+            editable ? '' : 'opacity-50'
           }`}
           id={`${field}-${idSuffix}`}
           value={value}
@@ -199,31 +199,31 @@ export function FoundedUsers({ t, foundedUsers = [], setFoundedUsers }) {
               )}
             </div>
 
-            <div className='flex justify-center items-center gap-3'>
+            <div className='flex justify-center items-center gap-3 mt-5'>
               {!isEditing ? (
                 <button
-                  className='flex gap-1 items-center btn btn-primary w-auto px-8'
+                  className='flex gap-2 items-center justify-center btn btn-lg btn-primary w-full px-8'
                   onClick={() => handleEdit(user)}
                 >
-                  <i className='icon bi bi-pencil-square text-xl'></i>
+                  <i className='icon bi bi-pencil-square'></i>
                   {t('general.edit')}
                 </button>
               ) : (
                 <>
                   <button
-                    className='flex gap-1 items-center btn btn-success w-auto px-8'
+                    className='flex gap-2 items-center justify-center btn btn-lg btn-success w-full px-8'
                     onClick={handleSave}
                     disabled={saving}
                   >
-                    <i className='icon bi bi-check-circle text-xl'></i>
+                    <i className='icon bi bi-check-circle'></i>
                     {t('general.save')}
                   </button>
                   <button
-                    className='flex gap-1 items-center btn btn-warning w-auto px-8'
+                    className='flex gap-2 items-center justify-center btn btn-lg btn-danger w-full px-8'
                     onClick={handleCancel}
                     disabled={saving}
                   >
-                    <i className='icon bi bi-x-circle text-xl'></i>
+                    <i className='icon bi bi-x-circle'></i>
                     {t('general.cancel')}
                   </button>
                 </>
