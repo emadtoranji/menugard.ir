@@ -44,7 +44,11 @@
   }
 
   .icon {
-    @apply flex items-center justify-center text-xl;
+    @apply flex items-center justify-center text-2xl;
+  }
+
+  .icon-lg {
+    @apply flex items-center justify-center text-3xl;
   }
 
   .icon-sm {
