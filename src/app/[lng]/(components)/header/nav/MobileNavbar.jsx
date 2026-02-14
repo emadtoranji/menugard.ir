@@ -23,7 +23,7 @@ export default function MobileNavbar({ brand, items }) {
 
       <div
         className={`
-          absolute top-full left-0 w-full md:static md:flex md:w-auto
+          absolute top-full left-0 w-full md:static md:flex md:w-auto px-4 sm:px-6 md:px-0
           overflow-hidden transition-all duration-300 ease
           bg-[var(--color-bg-nav)] text-[var(--color-text-nav)]
           md:overflow-visible md:bg-transparent align-center ${isOpen ? 'h-auto' : 'h-0'} md:h-auto
