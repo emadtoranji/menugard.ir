@@ -15,7 +15,7 @@ export default async function Layout({ children, params }) {
     <>
       <Header t={t} currentLang={currentLang} section='store' />
       <Main customClass={''}>{children}</Main>
-      <Footer t={t} currentLang={currentLang} />
+      <Footer t={t} lng={currentLang} />
     </>
   );
 }
