@@ -35,7 +35,7 @@ export default async function Index({ params, searchParams }) {
   return (
     <>
       <div className='container mt-16'>
-        <div className='card lg:mx-25 xl:mx-35 2xl:mx-50'>
+        <div className='card max-w-xl mx-auto'>
           <h2
             className={`mb-12 fw-bolder text-${status ? 'success' : 'danger'}`}
           >
