@@ -27,7 +27,7 @@ export function OffcanvasWrapper({
   if (!showCanvas) return null;
 
   return (
-    <div style={{ zIndex }} className={`bg-white pb-16`}>
+    <div style={{ zIndex }} className={`bg-white pb-16 my-0 h-screen`}>
       <div className='container flex items-center justify-between border-b-2 border-muted py-3 shrink-0'>
         <h1>{title}</h1>
         <button
