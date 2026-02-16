@@ -30,7 +30,7 @@
   }
 }
 
-@layer utilities {
+@layer components {
   .container-fluid {
     @apply m-0 p-0;
   }
@@ -40,15 +40,15 @@
   }
 
   .icon {
-    @apply flex items-center justify-center text-2xl;
+    @apply m-0 p-2 flex items-center justify-center text-2xl;
   }
 
   .icon-lg {
-    @apply flex items-center justify-center text-3xl;
+    @apply m-0 p-3 flex items-center justify-center text-3xl;
   }
 
   .icon-sm {
-    @apply flex items-center justify-center text-lg;
+    @apply m-0 p-1 flex items-center justify-center text-lg;
   }
 
   .big-number {
@@ -108,14 +108,7 @@
   button,
   [type='button'],
   [type='submit'] {
-    @apply transition;
-  }
-
-  .btn,
-  button,
-  [type='button'],
-  [type='submit'] {
-    @apply hover:cursor-pointer hover:opacity-100;
+    @apply rounded-lg hover:cursor-pointer hover:opacity-100 transition;
   }
 
   button:disabled {
@@ -167,12 +160,12 @@
   }
 
   .card {
-    @apply shadow-lg rounded-lg overflow-hidden;
+    @apply flex flex-col py-2 px-3 bg-white shadow-lg rounded-lg overflow-hidden;
   }
 
   .card-header,
   .card-title {
-    @apply font-semibold;
+    @apply font-semibold py-1;
   }
 
   .card-header-sm,
@@ -180,8 +173,12 @@
     @apply font-semibold;
   }
 
+  .card-footer {
+    @apply mb-1 mt-2 px-1;
+  }
+
   .card-body {
-    @apply py-2 px-1 lg:py-3 lg:px-2 2xl:py-4 2xl:px-3;
+    @apply flex-1 py-2 px-1 lg:py-3 lg:px-2 2xl:py-4 2xl:px-3;
   }
 
   .text-muted {
@@ -214,5 +211,9 @@
 
   .border-purple {
     @apply border-purple-300;
+  }
+
+  .shadow-purple {
+    @apply shadow-purple-300;
   }
 }

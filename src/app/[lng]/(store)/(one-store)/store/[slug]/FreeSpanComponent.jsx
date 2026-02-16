@@ -5,5 +5,10 @@ export default function FreeSpanComponent({
 }) {
   const { t } = useT('store');
 
-  return <span className={`${additionalClass}`}>{t('free')}</span>;
+  return (
+    <>
+      <span className='sr-only'>Free</span>
+      <span className={`${additionalClass}`}>{t('free')}</span>
+    </>
+  );
 }

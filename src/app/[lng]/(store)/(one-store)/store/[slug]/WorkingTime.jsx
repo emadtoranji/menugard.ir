@@ -37,6 +37,7 @@ export default function WorkingTime() {
 
   return message ? (
     <div className='asiatech-font share-tech-font italic text-black flex justify-center'>
+      <span className='sr-only'>Store Working Time</span>
       <span
         className='border-b border-black'
         dangerouslySetInnerHTML={{ __html: domPurify(message) }}

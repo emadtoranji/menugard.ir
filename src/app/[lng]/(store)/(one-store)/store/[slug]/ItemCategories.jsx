@@ -23,7 +23,7 @@ export default function ItemCategories({
             onClick={() => setActiveCategory(null)}
             className={`text-nowrap btn btn-lg ${activeCategory === null ? 'opacity-100' : 'opacity-75'}`}
           >
-            <span className='sr-only'>All</span>
+            <span className='sr-only'>All Categories</span>
             <span>{t('all-categories')}</span>
           </button>
 
@@ -34,7 +34,7 @@ export default function ItemCategories({
               onClick={() => setActiveCategory(category)}
               className={`text-nowrap btn btn-lg ${activeCategory === category ? 'opacity-100 font-bold' : 'opacity-75'}`}
             >
-              <span className='sr-only'>{category}</span>
+              <span className='sr-only'>{category} Category</span>
               <span className='text-capitalize'>{t(category, category)}</span>
             </button>
           ))}

@@ -58,29 +58,33 @@ export default async function Footer({ lng }) {
             href={process.env.NEXT_PUBLIC_DEVELOPER_X || '/'}
             target='_blank'
             aria-label='X'
+            className='transition-transform duration-300 hover:-translate-y-2'
           >
-            <i className='icon bi bi-twitter text-2xl'></i>
+            <i className='icon bi bi-twitter'></i>
           </Link>
           <Link
             href={process.env.NEXT_PUBLIC_DEVELOPER_GITHUB || '/'}
             target='_blank'
             aria-label='GitHub'
+            className='transition-transform duration-300 hover:-translate-y-2'
           >
-            <i className='icon bi bi-github text-2xl'></i>
+            <i className='icon bi bi-github'></i>
           </Link>
           <Link
             href={process.env.NEXT_PUBLIC_DEVELOPER_TELEGRAM || '/'}
             target='_blank'
             aria-label='Telegram'
+            className='transition-transform duration-300 hover:-translate-y-2'
           >
-            <i className='icon bi bi-telegram text-2xl'></i>
+            <i className='icon bi bi-telegram'></i>
           </Link>
           <Link
             href={process.env.NEXT_PUBLIC_DEVELOPER_LINKEDIN || '/'}
             target='_blank'
             aria-label='LinkedIn'
+            className='transition-transform duration-300 hover:-translate-y-2'
           >
-            <i className='icon bi bi-linkedin text-2xl'></i>
+            <i className='icon bi bi-linkedin'></i>
           </Link>
         </div>
       </div>

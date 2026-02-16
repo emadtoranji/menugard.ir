@@ -27,6 +27,10 @@ export default function ItemPrice({ item }) {
           freeSpan
         ) : (
           <>
+            <span className='sr-only'>
+              Price is {item.price}
+              {state.store.currency}
+            </span>
             <span>{formatNumber(item.price, lng)}</span>
             {currencySpan}
           </>
@@ -39,6 +43,10 @@ export default function ItemPrice({ item }) {
             freeSpan
           ) : (
             <>
+              <span className='sr-only'>
+                Item Price is {item.price}
+                {state.store.currency}
+              </span>
               <span>{formatNumber(discontedPrice, lng)}</span>
               {currencySpan}
             </>

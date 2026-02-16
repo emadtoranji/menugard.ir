@@ -49,7 +49,7 @@ export default async function Navigation({
 
   return (
     <nav className='w-full shadow-2xl fixed top-0'>
-      <div className='px-0 mx-auto'>
+      <div className='md:px-2 mx-auto max-w-7xl'>
         <MobileNavbar
           brand={
             <Link

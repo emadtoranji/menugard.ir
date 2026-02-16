@@ -57,17 +57,16 @@ export default function ItemQuantityButton({ item = {} }) {
   return quantity === 0 ? (
     <button
       type='button'
-      className={`btn ${!isOrderable ? 'btn-danger  btn-sm' : 'btn-active p-2'}`}
+      className={`btn ${!isOrderable ? 'btn-danger  btn-sm' : 'btn-active p-2'} transition-all duration-500`}
       disabled={!isOrderable}
       onClick={() => handleAddItem(item)}
     >
       <span className='flex items-center gap-1'>
-        <span className='sr-only'>Add Item</span>
+        <span className='sr-only'>
+          {isOrderable ? 'Add Item' : 'Is Not Active'}
+        </span>
         {isOrderable ? (
-          <>
-            <i className='p-1 icon-sm bi bi-plus-lg'></i>
-            <span className='hidden'>{t('add-item')}</span>
-          </>
+          <i className='p-1 icon-sm bi bi-plus-lg'></i>
         ) : (
           t('is-not-active')
         )}
@@ -77,17 +76,19 @@ export default function ItemQuantityButton({ item = {} }) {
     <div className='flex items-center gap-1'>
       <button
         type='button'
-        className={`btn btn-active p-2`}
+        className={`btn btn-active p-2 transition-all duration-500`}
         onClick={() => handleAddItem(item)}
         disabled={!isOrderable}
       >
         <span className='sr-only'>Add Item</span>
         <i className='p-1 icon-sm bi bi-plus-lg'></i>
       </button>
-      <span className='px-2 font-bold'>{quantity}</span>
+      <span className='px-2 font-bold transition-all duration-300'>
+        {quantity}
+      </span>
       <button
         type='button'
-        className='btn btn-danger p-2'
+        className='btn btn-danger p-2 transition-all duration-500'
         onClick={() => handleRemoveItem(item)}
       >
         <span className='sr-only'>Remove Item</span>

@@ -57,8 +57,8 @@ export default function StoreItemsCategories() {
       id='item-categories'
       className='w-full bg-white mt-5 py-1 absolute bottom-0 text-active'
     >
-      <div ref={containerRef} className='marquee-container'>
-        <div ref={trackRef} className='marquee-track inline-flex gap-5'>
+      <div ref={containerRef}>
+        <div ref={trackRef} className='inline-flex gap-5'>
           {items.map((category, i) => (
             <span className='text-nowrap font-bold' key={i}>
               {t(category, category)}

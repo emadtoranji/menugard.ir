@@ -34,14 +34,14 @@ export default function ItemOption({ options = [], item = null }) {
             key={`item-option-${optionId}`}
             className='flex items-center justify-between'
           >
-            <h4 className='flex items-baseline gap-1 m-0'>
-              {option.isRequired && (
-                <i className='flex items-center p-1 icon-sm bi bi-asterisk text-danger'></i>
-              )}
+            <h5 className='flex justify-center items-center gap-1 m-0 text-sm'>
+              <i
+                className={`icon-sm bi ${option.isRequired ? 'bi-asterisk text-danger' : 'bi-magic text-active'} text-xs`}
+              ></i>
               <div>{option.title}</div>
 
               <OptionPrice option={option} />
-            </h4>
+            </h5>
 
             <OptionQuantityButton item={item} option={option} />
           </div>

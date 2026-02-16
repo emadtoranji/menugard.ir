@@ -21,6 +21,12 @@
     }
   },
 
+  "search-engine": {
+    "title-1": "Just register",
+    "title-2": "We do the rest",
+    "text": "No hassle — no complicated settings — completely smart and automated"
+  },
+
   "qrcode-usage": {
     "title": "Unique barcode for each store and table",
     "text": "The 'Menu Navigation' system allows each store and each table to have a unique barcode. In this way, each store can manage its digital menu independently and customers directly access the menu of the same table and store."

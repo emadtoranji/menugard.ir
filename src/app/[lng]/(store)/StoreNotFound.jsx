@@ -5,6 +5,7 @@ export default async function ServiceNotFound({ lng }) {
 
   return (
     <div className='container'>
+      <span className='sr-only'>Store Not Found</span>
       <h2 className='mt-5 font-bold'>{t('empty')}</h2>
     </div>
   );
