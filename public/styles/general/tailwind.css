@@ -115,7 +115,7 @@
   button,
   [type='button'],
   [type='submit'] {
-    @apply hover:cursor-pointer hover:opacity-100;
+    @apply rounded-lg hover:cursor-pointer hover:opacity-100;
   }
 
   button:disabled {
@@ -167,12 +167,12 @@
   }
 
   .card {
-    @apply shadow-lg rounded-lg overflow-hidden;
+    @apply py-2 px-3 bg-white shadow-lg rounded-lg overflow-hidden;
   }
 
   .card-header,
   .card-title {
-    @apply font-semibold;
+    @apply font-semibold py-1;
   }
 
   .card-header-sm,
@@ -214,5 +214,9 @@
 
   .border-purple {
     @apply border-purple-300;
+  }
+
+  .shadow-purple {
+    @apply shadow-purple-300;
   }
 }
