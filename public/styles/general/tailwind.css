@@ -30,7 +30,7 @@
   }
 }
 
-@layer utilities {
+@layer components {
   .container-fluid {
     @apply m-0 p-0;
   }
@@ -108,14 +108,7 @@
   button,
   [type='button'],
   [type='submit'] {
-    @apply transition;
-  }
-
-  .btn,
-  button,
-  [type='button'],
-  [type='submit'] {
-    @apply rounded-lg hover:cursor-pointer hover:opacity-100;
+    @apply rounded-lg hover:cursor-pointer hover:opacity-100 transition;
   }
 
   button:disabled {
