@@ -45,14 +45,14 @@ export default async function Page({ params, searchParams }) {
   const title = slugFiltered && stores.length > 0 ? stores[0].title : undefined;
 
   return (
-    <div className='mb-12'>
+    <div className='mb-4'>
       <SearchForm search={search} slugFiltered={slugFiltered} title={title} />
 
       <div className='container my-5'>
         {stores.length === 0 && !slugFiltered && <StoreNotFound t={t} />}
 
         {stores.length > 0 && (
-          <div className='mx-auto grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 4xl:grid-cols-4 3xl:grid-cols-4 gap-3'>
+          <div className='mx-auto grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3'>
             {stores.map((store, index) => (
               <StoreCard
                 key={`storeBox-${store?.slug || index}`}

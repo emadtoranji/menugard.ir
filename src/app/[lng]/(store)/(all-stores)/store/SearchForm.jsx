@@ -43,13 +43,13 @@ export default function SearchForm({
   return (
     <div className='container pb-8'>
       <form
-        className='flex justify-center w-full text-center relative text-active position-relative overflow-hidden'
+        className='flex justify-center w-full max-w-3xl mx-auto text-center relative text-active position-relative overflow-hidden'
         onSubmit={(e) => {
           e.preventDefault();
           handleSearch();
         }}
       >
-        <div className='flex gap-3 bg-white p-0 m-0 rounded-full w-full px-4'>
+        <div className='flex gap-3 bg-white p-0 m-0 rounded-full w-full px-4 border border-purple'>
           <input
             type='text'
             className='text-lg border-none bg-transparent form-control'

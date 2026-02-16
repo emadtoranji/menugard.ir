@@ -24,7 +24,7 @@ export default function ItemContent({ items = [], defaultImage }) {
               <div
                 key={`item-${item.id}`}
                 style={{ minHeight: '250px' }}
-                className={`card bg-white w-full ${isOrderable ? '' : 'opacity-75'}`}
+                className={`card bg-white w-full ${isOrderable ? 'border border-purple shadow-lg' : 'opacity-75'} `}
               >
                 <div className='card-body flex gap-3'>
                   <div className='w-full'>

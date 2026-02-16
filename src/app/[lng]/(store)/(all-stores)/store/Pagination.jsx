@@ -103,9 +103,9 @@ export async function Pagination({
     : '?';
 
   return (
-    <div className='mx-0 mt-12'>
+    <div className='mx-0 mt-20'>
       <nav>
-        <ul className='flex justify-between items-center gap-4 bg-white text-xl shadow-lg text-active md:rounded-lg max-w-3xl py-2 mx-0 px-8 sm:mx-auto'>
+        <ul className='flex justify-between items-center gap-4 text-xl bg-white text-active md:rounded-lg max-w-lg py-2 mx-0 px-8 sm:mx-auto border border-purple'>
           <ChangeByButton
             total_pages={total_pages}
             current_page={current_page}

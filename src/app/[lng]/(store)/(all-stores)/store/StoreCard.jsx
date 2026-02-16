@@ -15,13 +15,13 @@ export default async function StoreCard({ lng, store }) {
   return (
     <article className='w-full'>
       <Link href={navigateToStore}>
-        <div className='card h-full w-full'>
-          <h3 className='font-bold text-center card-header bg-white py-3 px-2'>
+        <div className='card h-full w-full shadow-lg border border-purple'>
+          <h3 className='font-bold text-center card-header px-2'>
             {store.name}
           </h3>
           <div className='card-body'>
             <Image
-              className='flex mx-auto mb-3'
+              className='m-auto'
               src={store?.logoUrl || defaultImage}
               height={150}
               width={150}
@@ -29,17 +29,16 @@ export default async function StoreCard({ lng, store }) {
               alt={`${store.name} Logo`}
               loading='lazy'
             />
-            <p className={`h4 fw-normal mb-8 text-justify font-bold`}>
+            <p className={`h4 fw-normal mt-2 mb-8 text-justify font-bold`}>
               {domPurifyServer(store?.description || '')}
             </p>
-
             <div className='flex gap-1 justify-between items-center mt-auto flex-wrap'>
-              <div className='flex gap-1'>
+              <div className='flex flex-wrap gap-2'>
                 {store.categories.map((category) => {
                   return (
                     <span
                       key={`${store.id}-${category.key}`}
-                      className='badge rounded btn btn-active'
+                      className='rounded btn btn-active font-bold text-nowrap'
                     >
                       <small className='text-capitalize'>
                         {tStoreCategories(category.key, category.key)}
@@ -48,15 +47,20 @@ export default async function StoreCard({ lng, store }) {
                   );
                 })}
               </div>
-              <div className='flex gap-1 rounded btn btn-active'>
-                <span className='font-bold'>
-                  {domPurifyServer(store?.location?.provinceLocal || '')}
-                </span>
-                <span className='italic'>
-                  {domPurifyServer(store?.address || '')}
-                </span>
-              </div>
             </div>
+            <p className='flex gap-1 mt-4'>
+              <Image
+                alt='address'
+                className='icon'
+                height={25}
+                width={25}
+                src={'/images/store/road-sign.svg'}
+              />
+              <span className='font-semibold'>
+                {domPurifyServer(store?.location?.provinceLocal || '')}
+              </span>
+              <span>{domPurifyServer(store.address || '')}</span>
+            </p>
           </div>
         </div>
       </Link>
