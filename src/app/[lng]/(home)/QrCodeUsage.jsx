@@ -16,7 +16,7 @@ export default async function QrCodeUsage({ lng }) {
               width={200}
               src={qrCodeUrl}
               alt='QR Code Main Website'
-              className='justify-center mx-auto shadow-lg animate__animated animate__pulse animate__slower animate__infinite'
+              className='justify-center mx-auto shadow-2xl animate__animated animate__pulse animate__slower animate__infinite'
             />
           </div>
         </div>
