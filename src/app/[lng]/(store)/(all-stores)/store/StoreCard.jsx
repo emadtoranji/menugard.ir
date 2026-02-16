@@ -53,7 +53,7 @@ export default async function StoreCard({ lng, store }) {
             <p className='flex gap-1 text-wrap'>
               <Image
                 alt='address'
-                className='icon'
+                className=''
                 height={25}
                 width={25}
                 src={'/images/store/road-sign.svg'}
