@@ -31,7 +31,7 @@ export default function ItemContent({ items = [], defaultImage }) {
                     <h3 className='font-bold'>{item.title}</h3>
                     <p className='text-justify px-1'>{item.description}</p>
                   </div>
-                  <div className='w-auto flex items-center justify-center'>
+                  <div className='w-auto'>
                     <ItemImage
                       key={`logo-${item.category}`}
                       category={item.category}
@@ -41,7 +41,7 @@ export default function ItemContent({ items = [], defaultImage }) {
                   </div>
                 </div>
 
-                <div className='border-t border-muted bg-white'>
+                <div className='card-footer border-t border-muted bg-white'>
                   <div className='flex items-center justify-between py-1 mt-2'>
                     <ItemPrice item={item} />
 

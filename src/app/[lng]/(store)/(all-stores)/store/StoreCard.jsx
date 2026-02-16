@@ -29,7 +29,7 @@ export default async function StoreCard({ lng, store }) {
               alt={`${store.name} Logo`}
               loading='lazy'
             />
-            <p className={`h4 fw-normal mt-2 mb-8 text-justify font-bold`}>
+            <p className={`h4 fw-normal mt-2 mb-4 text-justify font-bold`}>
               {domPurifyServer(store?.description || '')}
             </p>
             <div className='flex gap-1 justify-between items-center mt-auto flex-wrap'>
@@ -38,7 +38,7 @@ export default async function StoreCard({ lng, store }) {
                   return (
                     <span
                       key={`${store.id}-${category.key}`}
-                      className='rounded btn btn-active font-bold text-nowrap'
+                      className='rounded btn px-2 py-0 btn-active font-bold text-nowrap'
                     >
                       <small className='text-capitalize'>
                         {tStoreCategories(category.key, category.key)}
@@ -48,7 +48,9 @@ export default async function StoreCard({ lng, store }) {
                 })}
               </div>
             </div>
-            <p className='flex gap-1 mt-4'>
+          </div>
+          <div className='card-footer'>
+            <p className='flex gap-1 text-wrap'>
               <Image
                 alt='address'
                 className='icon'

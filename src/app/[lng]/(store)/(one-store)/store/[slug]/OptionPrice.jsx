@@ -25,6 +25,10 @@ export default function OptionPrice({ option }) {
       <div className={`font-semibold flex items-center ${additionalClass} `}>
         <span>(</span>
         <span className='flex items-center gap-1'>
+          <span className='sr-only'>
+            Option Price is {option.price}
+            {state.store.currency}
+          </span>
           <span>{formatNumber(option.price, lng)}</span>
           {currencySpan}
         </span>

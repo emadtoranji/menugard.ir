@@ -5,6 +5,7 @@ export default async function ServiceDisabled({ lng }) {
 
   return (
     <div className='container'>
+      <span className='sr-only'>Store Is Disabled</span>
       <h2 className='mt-5 font-bold'>{t('store-disabled')}</h2>
     </div>
   );
