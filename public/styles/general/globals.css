@@ -169,19 +169,6 @@ body::-webkit-scrollbar-thumb {
   unicode-bidi: plaintext;
 }
 
-.marquee-container {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.marquee-track {
-  display: inline-flex;
-  gap: 2rem;
-  white-space: nowrap;
-  will-change: transform;
-}
-
 select.form-select {
   background-image: url('data:image/svg+xml,<svg ...>');
   background-repeat: no-repeat;
