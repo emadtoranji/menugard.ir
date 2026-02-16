@@ -80,10 +80,6 @@ a {
   text-decoration: none !important;
 }
 
-.btn {
-  border-radius: 8px;
-}
-
 .cursor-pointer {
   cursor: pointer !important;
 }
@@ -107,18 +103,6 @@ input[type='number']::-webkit-inner-spin-button {
 input[type='number'] {
   appearance: textfield;
   -moz-appearance: textfield;
-}
-
-.opacity-10 {
-  opacity: 0.1 !important;
-}
-
-.opacity-80 {
-  opacity: 0.8 !important;
-}
-
-.opacity-90 {
-  opacity: 0.9 !important;
 }
 
 .bg-cover {
@@ -203,11 +187,6 @@ select.form-select {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1em auto;
-}
-
-.card {
-  background-color: white;
-  padding: 16px 20px;
 }
 
 .card-header,
