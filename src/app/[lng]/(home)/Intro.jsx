@@ -28,14 +28,14 @@ export default async function Intro({ lng }) {
 
           <div className='w-full grid grid-cols-1 sm:grid-cols-2 items-center mt-4 gap-2'>
             <Link href={`/${lng}/dashboard`}>
-              <button className='w-full btn btn-lg btn-active shadow-xl'>
+              <button className='w-full btn btn-lg btn-active shadow-xl hover:font-semibold'>
                 <span className='sr-only'>Intro (Dashboard)</span>{' '}
                 {t('intro.intro-button')}
               </button>
             </Link>
 
             <Link href={`/${lng}/store`}>
-              <button className='w-full btn btn-lg btn-inactive shadow-xl'>
+              <button className='w-full btn btn-lg btn-inactive shadow-xl hover:font-semibold'>
                 <span className='sr-only'>Store</span>
                 {t('intro.stores-button')}
               </button>

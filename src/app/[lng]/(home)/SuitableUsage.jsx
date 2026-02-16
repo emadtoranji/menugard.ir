@@ -30,7 +30,7 @@ export default async function SuitableUsage({ lng }) {
           {cards.map((card, i) => (
             <div key={i} className='w-full lg:w-4/12 p-2.5'>
               <div className='bg-white rounded-lg shadow-lg h-full'>
-                <div className='p-4 text-center'>
+                <div className='p-4 text-center transition-transform duration-300 hover:-translate-y-2'>
                   <ItemImage
                     key={`logo-${card.category}`}
                     category={card.category}
