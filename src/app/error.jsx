@@ -16,14 +16,6 @@ export default function Error({ error, reset }) {
 
   return (
     <html lang={'auto'} dir={'auto'}>
-      <head>
-        <link
-          href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css'
-          integrity='sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB'
-          crossOrigin='anonymous'
-          rel='stylesheet'
-        />
-      </head>
       <body className={`container-fluid flex flex-col min-w-full m-0 p-0`}>
         <Problems
           content={content}
